@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="52a1a1d0-7a0d-4496-ae12-a1818b6d2add" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/DataBase/DBManager.php" afterPath="$PROJECT_DIR$/model/DataBase/DBManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/DataBase/ProductDao.php" afterPath="$PROJECT_DIR$/model/DataBase/ProductDao.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,46 +12,51 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProductDao.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProductDao.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/DataBase/ProductDao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="52" column="1" lean-forward="true" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+            <state relative-caret-position="748">
+              <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
               <folding>
-                <marker date="1507832396425" expanded="true" signature="647:746" ph="INSERT INTO `products`... " />
-                <marker date="1507832396425" expanded="true" signature="1002:1069" ph="INSERT INTO `products_urls`... " />
-                <marker date="1507832396425" expanded="true" signature="1260:1349" ph="INSERT INTO `products_specifications`... " />
-                <marker date="1507832396425" expanded="true" signature="1523:1556" ph="INSERT INTO ${$this-&gt;pdo}" />
+                <marker date="1507837631065" expanded="true" signature="647:746" ph="INSERT INTO `products`... " />
+                <marker date="1507837631065" expanded="true" signature="1002:1069" ph="INSERT INTO `products_urls`... " />
+                <marker date="1507837631065" expanded="true" signature="1260:1349" ph="INSERT INTO `products_specifications`... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/DataBase/OrderDao.php">
+      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/products/Product.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-              <folding>
-                <element signature="e#114#137#0#PHP" expanded="true" />
-                <marker date="1507823038280" expanded="true" signature="652:731" ph="INSERT INTO orders... " />
-                <marker date="1507823038280" expanded="true" signature="949:1035" ph="INSERT INTO `ordered_products`... " />
-                <marker date="1507823038280" expanded="true" signature="1540:1618" ph="SELECT `orde... orders" />
-              </folding>
+            <state relative-caret-position="-119">
+              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/DataBase/UserDao.php">
+      <file leaf-file-name="Favorite.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/favorites/Favorite.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="41" />
+            <state relative-caret-position="-352">
+              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FavouriteDao.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/DataBase/FavouriteDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
               <folding>
-                <marker date="1507814144799" expanded="true" signature="564:618" ph="SELECT count... users" />
-                <marker date="1507814144799" expanded="true" signature="820:965" ph="INSERT INTO users... " />
+                <marker date="1507837476764" expanded="true" signature="542:605" ph="INSERT INTO `favorites`... " />
+                <marker date="1507837476764" expanded="true" signature="819:879" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -60,9 +65,22 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/users/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="34" column="115" lean-forward="false" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
+            <state relative-caret-position="272">
+              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDao.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/DataBase/UserDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="17" column="63" lean-forward="true" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
+              <folding>
+                <marker date="1507833123509" expanded="true" signature="564:618" ph="SELECT count... users" />
+                <marker date="1507833123509" expanded="true" signature="820:965" ph="INSERT INTO users... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,19 +88,48 @@
       <file leaf-file-name="Order.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/orders/Order.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="17" column="62" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="62" />
+            <state relative-caret-position="136">
+              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/products/Product.php">
+      <file leaf-file-name="Promotion.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/promotions/Promotion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+            <state relative-caret-position="-578">
+              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PromotionDao.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/DataBase/PromotionDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+              <folding>
+                <marker date="1507837631165" expanded="true" signature="639:733" ph="INSERT INTO users... " />
+                <marker date="1507837631165" expanded="true" signature="639:734" ph="INSERT INTO promotions... " />
+                <marker date="1507837631165" expanded="true" signature="1019:1064" ph="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderDao.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/DataBase/OrderDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
+              <folding>
+                <element signature="e#114#137#0#PHP" expanded="true" />
+                <marker date="1507833123509" expanded="true" signature="652:731" ph="INSERT INTO `orders`... " />
+                <marker date="1507833123509" expanded="true" signature="949:1035" ph="INSERT INTO `ordered_products`... " />
+                <marker date="1507833123509" expanded="true" signature="1540:1618" ph="SELECT `orde... orders" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,7 +165,11 @@
         <option value="$PROJECT_DIR$/model/DataBase/OrderDao.php" />
         <option value="$PROJECT_DIR$/model/products/Product.php" />
         <option value="$PROJECT_DIR$/controler/testInsertOrder.php" />
+        <option value="$PROJECT_DIR$/model/promotions/promotion.php" />
+        <option value="$PROJECT_DIR$/model/favorites/Favorite.php" />
+        <option value="$PROJECT_DIR$/model/DataBase/FavouriteDao.php" />
         <option value="$PROJECT_DIR$/model/DataBase/ProductDao.php" />
+        <option value="$PROJECT_DIR$/model/DataBase/PromotionDao.php" />
       </list>
     </option>
   </component>
@@ -129,9 +180,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="34" />
-    <option name="y" value="41" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="105" />
+    <option name="y" value="26" />
     <option name="width" value="1378" />
     <option name="height" value="780" />
   </component>
@@ -151,63 +202,144 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controler" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="DataBase" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="orders" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="products" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="users" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="style" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ittech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ittech" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="promotions" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="products" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="orders" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="favorites" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataBase" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ITTech" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controler" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,13 +362,8 @@
     </option>
   </component>
   <component name="RunManager" selected="PHP Script.testInsertOrder.php">
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
+    <configuration default="false" name="testInsertOrder.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/controler/testInsertOrder.php">
+      <method />
     </configuration>
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings />
@@ -276,6 +403,15 @@
       <PhpTestRunnerSettings />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -296,7 +432,9 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration name="testInsertOrder.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/controler/testInsertOrder.php" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.testInsertOrder.php" />
+    </list>
     <recent_temporary>
       <list size="1">
         <item index="0" class="java.lang.String" itemvalue="PHP Script.testInsertOrder.php" />
@@ -315,22 +453,22 @@
       <updated>1507784222039</updated>
       <workItem from="1507784223634" duration="8998000" />
       <workItem from="1507801988908" duration="15202000" />
+      <workItem from="1507833838241" duration="3768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24200000" />
+    <option name="totallyTimeSpent" value="27968000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="105" y="26" width="1378" height="780" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16325037" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16299559" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -341,25 +479,52 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/model/DataBase/ProductDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1507837631065" expanded="true" signature="647:746" ph="INSERT INTO `products`... " />
+            <marker date="1507837631065" expanded="true" signature="1002:1069" ph="INSERT INTO `products_urls`... " />
+            <marker date="1507837631065" expanded="true" signature="1260:1349" ph="INSERT INTO `products_specifications`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/DataBase/OrderDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding>
+            <element signature="e#114#137#0#PHP" expanded="true" />
+            <marker date="1507833123509" expanded="true" signature="652:731" ph="INSERT INTO `orders`... " />
+            <marker date="1507833123509" expanded="true" signature="949:1035" ph="INSERT INTO `ordered_products`... " />
+            <marker date="1507833123509" expanded="true" signature="1540:1618" ph="SELECT `orde... orders" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -367,7 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -375,7 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -383,7 +546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -408,7 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -417,15 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/DataBase/DBManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -433,7 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -441,6 +592,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="669">
           <caret line="46" column="10" lean-forward="true" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controler/testInsertOrder.php" />
+    <entry file="file://$PROJECT_DIR$/model/DataBase/DBManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -453,73 +612,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/users/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="115" lean-forward="false" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/DataBase/UserDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="41" />
+        <state relative-caret-position="124">
+          <caret line="17" column="63" lean-forward="true" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
           <folding>
-            <marker date="1507814144799" expanded="true" signature="564:618" ph="SELECT count... users" />
-            <marker date="1507814144799" expanded="true" signature="820:965" ph="INSERT INTO users... " />
+            <marker date="1507833123509" expanded="true" signature="564:618" ph="SELECT count... users" />
+            <marker date="1507833123509" expanded="true" signature="820:965" ph="INSERT INTO users... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/products/Product.php">
+    <entry file="file://$PROJECT_DIR$/model/users/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+        <state relative-caret-position="272">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/orders/Order.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="62" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="62" />
+        <state relative-caret-position="136">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controler/testInsertOrder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#6#30#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/DataBase/OrderDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        <state relative-caret-position="175">
+          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="e#114#137#0#PHP" expanded="true" />
-            <marker date="1507823038280" expanded="true" signature="652:731" ph="INSERT INTO orders... " />
-            <marker date="1507823038280" expanded="true" signature="949:1035" ph="INSERT INTO `ordered_products`... " />
-            <marker date="1507823038280" expanded="true" signature="1540:1618" ph="SELECT `orde... orders" />
+            <marker date="1507833123509" expanded="true" signature="652:731" ph="INSERT INTO `orders`... " />
+            <marker date="1507833123509" expanded="true" signature="949:1035" ph="INSERT INTO `ordered_products`... " />
+            <marker date="1507833123509" expanded="true" signature="1540:1618" ph="SELECT `orde... orders" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/DataBase/ProductDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="52" column="1" lean-forward="true" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        <state relative-caret-position="748">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
           <folding>
-            <marker date="1507832396425" expanded="true" signature="647:746" ph="INSERT INTO `products`... " />
-            <marker date="1507832396425" expanded="true" signature="1002:1069" ph="INSERT INTO `products_urls`... " />
-            <marker date="1507832396425" expanded="true" signature="1260:1349" ph="INSERT INTO `products_specifications`... " />
-            <marker date="1507832396425" expanded="true" signature="1523:1556" ph="INSERT INTO ${$this-&gt;pdo}" />
+            <marker date="1507837631065" expanded="true" signature="647:746" ph="INSERT INTO `products`... " />
+            <marker date="1507837631065" expanded="true" signature="1002:1069" ph="INSERT INTO `products_urls`... " />
+            <marker date="1507837631065" expanded="true" signature="1260:1349" ph="INSERT INTO `products_specifications`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/products/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/favorites/Favorite.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/promotions/Promotion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-578">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/DataBase/FavouriteDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding>
+            <marker date="1507837476764" expanded="true" signature="542:605" ph="INSERT INTO `favorites`... " />
+            <marker date="1507837476764" expanded="true" signature="819:879" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/DataBase/PromotionDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding>
+            <marker date="1507837631165" expanded="true" signature="639:733" ph="INSERT INTO users... " />
+            <marker date="1507837631165" expanded="true" signature="639:734" ph="INSERT INTO promotions... " />
+            <marker date="1507837631165" expanded="true" signature="1019:1064" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
