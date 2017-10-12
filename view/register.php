@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>ITTech - online shop</title>
+    <link rel="stylesheet" type="text/css" href="../style/css.css">
 </head>
 <body>
 <h2>Registration</h2>
 <form method="post" action="../controler/register_controller.php">
-    Name *
+    <label>Name *</label>
     <input type="text" size="50" required name="name"><br/>
-    Surname *
+    <label>Surname *</label>
     <input type="text" size="50" required name="surname"><br/>
-    E-mail *
+    <label>E-mail *</label>
     <input type="email" size="50" required name="e-mail"><br/>
-    Password *
+    <label>Password *</label>
     <input type="password" size="50" required name="password"><br/>
-    Confirm password *
+    <label>Confirm password *</label>
     <input type="password" size="50" required name="confirmPassword"><br/>
-    Gender *
+    <label>Gender *</label>
     <input type="radio" name="man" value="m">Man
     <input type="radio" name="woman" value="woman">Woman <br/>
-    Date of birth *
+    <label>Date of birth *
     <select name="day">
         <option>Day</option>
         <?php
@@ -45,8 +46,9 @@
 		}
 		?>
     </select><br/>
-    <input type="radio" name="notification" value="I want to receive information about promotions and new products"><br/>
-    <input type="radio" name="conditions" value="I accept the terms of use" onclick="window.location='conditionsForOnlineShopping.html'">
+    <input type="radio" name="notification" value="notifications">I want to receive information about promotions and new products<br/>
+    <input type="radio" name="conditions" value="terms" onclick="window.location='conditionsForOnlineShopping.html';">I accept the terms of use<br/>
+    <input type="submit" name="register" value="Register">
 </form>
 </body>
 </html>
