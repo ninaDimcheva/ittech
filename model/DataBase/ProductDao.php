@@ -58,8 +58,14 @@ class ProductDao{
             throw new \PDOException($e->getMessage(),$e->getCode());
         }
     }
+    
+    // TODO we need to add query to change the quantity of the products;
 
 //    public function getAllProducts(){
 //        $stm = $this->pdo->prepare("SELECT ``");
 //    }
+
+
+
+
 }
