@@ -10,6 +10,9 @@ namespace model\favorites;
 
 
 class Favorite {
+    /**
+     * @var array
+     */
 	private $product_id = []; // value = product_id;
 	private $user_id;
 	
@@ -33,7 +36,7 @@ class Favorite {
 	}
 	
 	/**
-	 * @param mixed $user_id
+	 * @param integer $user_id
 	 */
 	public function setUserId($user_id)
 	{
@@ -49,7 +52,7 @@ class Favorite {
 	}
 	
 	/**
-	 * @return mixed
+	 * @return integer
 	 */
 	public function getUserId()
 	{

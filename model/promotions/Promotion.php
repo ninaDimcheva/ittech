@@ -10,18 +10,33 @@ namespace model\promotions;
 
 
 class promotion {
+    /**
+     * @var integer
+     */
 	private $promotion_id;
+    /**
+     * @var integer
+     */
 	private $product_id;
+    /**
+     * @var string (YEAR-MONTH-DAY)
+     */
 	private $start_date;
+    /**
+     * @var string (YEAR-MONTH-DAY)
+     */
 	private $end_date;
+    /**
+     * @var double
+     */
 	private $discount;
 	
 	/**
 	 * promotion constructor.
-	 * @param $product_id
-	 * @param $start_date
-	 * @param $end_date
-	 * @param $discount
+	 * @param integer $product_id
+	 * @param string $start_date (YEAR-MONTH-DAY)
+	 * @param string $end_date (YEAR-MONTH-DAY)
+	 * @param double $discount
 	 */
 	public function __construct($product_id, $start_date, $end_date, $discount)
 	{
@@ -32,7 +47,7 @@ class promotion {
 	}
 	
 	/**
-	 * @param mixed $promotion_id
+	 * @param integer $promotion_id
 	 */
 	public function setPromotionId($promotion_id)
 	{
@@ -40,14 +55,14 @@ class promotion {
 	}
 	
 	/**
-	 * @param mixed $product_id
+	 * @param integer $product_id
 	 */
 	public function setProductId($product_id){
 		$this -> product_id = $product_id;
 	}
 	
 	/**
-	 * @param mixed $start_date
+	 * @param string $start_date
 	 */
 	public function setStartDate($start_date)
 	{
@@ -55,7 +70,7 @@ class promotion {
 	}
 	
 	/**
-	 * @param mixed $end_date
+	 * @param string $end_date
 	 */
 	public function setEndDate($end_date)
 	{
@@ -63,7 +78,7 @@ class promotion {
 	}
 	
 	/**
-	 * @param mixed $discount
+	 * @param double $discount
 	 */
 	public function setDiscount($discount)
 	{
@@ -71,14 +86,14 @@ class promotion {
 	}
 	
 	/**
-	 * @return mixed
+	 * @return integer
 	 */
 	public function getPromotionId()
 	{
 		return $this -> promotion_id;
 	}
 	/**
-	 * @return mixed
+	 * @return integer
 	 */
 	public function getProductId()
 	{
@@ -86,7 +101,7 @@ class promotion {
 	}
 	
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function getStartDate()
 	{
@@ -94,7 +109,7 @@ class promotion {
 	}
 	
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function getEndDate()
 	{
@@ -102,7 +117,7 @@ class promotion {
 	}
 	
 	/**
-	 * @return mixed
+	 * @return double
 	 */
 	public function getDiscount()
 	{
