@@ -12,18 +12,31 @@ use model\users\User;
 
 class OrderDao{
     private static $instance;
+    /**
+     * @var \PDO
+     */
     private $pdo;
 
+    /**
+     * OrderDao constructor.
+     */
     private function __construct() {
         $this->pdo = DBManager::getInstance()->getConnection();
     }
 
+    /**
+     * @return OrderDao
+     */
     public static function getInstance(){
         if(self::$instance === null){
             self::$instance = new OrderDao();
         }
         return self::$instance;
     }
+
+    /**
+     * @param Order $order
+     */
     public function insertOrder(Order $order){
         try{
             $this->pdo->beginTransaction();

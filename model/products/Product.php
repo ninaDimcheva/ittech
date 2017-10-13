@@ -10,24 +10,51 @@ namespace model\products;
 
 
 class Product{
+    /**
+     * @var integer
+     */
     private $product_id;
+    /**
+     * @var integer
+     */
     private $type_id;
+    /**
+     * @var integer
+     */
     private $brand_id;
+    /**
+     * @var string
+     */
     private $model;
+    /**
+     * @var double
+     */
     private $price;
+    /**
+     * @var int (arhived = 1, not arhived = NULL)
+     */
     private $arhive;
+    /**
+     * @var integer
+     */
     private $quontity;
+    /**
+     * @var array
+     */
     private $img_urls = []; // value = img_url
+    /**
+     * @var array
+     */
     private $specifications = []; //key = spec_id, value = spec_value
 
     /**
      * Product constructor.
-     * @param $type_id
-     * @param $brand_id
-     * @param $model
-     * @param $price
-     * @param $arhive
-     * @param $quontity
+     * @param integer $type_id
+     * @param integer $brand_id
+     * @param string $model
+     * @param double $price
+     * @param int $arhive (arhived = 1, not arhived = NULL)
+     * @param integer $quontity
      * @param array $img_urls
      * @param array $specifications
      */
@@ -42,7 +69,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getProductId()
     {
@@ -50,7 +77,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getTypeId()
     {
@@ -58,7 +85,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getBrandId()
     {
@@ -66,7 +93,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getModel()
     {
@@ -74,7 +101,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getPrice()
     {
@@ -82,7 +109,7 @@ class Product{
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getQuontity()
     {
@@ -106,7 +133,7 @@ class Product{
     }
 
     /**
-     * @param mixed $product_id
+     * @param integer $product_id
      */
     public function setProductId($product_id)
     {
@@ -114,7 +141,7 @@ class Product{
     }
 
     /**
-     * @param mixed $type_id
+     * @param integer $type_id
      */
     public function setTypeId($type_id)
     {
@@ -122,7 +149,7 @@ class Product{
     }
 
     /**
-     * @param mixed $brand_id
+     * @param integer $brand_id
      */
     public function setBrandId($brand_id)
     {
@@ -130,7 +157,7 @@ class Product{
     }
 
     /**
-     * @param mixed $model
+     * @param string $model
      */
     public function setModel($model)
     {
@@ -138,7 +165,7 @@ class Product{
     }
 
     /**
-     * @param mixed $price
+     * @param double $price
      */
     public function setPrice($price)
     {
@@ -146,7 +173,7 @@ class Product{
     }
 
     /**
-     * @param mixed $arhive
+     * @param int $arhive (arhived = 1, not arhived = NULL)
      */
     public function setArhive($arhive)
     {
@@ -154,7 +181,7 @@ class Product{
     }
 
     /**
-     * @param mixed $quontity
+     * @param integer $quontity
      */
     public function setQuontity($quontity)
     {
@@ -176,9 +203,5 @@ class Product{
     {
         $this->specifications = $specifications;
     }
-
-
-
-
 
 }

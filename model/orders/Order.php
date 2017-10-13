@@ -10,19 +10,37 @@ namespace model\orders;
 
 
 class Order{
+    /**
+     * @var integer
+     */
     private $order_id;
+    /**
+     * @var integer
+     */
     private $user_id;
+    /**
+     * @var double
+     */
     private $total;
+    /**
+     * @var string (YEAR-MONTH-DAY)
+     */
     private $date;
+    /**
+     * @var string
+     */
     private $status;
+    /**
+     * @var array
+     */
     private $products=[]; //key = product_id, value = quontity
 
     /**
      * Order constructor.
-     * @param $user_id
-     * @param $total
-     * @param $date
-     * @param $status
+     * @param integer $user_id
+     * @param double $total
+     * @param string $date (YEAR-MONTH-DAY)
+     * @param string $status
      * @param array $products
      */
     public function __construct($user_id, $total, $date, $status, array $products){
@@ -31,40 +49,38 @@ class Order{
         $this->date = $date;
         $this->status = $status;
         $this->products = $products;
-    } //key=product_id,value=quantity
-
-
+    }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getUserId(){
         return $this->user_id;
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getOrderId(){
         return $this->order_id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDate(){
         return $this->date;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStatus(){
         return $this->status;
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getTotal(){
         return $this->total;
@@ -79,35 +95,35 @@ class Order{
     }
 
     /**
-     * @param mixed $date
+     * @param string $date (YEAR-MONTH-DAY)
      */
     public function setDate($date){
         $this->date = $date;
     }
 
     /**
-     * @param mixed $order_id
+     * @param integer $order_id
      */
     public function setOrderId($order_id){
         $this->order_id = $order_id;
     }
 
     /**
-     * @param mixed $status
+     * @param string $status
      */
     public function setStatus($status){
         $this->status = $status;
     }
 
     /**
-     * @param mixed $total
+     * @param double $total
      */
     public function setTotal($total){
         $this->total = $total;
     }
 
     /**
-     * @param mixed $user_id
+     * @param integer $user_id
      */
     public function setUserId($user_id){
         $this->user_id = $user_id;

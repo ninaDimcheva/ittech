@@ -10,27 +10,53 @@ namespace model\users;
 
 
 class User{
-
+    /**
+     * @var integer
+     */
     private $user_id;
+    /**
+     * @var string
+     */
     private $name;
+    /**
+     * @var string
+     */
     private $family_name;
+    /**
+     * @var string
+     */
     private $email;
+    /**
+     * @var string
+     */
     private $password;
+    /**
+     * @var string
+     */
     private $gender;
+    /**
+     * @var string (YEAR-MONTH-DAY)
+     */
     private $birthday;
+    /**
+     * @var int (get notifications = 1, don't get notifications = 0)
+     */
     private $notifications;
+    /**
+     * @var int (is admin = 1, not admin = 0)
+     */
     private $is_admin;
 
     /**
      * User constructor.
-     * @param $name
-     * @param $family_name
-     * @param $email
-     * @param $password
-     * @param $gender
-     * @param $birthday
-     * @param $notifications
-     * @param $is_admin
+     * @param string $name
+     * @param string $family_name
+     * @param string $email
+     * @param string $password
+     * @param string $gender
+     * @param string $birthday (YEAR-MONTH-DAY)
+     * @param int $notifications (get notifications = 1, don't get notifications = 0)
+     * @param int $is_admin (is admin = 1, not admin = 0)
      */
     public function __construct($name, $family_name, $email, $password, $gender, $birthday, $notifications, $is_admin)
     {
@@ -45,96 +71,96 @@ class User{
     }
 
     /**
-     * @param mixed $user_id
+     * @param integer $user_id
      */
     public function setUserId($user_id){
         $this->user_id = $user_id;
     }
     /**
-     * @param mixed $family_name
+     * @param string $family_name
      */
     public function setFamilyName($family_name){
         $this->family_name = $family_name;
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail($email){
         $this->email = $email;
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      */
     public function setPassword($password){
         $this->password = $password;
     }
 
     /**
-     * @param mixed $notifications
+     * @param int $notifications (get notifications = 1, don't get notifications = 0)
      */
     public function setNotifications($notifications){
         $this->notifications = $notifications;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName(){
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFamilyName(){
         return $this->family_name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBirthday(){
         return $this->birthday;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail(){
         return $this->email;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword(){
         return $this->password;
     }
     /**
-     * @return mixed
+     * @return string
      */
     public function getGender(){
         return $this->gender;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getNotifications(){
         return $this->notifications;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getIsadmin(){
         return $this->is_admin;
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getUserId(){
         return $this->user_id;

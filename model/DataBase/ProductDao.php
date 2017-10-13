@@ -13,12 +13,21 @@ use model\products\Product;
 
 class ProductDao{
     private static $instance;
+    /**
+     * @var \PDO
+     */
     private $pdo;
 
+    /**
+     * ProductDao constructor.
+     */
     private function __construct() {
         $this->pdo = DBManager::getInstance()->getConnection();
     }
 
+    /**
+     * @return ProductDao
+     */
     public static function getInstance(){
         if(self::$instance === null){
             self::$instance = new ProductDao();
@@ -26,6 +35,9 @@ class ProductDao{
         return self::$instance;
     }
 
+    /**
+     * @param Product $product
+     */
     public function insertProduct(Product $product){
         try{
             $this->pdo->beginTransaction();
@@ -48,6 +60,6 @@ class ProductDao{
     }
 
 //    public function getAllProducts(){
-//        $stm = $this->pdo->prepare("SELECT ");
+//        $stm = $this->pdo->prepare("SELECT ``");
 //    }
 }
