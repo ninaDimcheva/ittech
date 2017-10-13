@@ -61,11 +61,28 @@ class ProductDao{
     
     // TODO we need to add query to change the quantity of the products;
 
-//    public function getAllProducts(){
-//        $stm = $this->pdo->prepare("SELECT ``");
-//    }
-
-
-
-
+    public function getAllProducts(){
+        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`main_type`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              WHERE P.`archive` is null");
+        $stm->execute();
+        $products = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        $stm = $this->pdo->prepare("SELECT S.`name` as spec_name, PS.`value` as spec_value 
+                                              FROM `products_specifications` as PS 
+                                              JOIN `specifications` as S ON PS.`spec_id` = S.`spec_id`
+                                              WHERE `product_id` = ?
+                                              order by `product_id`");
+        for ($i = 0; $i < count($products); $i++){
+            $stm->execute(array($products[$i]['product_id']));
+            $products[$i]['specifications'] = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        }
+        $stm = $this->pdo->prepare("SELECT `img_url` FROM `products_urls` WHERE `product_id` = ? ORDER BY `product_id`");
+        for ($i = 0; $i < count($products); $i++){
+            $stm->execute(array($products[$i]['product_id']));
+            $products[$i]['img_urls'] = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return $products;
+    }
 }
