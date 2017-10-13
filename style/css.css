@@ -1,0 +1,28 @@
+body {
+    width: 1170px;
+    margin: auto;
+}
+
+/*================== Register ==========================*/
+
+fieldset {
+    text-align: center;
+}
+
+#regTable{
+    margin: auto;
+}
+#regTable td{
+    padding: 0.5em;
+}
+#regTable td:first-child{
+    text-align: right;
+}
+
+#regTable td:last-child{
+    text-align: left;
+}
+#regTable td:nth-child(2){
+    text-align: center;
+}
+
