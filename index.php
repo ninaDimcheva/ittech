@@ -1,8 +1,12 @@
 <?php
-
+session_start();
 require_once 'view/header.html';
 
-
-require_once 'view/register.html';
+//if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
+//    require_once 'view/main.html';
+//}else{
+//    require_once 'view/login.html';
+//}
+require_once 'view/addProduct.html';
 
 include_once 'view/footer.html';

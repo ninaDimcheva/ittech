@@ -34,6 +34,10 @@ class Order{
      * @var array
      */
     private $products=[]; //key = product_id, value = quontity
+    /**
+     * @var string
+     */
+    private $address;
 
     /**
      * Order constructor.
@@ -42,13 +46,15 @@ class Order{
      * @param string $date (YEAR-MONTH-DAY)
      * @param string $status
      * @param array $products
+     * @param string $address
      */
-    public function __construct($user_id, $total, $date, $status, array $products){
+    public function __construct($user_id, $total, $date, $status, array $products,$address){
         $this->user_id = $user_id;
         $this->total = $total;
         $this->date = $date;
         $this->status = $status;
         $this->products = $products;
+        $this->address = $address;
     }
 
     /**
@@ -95,6 +101,14 @@ class Order{
     }
 
     /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
      * @param string $date (YEAR-MONTH-DAY)
      */
     public function setDate($date){
@@ -135,5 +149,13 @@ class Order{
     public function setProducts($products)
     {
         $this->products = $products;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 }

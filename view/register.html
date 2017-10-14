@@ -2,7 +2,7 @@
 <div id="registerForm">
     <fieldset>
         <legend><h3>Registration form</h3></legend>
-        <form action="../controller/registerController.php" method="post">
+        <form action="controller/registerController.php" method="post">
             <table id="regTable">
                 <tr>
                     <td><label for="name">Name:<span class="requiredField">*</span></label></td>
@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td><label for="email">E-mail:<span class="requiredField">*</span></label></td>
-                    <td><input type="text" name="email" id="email" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45"></td>
+                    <td><input type="email" name="email" id="email" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45"></td>
                     <td id="emailWorn"></td>
                 </tr>
                 <tr>
@@ -79,19 +79,19 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <input type="radio" name="notification" id="notification" value="notifications">
+                        <input type="radio" name="notification" id="notification" value='1'>
                         <label for="notification">I want to receive information about promotions and new products</label>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <input type="radio" name="terms" id="terms" value="terms" onclick="openTerms()">
+                        <input type="radio" name="terms" id="terms" value="1" onclick="openTerms()">
                         <label for="terms">I accept the terms of use</label>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" name="register" value="Register" disabled id="regButton"></td>
+                    <td><input type="submit" name="register" value="Register"  disabled id="regButton"></td>
                     <td></td>
                 </tr>
             </table>

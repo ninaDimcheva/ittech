@@ -1,0 +1,24 @@
+<div id="loginForm">
+    <fieldset>
+        <legend>Login form</legend>
+        <form action="controller/loginController.php" method="post">
+            <table id="loginTable">
+                <tr>
+                    <td><label for="email">E-mail:</label></td>
+                    <td><input type="email" name="email" id="email" required autofocus onkeyup="loginValidate()" onblur="loginValidate()"></td>
+                    <td id="emailWarn"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" name="password" id="password" required onkeyup="loginValidate()" onblur="loginValidate()"></td>
+                    <td id="passWarn"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td ><input type="submit" name="login" value="Login"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>

@@ -61,7 +61,7 @@ class ProductDao{
     
     // TODO we need to add query to change the quantity of the products;
 
-    public function getAllProducts(){
+    public function getAllProducts(){ //TODO change the query with new table main_types
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`main_type`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
@@ -84,5 +84,15 @@ class ProductDao{
             $products[$i]['img_urls'] = $stm -> fetchAll(\PDO::FETCH_ASSOC);
         }
         return $products;
+    }
+    public function getMainTypes(){
+        $stm = $this->pdo->prepare("SELECT `main_type` FROM `main_types` ");
+        $stm->execute();
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public  function getTypes($mainTipe){
+        $stm = $this->pdo->prepare("SELECT `type` FROM `types` JOIN `main_types` using (main_type_id) WHERE main_type = ?");
+        $stm->execute(array($mainTipe));
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

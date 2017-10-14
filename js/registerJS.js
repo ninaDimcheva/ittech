@@ -34,18 +34,19 @@ function registerValidate(){
         familyNameWorn.innerText = 'NOT OK';
     }
     if (email.length > 0 && email.length < 45 && atSign > 1 && (dot - atSign) > 2 && dot < (email.length - 2)){
+        //TODO chech email exist
         emailWorn.innerText = 'OK';
     }else {
         error = true;
         emailWorn.innerText = 'NOT OK';
     }
-    if (password.length > 0 && password.length < 45){
+    if (password.length > 5 && password.length < 45){
         passwordWorn.innerText = 'OK';
     }else {
         error = true;
         passwordWorn.innerText = 'NOT OK';
     }
-    if (confirmPassword.length > 0 && confirmPassword.length < 45 && confirmPassword === password){
+    if (confirmPassword.length > 5 && confirmPassword.length < 45 && confirmPassword === password){
         confirmPasswordWorn.innerText = 'OK';
     }else {
         error = true;
@@ -57,7 +58,7 @@ function registerValidate(){
         error = true;
         birthdayWorn.innerText = 'NOT OK';
     }
-
+    //TODO terms validate
 
 
     if (!error){

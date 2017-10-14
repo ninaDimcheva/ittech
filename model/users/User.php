@@ -58,7 +58,7 @@ class User{
      * @param int $notifications (get notifications = 1, don't get notifications = 0)
      * @param int $is_admin (is admin = 1, not admin = 0)
      */
-    public function __construct($name, $family_name, $email, $password, $gender, $birthday, $notifications, $is_admin)
+    public function __construct($name, $family_name, $email, $password, $gender, $birthday, $notifications)
     {
         $this->name = $name;
         $this->family_name = $family_name;
@@ -67,7 +67,6 @@ class User{
         $this->gender = $gender;
         $this->birthday = $birthday;
         $this->notifications = $notifications;
-        $this->is_admin = $is_admin;
     }
 
     /**
