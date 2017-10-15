@@ -1,0 +1,45 @@
+
+
+<!--TODO check for the working state of this form and search for array with security codes-->
+
+<script src="js/emailIttech.js"></script>
+<div id="emailITTEch">
+    <fieldset>
+        <legend><h3>Contact us:</h3></legend>
+        <form action="controller/emailIttechController.php" method="post">
+            <table id="emailTable">
+                <tr>
+                    <td><label for="name">Name:<span class="requiredField">*</span></label></td>
+                    <td><input type="text" name="name" id="name" required  autofocus onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
+                    <td id="nameWarn"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">E-mail:<span class="requiredField">*</span></label></td>
+                    <td><input type="email" name="email" id="email" required onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
+                    <td id="emailWorn"></td>
+                </tr>
+                <tr>
+                    <td><label for="phoneNumber">Phone number:<span class="requiredField">*</span></label></td>
+                    <td><input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+XXX-XXX-XXXXXX" required onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
+                    <td id="phoneNumberWorn"></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Message:<span class="requiredField">*</span></label></td>
+                    <td><textarea name="message" id="message" required onkeyup="inputValidation()" onblur="inputValidation()" cols="15" rows="6"></textarea></td>
+                    <td id="messageWorn"></td>
+                </tr>
+                <tr>
+                    <td><label for="securityCode">Security code:<span class="requiredField">*</span></label></td>
+                    <td><h2 id="systemSecurityCode">Green</h2></td>
+                    <td><input type="text" name="securityCode" id="securityCode" required onkeyup="inputValidation()" onblur="inputValidation()"></td>
+                    <td id="securityCodeWorn"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="send" value="Send"  disabled id="sendEmail"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>

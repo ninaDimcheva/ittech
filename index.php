@@ -7,6 +7,6 @@ require_once 'view/header.html';
 //}else{
 //    require_once 'view/login.html';
 //}
-require_once 'view/login.html';
+//require_once 'view/login.html';
 
 include_once 'view/footer.html';

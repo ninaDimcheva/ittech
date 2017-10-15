@@ -26,3 +26,151 @@ fieldset {
     text-align: center;
 }
 
+/*================== Register ==========================*/
+
+
+/*================== Header ==========================*/
+#phone{
+    width: 20px;
+    height:auto;
+}
+#promotion{
+    width: 20px;
+    height:auto;
+}
+#location{
+    width: 10px;
+    height:auto;
+}
+#ittechLogo{
+    width: 250px;
+    height:auto;
+    float: left;
+    margin-right: 100px;
+}
+header ul li {
+    display: inline-block;
+    width: 19%;
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+header ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+
+header ul li:hover {
+    background-color: olivedrab;
+}
+
+.container{
+    overflow: hidden;
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    float: left;
+    margin-right: 50px;
+}
+
+.container input#search{
+    width: 300px;
+    height: 50px;
+    background: orangered;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #fff;
+    padding-left: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.container input#search::-webkit-input-placeholder {
+    color: white;
+}
+
+.container input#search:-moz-placeholder { /* Firefox 18- */
+    color: white;
+}
+
+.container input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: white;
+}
+
+.container input#search:-ms-input-placeholder {
+    color: white;
+}
+
+.container button.icon{
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    border: none;
+    background: white;
+    height: 50px;
+    width: 50px;
+    color: gray;
+    opacity: 0;
+    font-size: 10pt;
+
+    -webkit-transition: all .55s ease;
+    -moz-transition: all .55s ease;
+    -ms-transition: all .55s ease;
+    -o-transition: all .55s ease;
+    transition: all .55s ease;
+}
+
+.container:hover button.icon, .container:active button.icon, .container:focus button.icon{
+    outline: none;
+    opacity: 1;
+    margin-left: -50px;
+}
+
+.container:hover button.icon:hover{
+    background: white;
+}
+
+#login{
+    width: 20px;
+    height: auto;
+    float: left;
+}
+#cart{
+    width: 20px;
+    height: auto;
+    float: left;
+}
+nav{
+    clear: both;
+    width: 1170px;
+    height: 50px;
+    background-color: yellow;
+    margin-top: 20px;
+}
+nav ul li {
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+nav ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+
+nav ul li:hover {
+    background-color: orangered;
+}
+
+/*================== Header ==========================*/
