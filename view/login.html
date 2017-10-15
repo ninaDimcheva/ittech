@@ -1,3 +1,4 @@
+<script src="js/loginJS.js"></script>
 <div id="loginForm">
     <fieldset>
         <legend>Login form</legend>
@@ -10,12 +11,13 @@
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
-                    <td><input type="password" name="password" id="password" required onkeyup="loginValidate()" onblur="loginValidate()"></td>
-                    <td id="passWarn"></td>
+                    <td><input type="password" name="password" id="password" required autofocus onkeyup="loginValidate()" onblur="loginValidate()"></td>
+                    <td id="passwordWarn"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td ><input type="submit" name="login" value="Login"></td>
+                    <td><input type="submit" name="login" value="Login"></td>
+                    <td id="loginWarn"></td>
                     <td></td>
                 </tr>
             </table>
