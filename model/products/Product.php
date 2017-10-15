@@ -19,9 +19,17 @@ class Product{
      */
     private $type_id;
     /**
+     * @var string
+     */
+    private $type;
+    /**
      * @var integer
      */
     private $brand_id;
+    /**
+     * @var string
+     */
+    private $brand;
     /**
      * @var string
      */
@@ -58,7 +66,7 @@ class Product{
      * @param array $img_urls
      * @param array $specifications
      */
-    public function __construct($type_id, $brand_id, $model, $price, $quontity, array $img_urls, array $specifications){
+    public function __construct(array $img_urls, array $specifications, $type_id = null, $brand_id = null, $model = null, $price=null, $quontity=null){
         $this->type_id = $type_id;
         $this->brand_id = $brand_id;
         $this->model = $model;
@@ -67,7 +75,6 @@ class Product{
         $this->img_urls = $img_urls;
         $this->specifications = $specifications;
     }
-
     /**
      * @return integer
      */
@@ -85,11 +92,27 @@ class Product{
     }
 
     /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * @return integer
      */
     public function getBrandId()
     {
         return $this->brand_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 
     /**
@@ -149,11 +172,27 @@ class Product{
     }
 
     /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @param integer $brand_id
      */
     public function setBrandId($brand_id)
     {
         $this->brand_id = $brand_id;
+    }
+
+    /**
+     * @param string $brand
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
     }
 
     /**

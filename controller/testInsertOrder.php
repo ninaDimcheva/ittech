@@ -7,7 +7,6 @@ use \model\DataBase\OrderDao;
 use \model\DataBase\ProductDao;
 use \model\DataBase\UserDao;
 
-
 require_once '../model/DataBase/ProductDao.php';
 require_once '../model/DataBase/DBManager.php';
 function __autoload($class_name){
@@ -19,8 +18,6 @@ function __autoload($class_name){
 //$order = new Order(1,1000,'2017-10-10', 'OK', $ordered_products);
 //
 //OrderDao::getInstance() -> insertOrder($order);
-
-
 
 
 
