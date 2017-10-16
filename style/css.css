@@ -52,8 +52,6 @@ header ul li {
     display: inline-block;
     width: 19%;
     text-align: center;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
 }
 
 header ul li a {
@@ -159,8 +157,6 @@ nav ul li {
     display: inline-block;
     width: 13%;
     text-align: center;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
 }
 
 nav ul li a {
@@ -174,3 +170,52 @@ nav ul li:hover {
 }
 
 /*================== Header ==========================*/
+
+
+/*================== Footer ==========================*/
+footer{
+    background-color: #0D0D0D;
+    height: 200px;
+    width: 100%;
+    color: white;
+}
+
+.col1{
+    float: left;
+    width: 250px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+
+}
+
+.col1 ul{
+    list-style-type: none;
+}
+
+.col1 ul li:hover {
+    background-color: #B84339;
+}
+
+.col2{
+    float: left;
+    width: 250px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+
+}
+
+.col2 ul{
+    list-style-type: none;
+}
+
+.col2 ul li:hover {
+    background-color: #B84339;
+}
+
+/*================== Footer ==========================*/
