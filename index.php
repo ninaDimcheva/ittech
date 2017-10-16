@@ -7,4 +7,5 @@ require_once 'view/header.html';
 //    require_once 'view/login.html';
 //}
 require_once 'view/login.html';
+
 include_once 'view/footer.html';
