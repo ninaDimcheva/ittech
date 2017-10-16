@@ -36,18 +36,18 @@ class UserDao{
     }
 
     /**
-     * @param User $user
-     * @return bool (if exist return true, if not exist return false)
+     * @param string $email
+     * @return bool
      */
-    public function existsUser(User $user){
+    public function existsUser($email){
         $stm = $this->pdo->prepare("SELECT count(*) as number FROM users WHERE `email` = ?");
-        $stm->execute(array($user->getEmail()));
+        $stm->execute(array($email));
         return $stm->fetch(\PDO::FETCH_ASSOC)["number"] > 0;
     }
 
     /**
-     * @param $email
-     * @param $password
+     * @param string $email
+     * @param string $password
      * @return array|bool
      */
     public function loginValidate($email,$password){
@@ -64,7 +64,7 @@ class UserDao{
      * @param User $user
      */
     public function insertUser(User $user){
-        $stm = $this->pdo->prepare("INSERT INTO users (`name`, `family_name`, `email`, `password`, `gender`, `birthday`, `notifications`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stm = $this->pdo->prepare("INSERT INTO users (`name`, `family_name`, `email`, `password`, `gender`, `birthday`, `notifications`) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stm->execute(array($user->getname(), $user->getFamilyName(), $user->getEmail(),$user->getPassword(),$user->getGender(),$user->getBirthday(),$user->getNotifications()));
         $user->setUserId($this->pdo->lastInsertId());
     }

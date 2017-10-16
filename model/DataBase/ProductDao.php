@@ -136,4 +136,18 @@ class ProductDao{
         $stm->execute(array($mainTipe));
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function getSpecifications($type){
+        $stm = $this->pdo->prepare("SELECT `name` FROM `specifications` 
+                                              JOIN `type_specifications` using (`spec_id`)
+                                              JOIN `types` USING (`type_id`)
+                                               WHERE `type` = ?; ");
+        $stm->execute(array($type));
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function getBrands(){
+        $stm = $this->pdo->prepare("SELECT `brand` FROM `brands` ");
+        $stm->execute();
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

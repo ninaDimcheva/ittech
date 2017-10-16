@@ -18,11 +18,28 @@ if (isset($_GET['getMainTypes'])){
 }
 
 if (isset($_GET['getTypes'])){
-    $type = $_GET['getTypes'];
-    $result = ProductDao::getInstance()->getTypes($type);
+    $mainType = $_GET['getTypes'];
+    $result = ProductDao::getInstance()->getTypes($mainType);
     foreach ($result as $row) {
         $types[] = $row['type'];
     }
     echo json_encode($types,JSON_UNESCAPED_SLASHES);
+}
+
+if (isset($_GET['getSpecifications'])){
+    $type = $_GET['getSpecifications'];
+    $result = ProductDao::getInstance()->getSpecifications($type);
+    foreach ($result as $row) {
+        $specifications[] = $row['name'];
+    }
+    echo json_encode($specifications,JSON_UNESCAPED_SLASHES);
+}
+
+if (isset($_GET['getBrands'])){
+    $result = ProductDao::getInstance()->getBrands();
+    foreach ($result as $row) {
+        $brands[] = $row['brand'];
+    }
+    echo json_encode($brands,JSON_UNESCAPED_SLASHES);
 }
 

@@ -4,7 +4,7 @@
 <?php
 if(isset($_POST['send'])){
 	$to = "nkd_911@mail.bg"; // this is the receiver's Email address
-	$from = $_POST['email']; // this is the sender's Email address
+    $from = $_POST['email']; // this is the sender's Email address
 	$firstName = $_POST['name'];
 	$phoneNumber = $_POST['phoneNumber'];
 	$subject = "Form submission";
