@@ -58,11 +58,18 @@ class ProductDao{
             throw new \PDOException($e->getMessage(),$e->getCode());
         }
     }
-    
-    // TODO we need to add query to change the quantity of the products;
 
     /**
-     * @return object (model\products\Product)
+     * @param $produvt_id
+     * @param $quantity
+     */
+    public function editProductQuantity($produvt_id,$quantity){
+        $stm = $this->pdo->prepare("UPDATE `products` SET `quontity` = ? WHERE `product_id` = ?");
+        $stm->execute(array($quantity,$produvt_id));
+    }
+
+    /**
+     * @return array with objects (model\products\Product)
      */
     public function getAllProducts(){
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
@@ -111,11 +118,19 @@ class ProductDao{
         return $products;
     }
 
+    /**
+     * @return array with main_types
+     */
     public function getMainTypes(){
         $stm = $this->pdo->prepare("SELECT `main_type` FROM `main_types` ");
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @param $mainTipe
+     * @return array with types
+     */
     public  function getTypes($mainTipe){
         $stm = $this->pdo->prepare("SELECT `type` FROM `types` JOIN `main_types` using (main_type_id) WHERE main_type = ?");
         $stm->execute(array($mainTipe));
