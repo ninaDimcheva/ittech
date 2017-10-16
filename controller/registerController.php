@@ -61,7 +61,7 @@ if (isset($_POST['register'])) {
 
     if (!$error){
         $user = new User($name,$familyName,$email,$password,$gender,$birthday,$notification);
-        if (!UserDao::getInstance()->existsUser($user)){
+        if (!UserDao::getInstance()->existsUser($email)){
             UserDao::getInstance()->insertUser($user);
             $_SESSION['isLogged'] = true;
             $_SESSION['user_id'] = $user->getUserId();
@@ -72,6 +72,11 @@ if (isset($_POST['register'])) {
     }else{
         header('Location:../view/error.html');
     }
+
+}
+
+if (isset($_GET['existsUser'])){
+    echo UserDao::getInstance()->existsUser($_GET['existsUser']);
 
 }
 
