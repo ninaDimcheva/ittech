@@ -5,12 +5,8 @@ function loginValidate(){
         if (this.readyState === 4) {
             if (this.status === 200){
                 var validationResult = this.responseText;
-                alert(validationResult);
-                if(validationResult == 'dont'){
+                if(validationResult == true){
                     loginValidate.innerText = 'Invalid e-mail or password';
-                }
-                else{
-                    loginValidate.innerText = 'Valid';
                 }
             }
         }
