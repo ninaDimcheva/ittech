@@ -102,7 +102,15 @@ class User{
     public function setNotifications($notifications){
         $this->notifications = $notifications;
     }
-
+	
+	/**
+	 * @param $isAdmin
+	 */
+	
+    public function setIsAdmin($isAdmin){
+	   $this->is_admin = $isAdmin;
+    }
+	
     /**
      * @return string
      */

@@ -16,20 +16,23 @@ if (isset($_POST['login'])) {
 	$password = sha1(trim(htmlentities($_POST['password'])));
 	
 	if (UserDao ::getInstance() -> loginValidate($email, $password)) {
-		$userObject = UserDao ::getInstance() -> loginValidate($email, $password);
-		
+		$user = UserDao ::getInstance() -> loginValidate($email, $password);
+		$name = $user['name'];
+		$familyName = $user['family_name'];
+		$email = $user['email'];
+		$password = $user['password'];
+		$gender = $user['gender'];
+		$birthday = $user['birthday'];
+		$notifications = $user['notifications'];
+		$userObject = new User($name, $familyName, $email, $password, $gender, $birthday, $notifications);
+		$userObject->setUserId( $user['user_id']);
+		$userObject->setIsAdmin($user['is_admin']);
+		var_dump($userObject);
 		$_SESSION['isLogged'] = true;
-		$_SESSION['user'] = $user['user_id'];
-		$_SESSION['name'] = $user['name'];
-		$_SESSION['familyName'] = $user['family_name'];
-		$_SESSION['email'] = $user['email'];
-		$_SESSION['password'] = $user['password'];
-		$_SESSION['gender'] = $user['gender'];
-		$_SESSION['birthday'] = $user['birthday'];
-		$_SESSION['notifications'] = $user['notifications'];
-		$_SESSION['is_admin'] = $user['is_admin'];
 		unset($_SESSION["invalidUser"]);
 		header('Location:../?page=main');
+		$_SESSION['user'] = $userObject;
+
 	}
 	else{
 		$_SESSION["invalidUser"] = true;

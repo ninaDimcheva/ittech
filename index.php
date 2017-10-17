@@ -2,7 +2,6 @@
 session_start();
 require_once 'view/header.html';
 
-
 if (isset($_SESSION['is_admin']) && isset($_SESSION['is_admin'])){
     if (isset($_GET['page'])){
         switch ($_GET['page']){
@@ -81,8 +80,5 @@ if (isset($_SESSION['is_admin']) && isset($_SESSION['is_admin'])){
     }
 
 }
-
-
-
 
 include_once 'view/footer.html';

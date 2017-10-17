@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style/css.css">
     <script src="js/loginJS.js"></script>
     <script src="js/menuAddProductJS.js"></script>
+    <script src="js/loginNavigationJS.js" type="text/javascript"></script>
+
 </head>
 <body onload="loginValidate();showMainTypes();">
 <header>
@@ -27,7 +29,13 @@
 
     <!--TODO make the drop down menu(user/administrator)-->
 
-    <button><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
+    <div id="navigation">
+        <button id="navigationButton" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
+        <div id="mainNavigation">
+            <a href="view/login.html">Login</a><br/>
+            <a href="view/register.html">Register</a>
+        </div>
+    </div>
     <button onclick="location.href='view/userCart.html'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart"></button>
 </header>
 <nav>

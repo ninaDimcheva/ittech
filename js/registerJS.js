@@ -45,7 +45,7 @@ function registerValidate(){
             if (this.readyState === 4) {
                 if (this.status === 200) {
                     if (this.responseText){
-                        emailWarn.innerText = 'The e-mail is awready registered';
+                        emailWarn.innerText = 'The e-mail is already registered';
                     }else {
                         emailWarn.innerHTML = '';
                         emailWarn.appendChild(checkMark);

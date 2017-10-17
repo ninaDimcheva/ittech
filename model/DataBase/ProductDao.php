@@ -150,4 +150,6 @@ class ProductDao{
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
+    
+    
 }

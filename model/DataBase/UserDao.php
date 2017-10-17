@@ -47,13 +47,13 @@ class UserDao{
 	/**
 	 * @param $email
 	 * @param $password
-	 * @return bool/object
+	 * @return bool/array
 	 */
     public function loginValidate($email,$password){
         $stm = $this->pdo->prepare("SELECT `user_id`, `name`, `family_name`, `email`, `password`, `gender`, `birthday`, `notifications`,`is_admin` FROM users WHERE `email` = ? AND `password` = ?");
         $stm->execute(array($email,$password));
         if ($stm->rowCount() > 0){
-            return $stm->fetchObject(User::getPassword);
+            return $stm->fetch(\PDO::FETCH_ASSOC);
         }else{
             return false;
         }

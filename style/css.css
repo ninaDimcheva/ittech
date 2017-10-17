@@ -123,12 +123,21 @@ header ul li:hover {
 .container:hover button.icon:hover{
     background: white;
 }
-
+#navigation{
+    margin-top: 10px;
+    margin-right: 100px;
+    float: left;
+}
 #login{
     width: 20px;
     height: auto;
     float: left;
 }
+#mainNavigation{
+    width:100px;
+    height:50px;
+    border:1px solid threedshadow;
+    display:none;}
 #cart{
     width: 20px;
     height: auto;
