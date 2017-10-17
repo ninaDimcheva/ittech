@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 use \model\DataBase\UserDao;
@@ -17,9 +16,10 @@ if (isset($_POST['login'])) {
 	$password = sha1(trim(htmlentities($_POST['password'])));
 	
 	if (UserDao ::getInstance() -> loginValidate($email, $password)) {
-		$user = UserDao ::getInstance() -> loginValidate($email, $password);
+		$userObject = UserDao ::getInstance() -> loginValidate($email, $password);
+		
 		$_SESSION['isLogged'] = true;
-		$_SESSION['user_id'] = $user['user_id'];
+		$_SESSION['user'] = $user['user_id'];
 		$_SESSION['name'] = $user['name'];
 		$_SESSION['familyName'] = $user['family_name'];
 		$_SESSION['email'] = $user['email'];
@@ -38,7 +38,7 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_GET['loginValidation'])) {
-    if (isset($_SESSION["invalidUser"])){
+    if (isset($_SESSION["invalidUser"])) {
         echo $_SESSION["invalidUser"];
     }
 }
