@@ -1,8 +1,13 @@
 <?php
-session_start();
+
+use model\users\User;
+
+require_once 'model/users/User.php';
 require_once 'view/header.html';
 
-if (isset($_SESSION['is_admin']) && isset($_SESSION['is_admin'])){
+session_start();
+
+if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
     if (isset($_GET['page'])){
         switch ($_GET['page']){
             case 'addProduct' : require_once 'view/addProduct.html';

@@ -14,7 +14,7 @@ function __autoload($class_name)
 if (isset($_POST['login'])) {
 	$email = trim(htmlentities($_POST['email']));
 	$password = sha1(trim(htmlentities($_POST['password'])));
-	
+	//TODO php validation
 	if (UserDao ::getInstance() -> loginValidate($email, $password)) {
 		$user = UserDao ::getInstance() -> loginValidate($email, $password);
 		$name = $user['name'];
@@ -27,7 +27,6 @@ if (isset($_POST['login'])) {
 		$userObject = new User($name, $familyName, $email, $password, $gender, $birthday, $notifications);
 		$userObject->setUserId( $user['user_id']);
 		$userObject->setIsAdmin($user['is_admin']);
-		var_dump($userObject);
 		$_SESSION['isLogged'] = true;
 		unset($_SESSION["invalidUser"]);
 		header('Location:../?page=main');

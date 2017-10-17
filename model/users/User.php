@@ -162,7 +162,7 @@ class User{
     /**
      * @return int
      */
-    public function getIsadmin(){
+    public function getIsAdmin(){
         return $this->is_admin;
     }
 
