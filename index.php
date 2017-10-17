@@ -1,11 +1,88 @@
 <?php
 session_start();
 require_once 'view/header.html';
-//if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
-//    require_once 'view/main.html';
-//}else{
-//    require_once 'view/login.html';
-//}
-require_once 'view/login.html';
+
+
+if (isset($_SESSION['is_admin']) && isset($_SESSION['is_admin'])){
+    if (isset($_GET['page'])){
+        switch ($_GET['page']){
+            case 'addProduct' : require_once 'view/addProduct.html';
+                break;
+            case 'editProduct' : require_once 'view/editProduct.html';
+                break;
+            case 'addPromoProduct' : require_once 'view/addPromoProduct.html';
+                break;
+            case 'editUserPrivilege' : require_once 'view/editUserPrivilege.html';
+                break;
+            case 'main' : require_once 'view/main.html';
+                break;
+            case  'contactITTech' : require_once 'view/contactITTech.html';
+                break;
+            case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
+                break;
+            case 'shops' : require_once 'view/shops.html';
+                break;
+            case 'terms' : require_once 'view/termsForOnlineShopping.html';
+                break;
+            default : require_once 'view/error.html';
+        }
+    }else{
+        require_once 'view/main.html';
+    }
+}else{
+    if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
+        if (isset($_GET['page'])){
+            switch ($_GET['page']){
+                case 'myProfile' : require_once 'view/myProfile.html';
+                    break;
+                case 'myOrders' : require_once 'view/myOrders.html';
+                    break;
+                case 'main' : require_once 'view/main.html';
+                    break;
+                case  'contactITTech' : require_once 'view/contactITTech.html';
+                    break;
+                case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
+                    break;
+                case 'shops' : require_once 'view/shops.html';
+                    break;
+                case 'terms' : require_once 'view/termsForOnlineShopping.html';
+                    break;
+                case 'myCart' : require_once 'view/userCart.html';
+                    break;
+                default : require_once 'view/error.html';
+            }
+        }else{
+            require_once 'view/main.html';
+        }
+    }else{
+        if (isset($_GET['page'])){
+            switch ($_GET['page']){
+                case 'login' : require_once 'view/login.html';
+                    break;
+                case 'register' : require_once 'view/register.html';
+                    break;
+                case 'main' : require_once 'view/main.html';
+                    break;
+                case  'contactITTech' : require_once 'view/contactITTech.html';
+                    break;
+                case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
+                    break;
+                case 'shops' : require_once 'view/shops.html';
+                    break;
+                case 'terms' : require_once 'view/termsForOnlineShopping.html';
+                    break;
+                case 'myCart' : require_once 'view/userCart.html';
+                    break;
+                default : require_once 'view/error.html';
+            }
+        }else{
+            require_once 'view/main.html';
+        }
+    }
+
+}
+
+
+
 
 include_once 'view/footer.html';

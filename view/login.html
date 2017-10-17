@@ -1,8 +1,8 @@
-<script src="js/loginJS.js"></script>
+
 <div id="loginForm">
     <fieldset>
         <legend>Login form</legend>
-        <h3 id="loginValidate"></h3>
+        <div id="loginWarning"></div>
         <form action="controller/loginController.php" method="post">
             <div class="labels">
                 <label for="email">E-mail:</label>
@@ -17,13 +17,12 @@
             <div class="inputs">
                 <input type="password" name="password" id="password" required autofocus onkeyup="loginValidate()" onblur="loginValidate()">
             </div>
-
-            <div id="loginWarning">
-
-            </div>
             <div id="loginSubmit">
                 <input class="button" type="submit" name="login" value="Login">
             </div>
         </form>
     </fieldset>
+</div>
+<div class="links">
+    <a href="?page=register">Register</a>
 </div>

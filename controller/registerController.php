@@ -67,10 +67,10 @@ if (isset($_POST['register'])) {
             $_SESSION['user_id'] = $user->getUserId();
             header('Location:../');
         }else{
-            header('Location:../view/error.html');
+            header('Location:../?page=error');
         }
     }else{
-        header('Location:../view/error.html');
+        header('Location:../?page=error');
     }
 
 }

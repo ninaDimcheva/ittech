@@ -1,7 +1,5 @@
 <?php
 
-// TODO Georgi test this code
-
 session_start();
 
 use \model\DataBase\UserDao;
@@ -30,23 +28,19 @@ if (isset($_POST['login'])) {
 		$_SESSION['birthday'] = $user['birthday'];
 		$_SESSION['notifications'] = $user['notifications'];
 		$_SESSION['is_admin'] = $user['is_admin'];
-		header('Location:../');
+		unset($_SESSION["invalidUser"]);
+		header('Location:../?page=main');
 	}
 	else{
 		$_SESSION["invalidUser"] = true;
-		header("Location:../");
+		header("Location:../?page=login");
 	}
 }
 
 if (isset($_GET['loginValidation'])) {
-	if(isset($_SESSION["invalidUser"]) && $_SESSION["invalidUser"]){
-		echo 'dont';
-		//header("Location:../");
-		session_destroy();
-	}
-	else{
-		echo "ebago!";
-	}
+    if (isset($_SESSION["invalidUser"])){
+        echo $_SESSION["invalidUser"];
+    }
 }
 
 
