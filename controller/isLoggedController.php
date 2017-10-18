@@ -18,13 +18,13 @@ function __autoload($class_name)
 }
 
 session_start();
-
-	if(ProductDao ::getInstance() -> getAllProducts()){
-		print_r(ProductDao ::getInstance() -> getAllProducts());
+if(isset($_GET['islogged'])){
+	if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
+		echo $_SESSION["user"] -> getName();
 	}
-	else{
-		header("Location:?page=error");
+	else {
+		echo false;
 	}
-
-
+	
+}
 

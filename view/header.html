@@ -9,9 +9,14 @@
     <script src="js/loginJS.js"></script>
     <script src="js/addProductJS.js"></script>
     <script src="js/loginNavigationJS.js" type="text/javascript"></script>
-
+    <script src="js/isLoggedJS.js"></script>
+    <script src="js/showAllProductsJS.js"></script>
 </head>
-<body onload="loginValidate();showMainTypes();">
+<body onload="showAllProducts();">
+<!--loginValidate(); -->
+<!--showAllProducts();-->
+<!--isLogged();-->
+<!--showMainTypes()-->
 <header>
     <ul>
         <li><a href="view/contactITTech.html"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">0000 00 000</a></li>
@@ -30,10 +35,10 @@
     <!--TODO make the drop down menu(user/administrator)-->
 
     <div id="navigation">
-        <button id="navigationButton" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
+        <button id="loginButton" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
         <div id="mainNavigation">
-            <a href="view/login.html">Login</a><br/>
-            <a href="view/register.html">Register</a>
+            <a href="?page=login">Login</a><br/>
+            <a href="?page=register">Register</a>
         </div>
     </div>
     <button onclick="location.href='view/userCart.html'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart"></button>

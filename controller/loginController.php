@@ -1,8 +1,14 @@
 <?php
-session_start();
-
-use \model\DataBase\UserDao;
+use \model\orders\Order;
+use \model\products\Product;
 use \model\users\User;
+use \model\DataBase\DBManager;
+use \model\DataBase\OrderDao;
+use \model\DataBase\ProductDao;
+use \model\DataBase\UserDao;
+
+require_once '../model/DataBase/ProductDao.php';
+require_once '../model/DataBase/DBManager.php';
 
 function __autoload($class_name)
 {
@@ -10,6 +16,8 @@ function __autoload($class_name)
 	$class_name = str_replace("\\", "/", $class_name);
 	require_once $class_name . '.php';
 }
+
+session_start();
 
 if (isset($_POST['login'])) {
 	$email = trim(htmlentities($_POST['email']));
@@ -28,10 +36,9 @@ if (isset($_POST['login'])) {
 		$userObject->setUserId( $user['user_id']);
 		$userObject->setIsAdmin($user['is_admin']);
 		$_SESSION['isLogged'] = true;
-		unset($_SESSION["invalidUser"]);
-		header('Location:../?page=main');
 		$_SESSION['user'] = $userObject;
-
+        unset($_SESSION["invalidUser"]);
+		header('Location:../?page=main');
 	}
 	else{
 		$_SESSION["invalidUser"] = true;
@@ -44,6 +51,10 @@ if (isset($_GET['loginValidation'])) {
         echo $_SESSION["invalidUser"];
     }
 }
+
+
+
+
 
 
 

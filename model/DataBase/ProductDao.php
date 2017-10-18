@@ -94,10 +94,10 @@ class ProductDao{
         $stm = $this->pdo->prepare("UPDATE `products` SET `quontity` = ? WHERE `product_id` = ?");
         $stm->execute(array($quantity,$produvt_id));
     }
-
-    /**
-     * @return array with objects (model\products\Product)
-     */
+	
+	/**
+	 * @return array
+	 */
     public function getAllProducts(){
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
                                               FROM `products` as P
@@ -105,6 +105,9 @@ class ProductDao{
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE P.`archive` is null");
         $stm->execute();
+//        if($stm->rowCount() == 0){
+//        	return false;
+//        }
         $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
         foreach ($result as $key => $row) {
             $product = new Product(array(),array());

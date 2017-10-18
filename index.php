@@ -41,6 +41,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'myOrders' : require_once 'view/myOrders.html';
                     break;
+	            case 'myFavorites' : require_once 'view/myFavorites.html';
+		            break;
                 case 'main' : require_once 'view/main.html';
                     break;
                 case  'contactITTech' : require_once 'view/contactITTech.html';

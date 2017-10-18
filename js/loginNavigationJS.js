@@ -6,6 +6,4 @@ function loginNavigation() {
     else {
         div.style.display = "none";
     }
-
 }
-
