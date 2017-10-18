@@ -66,9 +66,9 @@ class Product{
      * @param array $img_urls
      * @param array $specifications
      */
-    public function __construct(array $img_urls, array $specifications, $type_id = null, $brand_id = null, $model = null, $price=null, $quontity=null){
-        $this->type_id = $type_id;
-        $this->brand_id = $brand_id;
+    public function __construct(array $img_urls, array $specifications, $type = null, $brand = null, $model = null, $price=null, $quontity=null){
+        $this->type = $type;
+        $this->brand = $brand;
         $this->model = $model;
         $this->price = $price;
         $this->quontity = $quontity;

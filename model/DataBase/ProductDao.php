@@ -37,22 +37,49 @@ class ProductDao{
 
     /**
      * @param Product $product
+     * @return array $imgUrls
      */
     public function insertProduct(Product $product){
         try{
             $this->pdo->beginTransaction();
+            $stm = $this->pdo->prepare ("SELECT `type_id` FROM `types` WHERE `type` = ?");
+            $stm->execute(array($product->getType()));
+            $product->setTypeId($stm->fetch(\PDO::FETCH_ASSOC)['type_id']);
+
+            $stm = $this->pdo->prepare ("SELECT `brand_id` FROM `brands` WHERE `brand` = ?");
+            $stm->execute(array($product->getBrand()));
+            $product->setBrandId($stm->fetch(\PDO::FETCH_ASSOC)['brand_id']);
+
+            $stm = $this->pdo->prepare ("SELECT `spec_id` FROM `specifications` WHERE `name` = ?");
+            foreach ($product->getSpecifications() as $spec_name => $spec_value) {
+                $stm->execute(array(str_replace('_',' ', $spec_name)));
+                $spec_id = $stm->fetch(\PDO::FETCH_ASSOC)['spec_id'];
+                $specifications[$spec_id] = $spec_value;
+            }
+
+            $product->setSpecifications($specifications);
+
+
             $stm = $this->pdo->prepare("INSERT INTO `products` (`type_id`, `brand_id`, `model`, `price`, `quontity`) VALUES (?, ?, ?, ?, ?)");
             $stm->execute(array($product->getTypeId(), $product->getBrandId(), $product->getModel(),$product->getPrice(),$product->getQuontity()));
             $product->setProductId($this->pdo->lastInsertId());
-            $stm = $this->pdo->prepare("INSERT INTO `products_urls` (`product_id`, `img_url`) VALUES (?, ?)");
-            foreach ($product->getImgUrls() as $img_url) {
-                $stm-> execute(array($product->getProductId(),$img_url));
-            }
+
             $stm = $this->pdo->prepare("INSERT INTO `products_specifications` (`product_id`, `spec_id`, `value`) VALUES (?, ?, ?)");
             foreach ($product->getSpecifications() as $spec_id => $value) {
                 $stm-> execute(array($product->getProductId(),$spec_id,$value));
             }
+
+            foreach ($product->getImgUrls() as $imgFileExtension) {
+                $imgUrls[] = 'assets/uploads/' . $product->getProductId() . $imgFileExtension;
+            }
+            $product->setImgUrls($imgUrls);
+            $stm = $this->pdo->prepare("INSERT INTO `products_urls` (`product_id`, `img_url`) VALUES (?, ?)");
+            foreach ($product->getImgUrls() as $img_url) {
+                $stm-> execute(array($product->getProductId(),$img_url));
+            }
+
             $this->pdo->commit();
+            return $product->getImgUrls();
         }catch (\PDOException $e){
             $this->pdo->rollBack();
             throw new \PDOException($e->getMessage(),$e->getCode());
