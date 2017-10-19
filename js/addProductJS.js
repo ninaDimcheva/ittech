@@ -25,10 +25,10 @@ function showMainTypes() {
                         document.getElementById('mainType').appendChild(option);
                     }
                 }else {
-                    window.location.replace('http://localhost/ittech?page=error');
+                    // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
             }else {
-                window.location.replace('http://localhost/ittech?page=error');
+                // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
     };
@@ -74,10 +74,10 @@ function showTypes(mainType) {
                     }
 
                 }else {
-                    window.location.replace('http://localhost/ittech?page=error');
+                    // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
             }else {
-                window.location.replace('http://localhost/ittech?page=error');
+                // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
     };
@@ -124,10 +124,10 @@ function showBrands(type) {
                         document.getElementById('brand').appendChild(option);
                     }
                 }else {
-                    window.location.replace('http://localhost/ittech?page=error');
+                    // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
             }else {
-                window.location.replace('http://localhost/ittech?page=error');
+                // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
     };
@@ -167,7 +167,7 @@ function showAttributes(type) {
                     priceLabel.innerHTML = 'Price: ';
                     document.getElementById('inputPrice').appendChild(priceLabel);
                     var price = document.createElement('input');
-                    price.type = 'text';
+                    price.type = 'number';
                     price.name = 'price';
                     price.id = 'price';
                     price.required = true;
@@ -178,7 +178,7 @@ function showAttributes(type) {
                     quontityLabel.innerHTML = 'Quontity: ';
                     document.getElementById('inputQuontity').appendChild(quontityLabel);
                     var quontity = document.createElement('input');
-                    quontity.type = 'text';
+                    quontity.type = 'number';
                     quontity.name = 'quontity';
                     quontity.id = 'quontity';
                     quontity.required = true;
@@ -251,10 +251,10 @@ function showAttributes(type) {
                     submit.value = 'Add product';
                     document.getElementById('submit').appendChild(submit);
                 }else {
-                     window.location.replace('http://localhost/ittech?page=error');
+                    // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
             }else {
-                window.location.replace('http://localhost/ittech?page=error');
+                // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
     };

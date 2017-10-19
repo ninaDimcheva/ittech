@@ -18,7 +18,7 @@ if (isset($_GET['getMainTypes'])){
         }
         echo json_encode($mainTypes,JSON_UNESCAPED_SLASHES);
     }catch (\PDOException $e){
-        header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
     }
 }
 
@@ -31,7 +31,7 @@ if (isset($_GET['getTypes'])){
         }
         echo json_encode($types,JSON_UNESCAPED_SLASHES);
     }catch (\PDOException $e){
-        header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
     }
 }
 
@@ -44,7 +44,7 @@ if (isset($_GET['getSpecifications'])){
         }
         echo json_encode($specifications,JSON_UNESCAPED_SLASHES);
     }catch (\PDOException $e){
-        header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
     }
 }
 
@@ -56,7 +56,7 @@ if (isset($_GET['getBrands'])){
         }
         echo json_encode($brands,JSON_UNESCAPED_SLASHES);
     }catch (\PDOException $e){
-        header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
     }
 }
 
@@ -130,10 +130,10 @@ if (isset($_POST['addProduct'])){
             move_uploaded_file($tmpImg3Name, "../" . $imgUrls['2']);
             header("Location:../?page=main");
         }catch (\PDOException $e){
-            header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
         }
     }else{
-       header("Location:../?page=error");
+//        TODO header("Location:../?page=error");
     }
 
 
