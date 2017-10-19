@@ -21,23 +21,17 @@ function registerValidate(){
     var termsWarn = document.getElementById('termsWarn');
     var error = false;
 
-    var checkMark = document.createElement('img');
-    checkMark.src = 'http://localhost/ittech/assets/displayImages/checkMark.png';
-    checkMark.className = 'checkMark';
-
     if (name.length > 0 && name.length < 45 && !/\d/.test(name)){
-        nameWarn.innerHTML = '';
-        nameWarn.appendChild(checkMark);
+        nameWarn.innerText = '✔';
     }else {
         error = true;
-        nameWarn.innerText = 'NOT OK';
+        nameWarn.innerText = '✘';
     }
     if (familyName.length > 0 && familyName.length < 45 && !/\d/.test(familyName)){
-        familyNameWarn.innerHTML = '';
-        familyNameWarn.appendChild(checkMark);
+        familyNameWarn.innerText = '✔';
     }else {
         error = true;
-        familyNameWarn.innerText = 'NOT OK';
+        familyNameWarn.innerText = '✘';
     }
     if (email.length > 0 && email.length < 45 && atSign > 1 && (dot - atSign) > 2 && dot < (email.length - 2)){
         var request = new XMLHttpRequest();
@@ -47,8 +41,7 @@ function registerValidate(){
                     if (this.responseText){
                         emailWarn.innerText = 'The e-mail is already registered';
                     }else {
-                        emailWarn.innerHTML = '';
-                        emailWarn.appendChild(checkMark);
+                        emailWarn.innerText = '✔';
                     }
                 }
             }
@@ -57,32 +50,29 @@ function registerValidate(){
         request.send();
     }else {
         error = true;
-        emailWarn.innerText = 'NOT OK';
+        emailWarn.innerText = '✘';
     }
     if (password.length > 5 && password.length < 45){
-        passwordWarn.innerHTML = '';
-        passwordWarn.appendChild(checkMark);
+        passwordWarn.innerText = '✔';
+
     }else {
         error = true;
-        passwordWarn.innerText = 'NOT OK';
+        passwordWarn.innerText = '✘';
     }
     if (confirmPassword.length > 5 && confirmPassword.length < 45 && confirmPassword === password){
-        confirmPasswordWarn.innerHTML = '';
-        confirmPasswordWarn.appendChild(checkMark);
+        confirmPasswordWarn.innerText = '✔';
     }else {
         error = true;
-        confirmPasswordWarn.innerText = 'NOT OK';
+        confirmPasswordWarn.innerText = '✘';
     }
     if (day !== 'Day' && month !== 'Month' && year !== 'Year'){
-        birthdayWarn.innerHTML = '';
-        birthdayWarn.appendChild(checkMark);
+        birthdayWarn.innerText = '✔';
     }else {
         error = true;
-        birthdayWarn.innerText = 'NOT OK';
+        birthdayWarn.innerText = '✘';
     }
     if (terms.checked){
-        termsWarn.innerText = '';
-        termsWarn.appendChild(checkMark);
+        termsWarn.innerText = '✔';
     }else {
         error = true;
         termsWarn.innerText = 'The field is required';
