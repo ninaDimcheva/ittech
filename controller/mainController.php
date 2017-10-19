@@ -18,13 +18,17 @@ function __autoload($class_name)
 }
 
 session_start();
+    try{
+        if(ProductDao ::getInstance() -> getAllProducts()){
+            print_r(ProductDao ::getInstance() -> getAllProducts());
+        }
+        else{
+//            TODO    header('Location:../?page=error');
+        }
+    }catch (\PDOException $e){
+//            TODO    header('Location:../?page=error');
+    }
 
-	if(ProductDao ::getInstance() -> getAllProducts()){
-		print_r(ProductDao ::getInstance() -> getAllProducts());
-	}
-	else{
-		header("Location:?page=error");
-	}
 
 
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 use \model\DataBase\UserDao;
 use \model\users\User;
@@ -10,6 +10,7 @@ function __autoload($class_name){
     require_once $class_name . '.php';
 }
 
+session_start();
 $error = false;
 
 if (isset($_POST['register'])) {
@@ -61,22 +62,32 @@ if (isset($_POST['register'])) {
 
     if (!$error){
         $user = new User($name,$familyName,$email,$password,$gender,$birthday,$notification);
-        if (!UserDao::getInstance()->existsUser($email)){
-            UserDao::getInstance()->insertUser($user);
-            $_SESSION['isLogged'] = true;
-            $_SESSION['user_id'] = $user->getUserId();
-            header('Location:../');
-        }else{
-            header('Location:../?page=error');
+        try{
+            if (!UserDao::getInstance()->existsUser($email)){
+                UserDao::getInstance()->insertUser($user);
+                $_SESSION['isLogged'] = true;
+                $_SESSION['user_id'] = $user->getUserId();
+                header('Location:../');
+            }else{
+//            TODO    header('Location:../?page=error');
+            }
+        }catch (\PDOException $e){
+//            TODO    header('Location:../?page=error');
         }
+
     }else{
-        header('Location:../?page=error');
+//            TODO    header('Location:../?page=error');
     }
 
 }
 
 if (isset($_GET['existsUser'])){
-    echo is_array(UserDao::getInstance()->existsUser($_GET['existsUser']));
+    try{
+        echo is_array(UserDao::getInstance()->existsUser($_GET['existsUser']));
+    }catch (\PDOException $e){
+//            TODO    header('Location:../?page=error');
+    }
+
 }
 
 
