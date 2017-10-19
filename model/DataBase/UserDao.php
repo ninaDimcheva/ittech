@@ -40,9 +40,9 @@ class UserDao{
      * @return bool
      */
     public function existsUser($email){
-        $stm = $this->pdo->prepare("SELECT count(*) as number FROM users WHERE `email` = ?");
+        $stm = $this->pdo->prepare("SELECT `name`, `family_name`, `is_admin` FROM users WHERE `email` = ?");
         $stm->execute(array($email));
-        return $stm->fetch(\PDO::FETCH_ASSOC)["number"] > 0;
+        return $stm->fetch(\PDO::FETCH_ASSOC);
     }
 	/**
 	 * @param $email
@@ -68,4 +68,9 @@ class UserDao{
         $user->setUserId($this->pdo->lastInsertId());
     }
 
+    public function editUserPrivilege($changePrivilege, $email){
+        $stm = $this->pdo->prepare("UPDATE `users` SET `is_admin` = ? WHERE `email` = ?");
+        $stm->execute(array($changePrivilege,$email));
+        return $stm->rowCount() > 0;
+    }
 }

@@ -96,10 +96,10 @@ function showAllProducts() {
         if (this.readyState === 4) {
             if (this.status === 200) {
                 var productsObject = this.responseText;
-                alert(productsObject);
+                // alert(productsObject);
                 for (var i = 0; i < productsObject.length; i++) {
                     for(var j in productsObject[i]){
-                        alert(productsObject[i][j].product_id);
+                        // alert(productsObject[i][j].product_id);
                     }
 
                     }

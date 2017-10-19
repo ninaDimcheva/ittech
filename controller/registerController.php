@@ -76,8 +76,7 @@ if (isset($_POST['register'])) {
 }
 
 if (isset($_GET['existsUser'])){
-    echo UserDao::getInstance()->existsUser($_GET['existsUser']);
-
+    echo is_array(UserDao::getInstance()->existsUser($_GET['existsUser']));
 }
 
 

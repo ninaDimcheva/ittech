@@ -1,1 +1,21 @@
-<h1>editUserPrivelege</h1>
+<script src="js/editUserPrivilege.js"></script>
+
+<fieldset>
+    <legend>Edit user privilege</legend>
+    <div id="findUserWarn">
+    </div>
+
+    <div id="findUser">
+        <label for="inputUserEmail">Find user by e-mail:</label>
+        <input type="email" id="inputUserEmail" required autofocus onkeydown = "clickFindUser()">
+        <button onclick="findUser(document.getElementById('inputUserEmail').value)" id="findUserButton">Find user</button>
+    </div>
+
+    <div id="userToEdit">
+    </div>
+
+    <form action="controller/editUserPrivilegeController.php" method="post" id="editUserPrivilegeForm">
+        <input type="hidden" name="hiddenEmail" id="hiddenEmail">
+        <input type="hidden" name="hiddenIsAdmin" id="hiddenIsAdmin">
+    </form>
+</fieldset>
