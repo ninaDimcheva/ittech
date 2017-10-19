@@ -1,1 +1,108 @@
-<h1>addPromoProduct</h1>
+<script src="js/addPromoProduct.js"></script>
+<fieldset>
+    <legend>Add product in promotion</legend>
+    <div id="productInfo">
+        <!--TODO show product information-->
+    </div>
+
+    <div class="labels">
+        <label for="discount">Discount</label>
+    </div>
+    <div class="inputs">
+        <input type="number" id="discount" name="discount" onkeyup="promoValidate()" onblur="promoValidate()" required maxlength="10" autofocus>
+    </div>
+    <div class="warnings">
+        <p id="discountWarning"></p>
+    </div>
+
+    <form action="controller/addPromoProduct" method="post">
+        <div class="labels">
+        Start date:<span class="requiredField">*</span>
+    </div>
+        <div class="inputs">
+            <select name="startDay" id="startDay" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Day</option>
+                <script>
+                    for (var i = 1; i <= 31; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('startDay').appendChild(option);
+                    }
+                </script>
+            </select>
+            <select name="startMonth" id="startMonth" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Month</option>
+                <script>
+                    for (var i = 1; i <= 12; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('startMonth').appendChild(option);
+                    }
+                </script>
+            </select>
+            <select name="startYear" id="startYear" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Year</option>
+                <script>
+                    for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear()+1; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('startYear').appendChild(option);
+                    }
+                </script>
+            </select>
+        </div>
+        <div class="warnings">
+            <p id="startDayWarning"></p>
+        </div>
+
+        <div class="labels">
+            End date:<span class="requiredField">*</span>
+        </div>
+        <div class="inputs">
+            <select name="endDay" id="endDay" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Day</option>
+                <script>
+                    for (var i = 1; i <= 31; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('endDay').appendChild(option);
+                    }
+                </script>
+            </select>
+            <select name="endMonth" id="endMonth" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Month</option>
+                <script>
+                    for (var i = 1; i <= 12; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('endMonth').appendChild(option);
+                    }
+                </script>
+            </select>
+            <select name="endYear" id="endYear" onclick="promoValidate()" onblur="promoValidate()">
+                <option disabled selected>Year</option>
+                <script>
+                    for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear()+2; i++){
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.innerText = i;
+                        document.getElementById('endYear').appendChild(option);
+                    }
+                </script>
+            </select>
+        </div>
+        <div class="warnings">
+            <p id="endDayWarning"></p>
+        </div>
+
+        <input type="hidden" name="productId" id="productId">
+        <div id="promoSubmit">
+            <input type="submit" name="addProductInPromo" value="Add product in promo"  id="promoButton" class="button">
+        </div>
+    </form>
+</fieldset>
