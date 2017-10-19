@@ -29,6 +29,18 @@ session_start();
 //            TODO    header('Location:../?page=error');
     }
 
+$products = ProductDao::getInstance()->getAllProducts();
+//for($i = 0; $i < count($products); $i++){
+//	echo $products[$i]->getProductId();
+//	echo $products[$i]->getPrice();
+//}
+//var_dump($products);
+	if($products){
+	echo json_encode($products, JSON_UNESCAPED_SLASHES);
+	}
+	else{
+		header("Location:?page=error");
+	}
 
 
 

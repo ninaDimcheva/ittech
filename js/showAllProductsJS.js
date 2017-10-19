@@ -95,6 +95,7 @@ function showAllProducts() {
     request.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
+
                 var productsObject = this.responseText;
                 // alert(productsObject);
                 for (var i = 0; i < productsObject.length; i++) {
@@ -102,9 +103,20 @@ function showAllProducts() {
                         // alert(productsObject[i][j].product_id);
                     }
 
-                    }
+                var productsObject = JSON.parse(this.responseText);
+                alert(productsObject);
+                // productsObject.forEach(function (x) {
+                //     for(var prop in x){
+                //         alert(x[prop]);
+                //     }
+                // })
+                for(var i in productsObject){
+                    alert(productsObject[i]);
                 }
-            }
+
+
+                        }
+                    }
     };
     request.open("GET", "http://localhost/ittech/controller/mainController.php");
     request.send();
