@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Nini
- * Date: 12.10.2017 г.
- * Time: 21:47 ч.
- */
 
 namespace model\promotions;
 

@@ -43,6 +43,7 @@ class PromotionDao{
 		$stm = $this->pdo->prepare("INSERT INTO promotions (`product_id`, `start_date`, `end_date`, `discount`) VALUES (?, ?, ?, ?)");
 		$stm->execute(array($promotion->getProductId(), $promotion->getStartDate(), $promotion->getEndDate(),$promotion->getDiscount()));
 		$promotion->setPromotionId($this->pdo->lastInsertId());
+		return $promotion->getPromotionId();
 	}
 
     /**
