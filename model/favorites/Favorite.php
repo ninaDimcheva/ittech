@@ -18,10 +18,10 @@ class Favorite {
 	
 	/**
 	 * Favorite constructor.
-	 * @param array $product_id
-	 * @param $user_id
+	 * @param int $product_id
+	 * @param  int $user_id
 	 */
-	public function __construct(array $product_id, $user_id)
+	public function __construct($product_id, $user_id)
 	{
 		$this -> product_id = $product_id;
 		$this -> user_id = $user_id;

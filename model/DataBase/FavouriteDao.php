@@ -38,9 +38,8 @@ class FavouriteDao{
      */
 	public function addNewFavorite(Favorite $favorite){
 		$stm = $this->pdo->prepare("INSERT INTO `favorites` (`product_id`, `user_id`) VALUES (?, ?)");
-		foreach ($favorite->getProductId() as $product_id) {
-			$stm-> execute(array($product_id, $favorite->getUserId()));
-		}
+			$stm-> execute(array($favorite->getProductId(), $favorite->getUserId()));
+			return ($stm->rowCount()>0);
 	}
 
     /**

@@ -18,33 +18,27 @@ function __autoload($class_name)
 }
 
 session_start();
-//    try{
-//        if(ProductDao ::getInstance() -> getAllProducts()){
-//            print_r(ProductDao ::getInstance() -> getAllProducts());
-//        }
-//        else{
-////            TODO    header('Location:../?page=error');
-//        }
-//    }catch (\PDOException $e){
-////            TODO    header('Location:../?page=error');
-//    }
-
-$products = ProductDao::getInstance()->getAllProducts();
-//for($i = 0; $i < count($products); $i++){
-//	echo $products[$i]->getProductId();
-//	echo $products[$i]->getPrice();
-//}
-
-//var_dump($products);
-	if($products){
-//		var_dump(json_encode($products, JSON_UNESCAPED_SLASHES));
-//		echo json_last_error_msg();
-		echo json_encode($products, JSON_UNESCAPED_SLASHES);
-//		echo json_encode(new \model\products\ProductSpec("mama ti", "stara"), JSON_UNESCAPED_SLASHES);
+if (isset($_GET['getAllProducts'])) {
+	try {
+		$products = ProductDao ::getInstance() -> getAllProducts();
+		if ($products) {
+			echo json_encode($products, JSON_UNESCAPED_SLASHES);
+		}
+		else {
+//            TODO    header('Location:../?page=error');
+		}
 	}
-	else{
-		header("Location:?page=error");
+	catch (\PDOException $e) {
+//            TODO    header('Location:../?page=error');
 	}
+}
+
+// sets in session the product which must be visualized;
+
+if(isset($_POST['object'])){
+		$_SESSION['viewProduct'] = json_decode($_POST['object']);
+}
+
 
 
 
