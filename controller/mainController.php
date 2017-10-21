@@ -18,25 +18,29 @@ function __autoload($class_name)
 }
 
 session_start();
-    try{
-        if(ProductDao ::getInstance() -> getAllProducts()){
-            print_r(ProductDao ::getInstance() -> getAllProducts());
-        }
-        else{
-//            TODO    header('Location:../?page=error');
-        }
-    }catch (\PDOException $e){
-//            TODO    header('Location:../?page=error');
-    }
+//    try{
+//        if(ProductDao ::getInstance() -> getAllProducts()){
+//            print_r(ProductDao ::getInstance() -> getAllProducts());
+//        }
+//        else{
+////            TODO    header('Location:../?page=error');
+//        }
+//    }catch (\PDOException $e){
+////            TODO    header('Location:../?page=error');
+//    }
 
 $products = ProductDao::getInstance()->getAllProducts();
 //for($i = 0; $i < count($products); $i++){
 //	echo $products[$i]->getProductId();
 //	echo $products[$i]->getPrice();
 //}
+
 //var_dump($products);
 	if($products){
-	echo json_encode($products, JSON_UNESCAPED_SLASHES);
+//		var_dump(json_encode($products, JSON_UNESCAPED_SLASHES));
+//		echo json_last_error_msg();
+		echo json_encode($products, JSON_UNESCAPED_SLASHES);
+//		echo json_encode(new \model\products\ProductSpec("mama ti", "stara"), JSON_UNESCAPED_SLASHES);
 	}
 	else{
 		header("Location:?page=error");

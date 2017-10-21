@@ -13,7 +13,7 @@ function isLogged(){
                     mainDiv.innerHTML = '';
                     var profil = document.createElement('a');
                     profil.innerHTML = 'Profil';
-                    profil.href = '?page=myProfil';
+                    profil.href = '?page=myProfile';
                     var br = document.createElement('br');
                     mainDiv.appendChild(profil);
                     var orders = document.createElement('a');

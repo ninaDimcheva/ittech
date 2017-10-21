@@ -9,19 +9,22 @@
 namespace model\products;
 
 
-class Product{
+use model\JsonObject;
+
+class Product extends JsonObject {
+	
+	/**
+     * @var integer
+     */
+    protected $product_id;
     /**
      * @var integer
      */
-    private $product_id;
-    /**
-     * @var integer
-     */
-    private $type_id;
+	protected $type_id;
     /**
      * @var string
      */
-    private $type;
+	protected $type;
     /**
      * @var integer
      */
@@ -29,15 +32,15 @@ class Product{
     /**
      * @var string
      */
-    private $brand;
+	protected $brand;
     /**
      * @var string
      */
-    private $model;
+    protected $model;
     /**
      * @var double
      */
-    private $price;
+	protected $price;
     /**
      * @var int (arhived = 1, not arhived = NULL)
      */
@@ -49,11 +52,11 @@ class Product{
     /**
      * @var array
      */
-    private $img_urls = []; // value = img_url
+    protected $img_urls = []; // value = img_url
     /**
      * @var array
      */
-    private $specifications = []; //key = spec_id, value = spec_value
+    protected $specifications = []; //array of ProductSpec objects
 
     /**
      * Product constructor.

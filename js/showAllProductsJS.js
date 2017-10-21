@@ -88,35 +88,20 @@
 //     }
 // });
 
-
 function showAllProducts() {
     var contentContainer = document.getElementById('content-container');
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-
-                var productsObject = this.responseText;
-                // alert(productsObject);
-                for (var i = 0; i < productsObject.length; i++) {
-                    for(var j in productsObject[i]){
-                        // alert(productsObject[i][j].product_id);
-                    }
-
                 var productsObject = JSON.parse(this.responseText);
-                alert(productsObject);
-                // productsObject.forEach(function (x) {
-                //     for(var prop in x){
-                //         alert(x[prop]);
-                //     }
-                // })
-                for(var i in productsObject){
-                    alert(productsObject[i]);
+                for (var i in productsObject) {
+                     for(var j in productsObject[i].specifications){
+                         // alert(productsObject[i].specifications[j].name + " - " +productsObject[i].specifications[j].value);
+                     }
                 }
-
-
-                        }
-                    }
+            }
+        }
     };
     request.open("GET", "http://localhost/ittech/controller/mainController.php");
     request.send();

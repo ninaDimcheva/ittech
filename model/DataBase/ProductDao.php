@@ -10,6 +10,8 @@ namespace model\DataBase;
 
 //require_once '../products/Product.php';
 use model\products\Product;
+use model\products\ProductSpec;
+use model\products\ProductImg;
 
 class ProductDao{
     private static $instance;
@@ -128,9 +130,10 @@ class ProductDao{
         foreach ($products as $product){
             $stm->execute(array($product->getProductId()));
             $result =  $stm -> fetchAll(\PDO::FETCH_ASSOC);
-            $specifications=[];
+            $specifications= array();
             foreach ($result as $row) {
-                $specifications[$row['spec_name']] = $row['spec_value'];
+            	$spec = new ProductSpec($row['spec_name'], $row['spec_value']);
+            	$specifications[] = $spec;
             }
             $product->setSpecifications($specifications);
         }
@@ -139,9 +142,10 @@ class ProductDao{
         foreach ($products as $product){
             $stm->execute(array($product->getProductId()));
             $result =  $stm -> fetchAll(\PDO::FETCH_ASSOC);
-            $img_urls = [];
+            $img_urls = array();
             foreach ($result as $row) {
-                $img_urls[] = $row['img_url'];
+            	$img_url = new ProductImg($row['img_url']);
+                $img_urls[] = $img_url;
             }
             $product->setImgUrls($img_urls);
         }
