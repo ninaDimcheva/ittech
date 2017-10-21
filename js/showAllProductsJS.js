@@ -203,10 +203,10 @@ function sendToCart(product) {
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ITTech/?page=viewSingleProduct");
+            window.location.replace("http://localhost/ITTech/?page=userCart");
         }
     };
-    request.open("POST", "http://localhost/ittech/controller/mainController.php");
+    request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
 }

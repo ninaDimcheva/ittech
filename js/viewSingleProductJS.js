@@ -136,12 +136,16 @@ function viewSingleProduct() {
 
             var buyNow = document.createElement('div');
             buyNow.className = 'button';
+            buyNow.onclick = function () {
+                sendToCart(viewProduct);
+            };
             buyNow.style.border = '1px solid green';
             buyNow.style.width = '100px';
             buyNow.style.height = '50px';
             buyNow.style.float = 'right';
             buyNow.innerHTML = 'BUY NOW';
             viewSingleProduct.appendChild(buyNow);
+
 
 
 
@@ -166,3 +170,21 @@ function sendToFavourites(product_id) {
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send("product_id=" + JSON.stringify(product_id)); //goes in $_POST["object"]
 }
+
+/**
+ *
+ * @param product = Object product
+ */
+function sendToCart(product) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
+            window.location.replace("http://localhost/ITTech/?page=userCart");
+        }
+    };
+    request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
+}
+
