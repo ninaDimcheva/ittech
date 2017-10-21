@@ -28,7 +28,7 @@ class Product extends JsonObject {
     /**
      * @var integer
      */
-    private $brand_id;
+    protected $brand_id;
     /**
      * @var string
      */
@@ -44,15 +44,15 @@ class Product extends JsonObject {
     /**
      * @var int (arhived = 1, not arhived = NULL)
      */
-    private $arhive;
+    protected $arhive;
     /**
      * @var integer
      */
-    private $quontity;
+    protected $quontity;
     /**
      * @var array
      */
-    protected $img_urls = []; // value = img_url
+    protected $imgs = []; // array of img objects
     /**
      * @var array
      */
@@ -66,16 +66,16 @@ class Product extends JsonObject {
      * @param double $price
      * @param int $arhive (arhived = 1, not arhived = NULL)
      * @param integer $quontity
-     * @param array $img_urls
+     * @param array $imgs
      * @param array $specifications
      */
-    public function __construct(array $img_urls, array $specifications, $type = null, $brand = null, $model = null, $price=null, $quontity=null){
+    public function __construct($type, $brand, $model, $price, $quontity, array $imgs, array $specifications){
         $this->type = $type;
         $this->brand = $brand;
         $this->model = $model;
         $this->price = $price;
         $this->quontity = $quontity;
-        $this->img_urls = $img_urls;
+        $this->imgs = $imgs;
         $this->specifications = $specifications;
     }
     /**
@@ -145,9 +145,9 @@ class Product extends JsonObject {
     /**
      * @return array
      */
-    public function getImgUrls()
+    public function getImgs()
     {
-        return $this->img_urls;
+        return $this->imgs;
     }
 
     /**
@@ -231,11 +231,11 @@ class Product extends JsonObject {
     }
 
     /**
-     * @param array $img_urls
+     * @param array $imgs
      */
-    public function setImgUrls($img_urls)
+    public function setImgs($imgs)
     {
-        $this->img_urls = $img_urls;
+        $this->imgs = $imgs;
     }
 
     /**

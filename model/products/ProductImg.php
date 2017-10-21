@@ -11,18 +11,137 @@ namespace model\products;
 use model\JsonObject;
 class ProductImg extends JsonObject
 {
+    /**
+     * @var string
+     */
 	protected $img_url;
-	
-	function __construct($img_url)
+    /**
+     * @var string
+     */
+	protected $alt;
+    /**
+     * @var string
+     */
+    /**
+     * @var string
+     */
+    protected $tmpName;
+    /**
+     * @var integer
+     */
+    protected $size;
+    /**
+     * @var string
+     */
+	protected $fileExtension;
+    /**
+     * @var string
+     */
+	protected $fileType;
+
+    /**
+     * ProductImg constructor.
+     * @param string $alt
+     * @param string $img_url
+     */
+	function __construct($alt, $img_url = null)
 	{
-		$this->img_url = $img_url;
+        $this->alt = $alt;
+	    $this->img_url = $img_url;
 	}
-	
+
+    /**
+     * @param string $img_url
+     */
+    public function setImgUrl($img_url)
+    {
+        $this->img_url = $img_url;
+    }
+
+    /**
+     * @param string $fileExtension
+     */
+    public function setFileExtension($fileExtension)
+    {
+        $this->fileExtension = $fileExtension;
+    }
+
+    /**
+     * @param string $alt
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+    }
+
+    /**
+     * @param string $fileType
+     */
+    public function setFileType($fileType)
+    {
+        $this->fileType = $fileType;
+    }
+
+    /**
+     * @param int $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * @param string $tmpName
+     */
+    public function setTmpName($tmpName)
+    {
+        $this->tmpName = $tmpName;
+    }
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function getImgUrl()
 	{
 		return $this -> img_url;
 	}
+
+    /**
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileExtension()
+    {
+        return $this->fileExtension;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileType()
+    {
+        return $this->fileType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTmpName()
+    {
+        return $this->tmpName;
+    }
 }

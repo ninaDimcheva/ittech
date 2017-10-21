@@ -8,7 +8,6 @@
 
 namespace model\DataBase;
 
-//require_once '../products/Product.php';
 use model\products\Product;
 use model\products\ProductSpec;
 use model\products\ProductImg;
@@ -53,10 +52,12 @@ class ProductDao{
             $product->setBrandId($stm->fetch(\PDO::FETCH_ASSOC)['brand_id']);
 
             $stm = $this->pdo->prepare ("SELECT `spec_id` FROM `specifications` WHERE `name` = ?");
-            foreach ($product->getSpecifications() as $spec_name => $spec_value) {
-                $stm->execute(array(str_replace('_',' ', $spec_name)));
+            $specifications = array();
+            foreach ($product->getSpecifications() as $spec) {
+                $stm->execute(array(str_replace('_',' ', $spec->getName())));
                 $spec_id = $stm->fetch(\PDO::FETCH_ASSOC)['spec_id'];
-                $specifications[$spec_id] = $spec_value;
+                $spec->setSpecId($spec_id);
+                $specifications[] = $spec;
             }
 
             $product->setSpecifications($specifications);
@@ -67,21 +68,22 @@ class ProductDao{
             $product->setProductId($this->pdo->lastInsertId());
 
             $stm = $this->pdo->prepare("INSERT INTO `products_specifications` (`product_id`, `spec_id`, `value`) VALUES (?, ?, ?)");
-            foreach ($product->getSpecifications() as $spec_id => $value) {
-                $stm-> execute(array($product->getProductId(),$spec_id,$value));
+            foreach ($product->getSpecifications() as $spec) {
+                $stm-> execute(array($product->getProductId(),$spec->getSpecId(),$spec->getValue()));
             }
 
-            foreach ($product->getImgUrls() as $imgFileExtension) {
-                $imgUrls[] = 'assets/uploads/' . $product->getProductId() . $imgFileExtension;
-            }
-            $product->setImgUrls($imgUrls);
-            $stm = $this->pdo->prepare("INSERT INTO `products_urls` (`product_id`, `img_url`) VALUES (?, ?)");
-            foreach ($product->getImgUrls() as $img_url) {
-                $stm-> execute(array($product->getProductId(),$img_url));
-            }
+            foreach ($product->getImgs() as $key => $img) {
+                $img->setImgUrl('assets/uploads/' . $product->getProductId() . '_' .  $key . '.' . $img->getFileExtension());
+                $imgs[] = $img;
 
+            }
+            $product->setImgs($imgs);
+            $stm = $this->pdo->prepare("INSERT INTO `products_imgs` (`product_id`, `img_url`, `alt`) VALUES (?, ?, ?)");
+            foreach ($product->getImgs() as $img) {
+                $stm-> execute(array($product->getProductId(),$img->getImgUrl(), $img->getAlt()));
+            }
             $this->pdo->commit();
-            return $product->getImgUrls();
+            return $product->getImgs();
         }catch (\PDOException $e){
             $this->pdo->rollBack();
             throw new \PDOException($e->getMessage(),$e->getCode());
@@ -101,32 +103,27 @@ class ProductDao{
 	 * @return array
 	 */
     public function getAllProducts(){
+
+
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE P.`archive` is null");
         $stm->execute();
-//        if($stm->rowCount() == 0){
-//        	return false;
-//        }
         $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+
         foreach ($result as $key => $row) {
-            $product = new Product(array(),array());
+            $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
             $product->setProductId($row['product_id']);
-            $product->setType($row['type']);
-            $product->setBrand($row['brand']);
-            $product->setModel($row['model']);
-            $product->setPrice($row['price']);
-            $product->setQuontity($row['quontity']);
             $products[] = $product;
             }
+
         $stm = $this->pdo->prepare("SELECT S.`name` as spec_name, PS.`value` as spec_value
                                               FROM `products_specifications` as PS
                                               JOIN `specifications` as S ON PS.`spec_id` = S.`spec_id`
                                               WHERE `product_id` = ?
                                               order by `product_id`");
-
         foreach ($products as $product){
             $stm->execute(array($product->getProductId()));
             $result =  $stm -> fetchAll(\PDO::FETCH_ASSOC);
@@ -138,16 +135,16 @@ class ProductDao{
             $product->setSpecifications($specifications);
         }
 
-        $stm = $this->pdo->prepare("SELECT `img_url` FROM `products_urls` WHERE `product_id` = ? ORDER BY `product_id`");
+        $stm = $this->pdo->prepare("SELECT `img_url`, `alt` FROM `products_imgs` WHERE `product_id` = ? ORDER BY `product_id`");
         foreach ($products as $product){
             $stm->execute(array($product->getProductId()));
             $result =  $stm -> fetchAll(\PDO::FETCH_ASSOC);
-            $img_urls = array();
+            $imgs = array();
             foreach ($result as $row) {
-            	$img_url = new ProductImg($row['img_url']);
-                $img_urls[] = $img_url;
+            	$img = new ProductImg($row['alt'],$row['img_url']);
+                $imgs[] = $img;
             }
-            $product->setImgUrls($img_urls);
+            $product->setImgs($imgs);
         }
         return $products;
     }

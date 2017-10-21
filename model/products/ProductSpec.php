@@ -15,6 +15,7 @@ class ProductSpec extends JsonObject
 {
 	protected $name;
 	protected $value;
+	protected $specId;
 	
 	function __construct($name, $value)
 	{
@@ -37,4 +38,20 @@ class ProductSpec extends JsonObject
 	{
 		return $this -> value;
 	}
+
+    /**
+     * @param integer $specId
+     */
+    public function setSpecId($specId)
+    {
+        $this->specId = $specId;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getSpecId()
+    {
+        return $this->specId;
+    }
 }
