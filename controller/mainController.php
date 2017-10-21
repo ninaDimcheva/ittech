@@ -34,11 +34,9 @@ if (isset($_GET['getAllProducts'])) {
 }
 
 // sets in session the product which must be visualized;
-
 if(isset($_POST['object'])){
 		$_SESSION['viewProduct'] = json_decode($_POST['object']);
 }
-
 
 
 

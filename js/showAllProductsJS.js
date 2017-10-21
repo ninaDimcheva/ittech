@@ -111,7 +111,6 @@ function showAllProducts() {
                     contentContainer.style.margin = '0.5px';
                     contentContainer.style.clear = 'both';
                     article.appendChild(contentContainer);
-
                 }
                     // ---------------------------------
 
@@ -137,17 +136,14 @@ function showAllProducts() {
                         imageDiv.className = 'imageDiv';
                         panel.appendChild(imageDiv);
                         var img = document.createElement('img');
-
                         img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
-
-                        img.style.width = '200px';
-                        img.style.height = '300px';
+                        img.style.width = '150px';
+                        img.style.height = 'auto';
                         img.value = productsObject[currentProduct];
                         img.onclick = function () {
                             sendProductObject(this.value);
                         };
                         imageDiv.appendChild(img);
-
                         var infoProduct = document.createElement('div');
                         infoProduct.className = 'infoProduct';
                         panel.appendChild(infoProduct);
@@ -160,12 +156,15 @@ function showAllProducts() {
                         var price = document.createElement('h2');
                         model.innerText = productsObject[currentProduct].price;
                         infoProduct.appendChild(price);
+
+                        // TODO test the buy button
+
                         var buyButton = document.createElement('div');
                         buyButton.className = 'button';
                         buyButton.innerHTML = 'BUY';
                         buyButton.value = productsObject[currentProduct];
                         buyButton.onclick = function () {
-                            sendProductObject(this.value);
+                            sendToCart(this.value);
                         };
                         panel.appendChild(buyButton);
                         currentProduct++;
@@ -178,6 +177,10 @@ function showAllProducts() {
     request.send();
 }
 
+/**
+ *
+ * @param product = Object product
+ */
 function sendProductObject(product) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -186,7 +189,23 @@ function sendProductObject(product) {
             window.location.replace("http://localhost/ITTech/?page=viewSingleProduct");
         }
     };
+    request.open("POST", "http://localhost/ittech/controller/mainController.php");
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
+}
 
+/**
+ *
+ * @param product = Object product
+ */
+function sendToCart(product) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
+            window.location.replace("http://localhost/ITTech/?page=viewSingleProduct");
+        }
+    };
     request.open("POST", "http://localhost/ittech/controller/mainController.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
