@@ -8,8 +8,21 @@
 
 namespace model\products;
 
-
-class ProductImg
+use model\JsonObject;
+class ProductImg extends JsonObject
 {
+	protected $img_url;
 	
+	function __construct($img_url)
+	{
+		$this->img_url = $img_url;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getImgUrl()
+	{
+		return $this -> img_url;
+	}
 }
