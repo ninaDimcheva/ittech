@@ -134,7 +134,7 @@ header ul li:hover {
     float: left;
 }
 #mainNavigation{
-    width:100px;
+    width:200px;
     height:80px;
     border:1px solid threedshadow;
     display:none;}

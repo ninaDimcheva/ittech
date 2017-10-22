@@ -20,7 +20,11 @@ function __autoload($class_name)
 session_start();
 if(isset($_GET['islogged'])){
 	if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
-		echo $_SESSION["user"] -> getName();
+		$name = $_SESSION["user"] -> getName();
+		$admin = $_SESSION["user"] -> getIsAdmin();
+		$user = array();
+		$user["$name"] = $admin;
+		echo json_encode($user, JSON_UNESCAPED_SLASHES);
 	}
 	else {
 		echo false;

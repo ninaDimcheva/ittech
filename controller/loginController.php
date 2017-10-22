@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
             $birthday = $user['birthday'];
             $notifications = $user['notifications'];
             $userObject = new User($name, $familyName, $email, $password, $gender, $birthday, $notifications);
-            $userObject->setUserId( $user['user_id']);
+            $userObject->setUserId($user['user_id']);
             $userObject->setIsAdmin($user['is_admin']);
             $_SESSION['isLogged'] = true;
             $_SESSION['user'] = $userObject;

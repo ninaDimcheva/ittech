@@ -21,6 +21,7 @@ function viewSingleProduct() {
 
             // ---------------------------------
             // creates basic product description;
+
             var productHeading = document.createElement('div');
             productHeading.id = 'productHeading';
             productHeading.style.border = '1px solid black';
@@ -185,6 +186,6 @@ function sendToCart(product) {
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
+    request.send("singleProductToBuy=" + JSON.stringify(product)); //goes in $_POST["singleProductToBuy"]
 }
 

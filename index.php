@@ -10,6 +10,8 @@ session_start();
 if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
     if (isset($_GET['page'])){
         switch ($_GET['page']){
+	        case 'myProfile' : require_once 'view/myProfile.html';
+		        break;
             case 'addProduct' : require_once 'view/addProduct.html';
                 break;
             case 'editProduct' : require_once 'view/editProduct.html';
@@ -55,6 +57,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'userCart' : require_once 'view/userCart.html';
                     break;
+	            case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
+		            break;
                 default : require_once 'view/error.html';
             }
         }else{
