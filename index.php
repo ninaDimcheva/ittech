@@ -12,6 +12,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
         switch ($_GET['page']){
 	        case 'myProfile' : require_once 'view/myProfile.html';
 		        break;
+            case 'login' : require_once 'view/main.html';
+                break;
             case 'addProduct' : require_once 'view/addProduct.html';
                 break;
             case 'editProduct' : require_once 'view/editProduct.html';
@@ -30,6 +32,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'terms' : require_once 'view/termsForOnlineShopping.html';
                 break;
+            case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
+                break;
             default : require_once 'view/error.html';
         }
     }else{
@@ -39,6 +43,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
     if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
         if (isset($_GET['page'])){
             switch ($_GET['page']){
+                case 'login' : require_once 'view/main.html';
+                    break;
                 case 'myProfile' : require_once 'view/myProfile.html';
                     break;
                 case 'myOrders' : require_once 'view/myOrders.html';
@@ -59,6 +65,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
 	            case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
 		            break;
+                case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
+                    break;
                 default : require_once 'view/error.html';
             }
         }else{

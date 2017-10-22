@@ -88,6 +88,7 @@
 //     }
 // });
 
+
 function showAllProducts(searched) {
 
     searched = searched || null;
@@ -98,14 +99,15 @@ function showAllProducts(searched) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            if (this.responseText == searched){
+            if (this.responseText == searched) {
                 article.innerHTML = '';
                 article.innerHTML = 'no product matching by ' + searched;
-            }else {
+            } else {
                 var productsObject = JSON.parse(this.responseText);
-                var productsCount = productsObject.length;
+                //the last element of the array is isAdmin value
+                var productsCount = productsObject.length - 1;
                 article.innerHTML = '';
-                for (var i = 0; i < productsCount; i+=4) {
+                for (var i = 0; i < productsCount; i += 4) {
                     if (i % 4 === 0) {
 
                         // ---------------------------------
@@ -167,15 +169,36 @@ function showAllProducts(searched) {
                         infoProduct.appendChild(price);
 
                         // TODO test the buy button
+                        if (productsObject[productsCount]) {
+                            var addPromoButton = document.createElement('div');
+                            addPromoButton.className = 'button';
+                            addPromoButton.innerHTML = 'Add to promo';
+                            addPromoButton.value = productsObject[currentProduct];
+                            addPromoButton.onclick = function () {
+                                sendToPromo(this.value);
+                            };
+                            panel.appendChild(addPromoButton);
 
-                        var buyButton = document.createElement('div');
-                        buyButton.className = 'button';
-                        buyButton.innerHTML = 'BUY';
-                        buyButton.value = productsObject[currentProduct];
-                        buyButton.onclick = function () {
-                            sendToCart(this.value);
-                        };
-                        panel.appendChild(buyButton);
+                            var editProduct = document.createElement('div');
+                            editProduct.className = 'button';
+                            editProduct.innerHTML = 'Edit product';
+                            editProduct.value = productsObject[currentProduct];
+                            editProduct.onclick = function () {
+                                sendToEditProduct(this.value);
+                            };
+                            panel.appendChild(editProduct);
+                        } else {
+                            var buyButton = document.createElement('div');
+                            buyButton.className = 'button';
+                            buyButton.innerHTML = 'BUY';
+                            buyButton.value = productsObject[currentProduct];
+                            buyButton.onclick = function () {
+                                sendToCart(this.value);
+                            };
+                            panel.appendChild(buyButton);
+                        }
+
+
                         currentProduct++;
                     }
                 }
@@ -187,6 +210,7 @@ function showAllProducts(searched) {
     request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts=" + searched);
     request.send();
 }
+
 
 /**
  *
@@ -205,6 +229,7 @@ function sendProductObject(product) {
     request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
 }
 
+
 /**
  *
  * @param product = Object product
@@ -221,4 +246,19 @@ function sendToCart(product) {
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
 }
+
+function sendToPromo(promoProduct) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200){
+                window.location.replace("http://localhost/ITTech/?page=addPromoProduct");
+            }
+        }
+    };
+    request.open("POST", "http://localhost/ittech/controller/mainController.php");
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send("promoProductObj=" + JSON.stringify(promoProduct));
+}
+
 

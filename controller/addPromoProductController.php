@@ -2,8 +2,10 @@
 
 use \model\DataBase\PromotionDao;
 use \model\promotions\Promotion;
+use \model\products\Product;
 
-function __autoload($class_name){
+function __autoload($class_name)
+{
     $class_name = '..\\' . $class_name;
     $class_name = str_replace("\\", "/", $class_name);
     require_once $class_name . '.php';
@@ -11,25 +13,30 @@ function __autoload($class_name){
 
 session_start();
 
+if (isset($_POST['getPromoProduct'])) {
+    if (isset($_SESSION['promoProductObj'])) {
+        $promoProduct = $_SESSION['promoProductObj'];
+        unset($_SESSION['promoProductObj']);
+        echo $promoProduct;
+    } else {
+        //TODO error
+    }
+}
 
-if (isset($_POST['promoProduct'])){
-    $promoProduct = json_decode($_POST['promoProduct'],true);
+if (isset($_POST['promoProduct'])) {
+    $promoProduct = json_decode($_POST['promoProduct'], true);
     $startDate = trim(htmlentities($promoProduct['startDate']));
     $endDate = trim(htmlentities($promoProduct['endDate']));
     $discount = trim(htmlentities($promoProduct['discount']));
-//    $productId = trim(htmlentities($promoProduct['productId']));
-    //TODO get the right productId
-    $productId = 6;
+    $productId = trim(htmlentities($promoProduct['productId']));
 
     $promoProduct = new Promotion($productId, $startDate, $endDate, $discount);
 
-    try{
+    try {
         $promoProductId = PromotionDao::getInstance()->insertPromotion($promoProduct);
         echo $promoProductId;
-    }catch (\PDOException $e){
+    } catch (\PDOException $e) {
         // TODO error
         echo $e->getMessage();
     }
-
-
 }
