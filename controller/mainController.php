@@ -20,11 +20,18 @@ function __autoload($class_name)
 session_start();
 if (isset($_GET['getAllProducts'])) {
 	try {
-		$products = ProductDao ::getInstance() -> getAllProducts();
+		$products = ProductDao ::getInstance() -> getAllProducts($_GET['getAllProducts']);
+
 		if ($products) {
-			echo json_encode($products, JSON_UNESCAPED_SLASHES);
+		    if ($products == $_GET['getAllProducts']){
+		        echo $products;
+            }else{
+                echo json_encode($products, JSON_UNESCAPED_SLASHES);
+            }
+
 		}
 		else {
+
 //            TODO    header('Location:../?page=error');
 		}
 	}

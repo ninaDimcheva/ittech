@@ -88,31 +88,39 @@
 //     }
 // });
 
-function showAllProducts() {
+function showAllProducts(searched) {
+
+    searched = searched || null;
+
     var productNumber;
     var currentProduct = 0;
     var article = document.getElementById('article');
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            var productsObject = JSON.parse(this.responseText);
-            var productsCount = productsObject.length;
-            for (var i = 0; i < productsCount; i+=4) {
-                if (i % 4 === 0) {
+            if (this.responseText == searched){
+                article.innerHTML = '';
+                article.innerHTML = 'no product matching by ' + searched;
+            }else {
+                var productsObject = JSON.parse(this.responseText);
+                var productsCount = productsObject.length;
+                article.innerHTML = '';
+                for (var i = 0; i < productsCount; i+=4) {
+                    if (i % 4 === 0) {
 
-                    // ---------------------------------
-                    // creates the main content container which will show 4 products;
+                        // ---------------------------------
+                        // creates the main content container which will show 4 products;
 
-                    var contentContainer = document.createElement('div');
-                    contentContainer.id = "contentContainer" + ((i / 4) + 1);
-                    // contentContainer.style.width = '';
-                    // contentContainer.style.height = '140px';
-                    contentContainer.style.border = '1px solid red';
-                    contentContainer.style.margin = '0.5px';
-                    contentContainer.style.clear = 'both';
-                    article.appendChild(contentContainer);
+                        var contentContainer = document.createElement('div');
+                        contentContainer.id = "contentContainer" + ((i / 4) + 1);
+                        // contentContainer.style.width = '';
+                        // contentContainer.style.height = '140px';
+                        contentContainer.style.border = '1px solid red';
+                        contentContainer.style.margin = '0.5px';
+                        contentContainer.style.clear = 'both';
+                        article.appendChild(contentContainer);
 
-                }
+                    }
                     // ---------------------------------
 
 
@@ -172,9 +180,11 @@ function showAllProducts() {
                     }
                 }
 
+            }
+
         }
     };
-    request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts");
+    request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts=" + searched);
     request.send();
 }
 

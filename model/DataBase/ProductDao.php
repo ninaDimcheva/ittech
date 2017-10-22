@@ -98,22 +98,35 @@ class ProductDao{
         $stm = $this->pdo->prepare("UPDATE `products` SET `quontity` = ? WHERE `product_id` = ?");
         $stm->execute(array($quantity,$produvt_id));
     }
-	
+
 	/**
-	 * @return array
+	 * @return array with product objects
 	 */
-    public function getAllProducts(){
+    public function getAllProducts($searched){
+        if ($searched == "null"){
 
-
-        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
+            $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE P.`archive` is null");
-        $stm->execute();
-        $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+            $stm->execute();
+            $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        }else{
 
-        foreach ($result as $key => $row) {
+            $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
+            $stm->execute(array("%$searched%","%$searched%","%$searched%"));
+            if ($stm->rowCount() > 0){
+                $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+            }else{
+                return $searched;
+            }
+        }
+        foreach ($result as $row) {
             $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
             $product->setProductId($row['product_id']);
             $products[] = $product;
@@ -181,6 +194,20 @@ class ProductDao{
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
-    
-    
+
+    public function search($searched){
+        $stm = $this->pdo->prepare("SELECT  P.`product_id`
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
+        $stm->execute(array("%$searched%", "%$searched%", "%$searched%"));
+
+        if ($stm->rowCount() > 0) {
+            return  $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+        }else{
+            return false;
+        }
+    }
 }

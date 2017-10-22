@@ -12,6 +12,7 @@
     <script src="js/isLoggedJS.js"></script>
     <script src="js/showAllProductsJS.js"></script>
     <script src="js/viewSingleProductJS.js"></script>
+    <script src="js/search.js"></script>
 </head>
 <body onload="showAllProducts();loginValidate();
 isLogged();showMainTypes(); viewSingleProduct()">
@@ -25,7 +26,7 @@ isLogged();showMainTypes(); viewSingleProduct()">
     <img id="ittechLogo" src="assets/displayImages/ittTechLogo.png" alt="Logo ITTech">
     <div class="box">
         <div class="container">
-            <input type="search" id="search" placeholder="Search..." />
+            <input type="search" id="search" placeholder="Search..." onkeyup="clickSearch(this.value)"/>
             <button class="icon"><i class="fa fa-search"></i></button>
         </div>
     </div>
