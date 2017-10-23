@@ -67,6 +67,7 @@ if (isset($_POST['register'])) {
                 UserDao::getInstance()->insertUser($user);
                 $_SESSION['isLogged'] = true;
                 $_SESSION['user_id'] = $user->getUserId();
+                $_SESSION['user'] = $user;
                 header('Location:../');
             }else{
 //            TODO    header('Location:../?page=error');

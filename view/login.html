@@ -1,9 +1,9 @@
-
-<div id="loginForm">
-    <fieldset>
-        <legend>Login form</legend>
-        <div id="loginWarning"></div>
-        <form action="controller/loginController.php" method="post">
+<fieldset>
+    <legend>Login form</legend>
+    <div id="loginWarning">
+    </div>
+    <form action="controller/loginController.php" method="post">
+        <div class="login displayInlineBlock">
             <div class="labels">
                 <label for="email">E-mail:</label>
             </div>
@@ -11,18 +11,16 @@
                 <input type="email" name="email" id="email" required autofocus>
             </div>
 
-            <div class="labels">
+            <div class="labels clearBoth">
                 <label for="password">Password:</label>
             </div>
             <div class="inputs">
-                <input type="password" name="password" id="password" required autofocus onkeyup="loginValidate()" onblur="loginValidate()">
+                <input type="password" name="password" id="password" required autofocus onkeyup="loginValidate()"
+                       onblur="loginValidate()">
             </div>
-            <div id="loginSubmit">
+            <div id="loginSubmit" class="clearBoth">
                 <input class="button" type="submit" name="login" value="Login">
             </div>
-        </form>
-    </fieldset>
-</div>
-<div class="links">
-    <a href="?page=register">Register</a>
-</div>
+        </div>
+    </form>
+</fieldset>

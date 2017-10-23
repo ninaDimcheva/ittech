@@ -32,18 +32,18 @@ isLogged();showMainTypes(); viewSingleProduct(); showUserCart(); getPromoProduct
         <li><a href="view/shops.html"><img id="location" src="assets/displayImages/location.jpg" alt="Location">Shops</a></li>
     </ul>
     <hr>
-    <img id="ittechLogo" src="assets/displayImages/ittTechLogo.png" alt="Logo ITTech">
+    <a href="./"><img id="ittechLogo" src="assets/displayImages/logo.png" alt="Logo ITTech"></a>
     <div class="box">
         <div class="container">
             <input type="search" id="search" placeholder="Search..." onkeyup="clickSearch(this.value)"/>
-            <button class="icon"><i class="fa fa-search"></i></button>
+            <button class="icon" onclick="clickSearch(this.value)" ><i class="fa fa-search"></i></button>
         </div>
     </div>
 
     <!--TODO make the drop down menu(user/administrator)-->
 
     <div id="navigation">
-        <button id="loginButton" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
+        <button id="loginButton" class="button" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
         <div id="mainNavigation">
             <a href="?page=login">Login</a><br/>
             <a href="?page=register">Register</a>

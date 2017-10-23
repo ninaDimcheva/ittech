@@ -1,13 +1,14 @@
+<fieldset>
+    <legend><h3>Registration form</h3></legend>
 
-<div id="registerForm">
-    <fieldset>
-        <legend><h3>Registration form</h3></legend>
-        <form action="controller/registerController.php" method="post">
+    <form action="controller/registerController.php" method="post">
+        <div class="register displayInlineBlock">
             <div class="labels">
                 <label for="name">Name:<span class="requiredField">*</span></label>
             </div>
             <div class="inputs">
-                <input type="text" name="name" id="name" required  autofocus onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45">
+                <input type="text" name="name" id="name" required autofocus onkeyup="registerValidate()"
+                       onfocus="registerValidate()" onblur="registerValidate()" maxlength="45">
             </div>
             <div class="warnings">
                 <p id="nameWarn"></p>
@@ -17,7 +18,8 @@
                 <label for="familyName">Family name:<span class="requiredField">*</span></label>
             </div>
             <div class="inputs">
-                <input type="text" name="familyName" id="familyName" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45">
+                <input type="text" name="familyName" id="familyName" required onkeyup="registerValidate()"
+                       onblur="registerValidate()" maxlength="45">
             </div>
             <div class="warnings">
                 <p id="familyNameWarn"></p>
@@ -27,7 +29,8 @@
                 <label for="email">E-mail:<span class="requiredField">*</span></label>
             </div>
             <div class="inputs">
-                <input type="email" name="email" id="email" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45">
+                <input type="email" name="email" id="email" required onkeyup="registerValidate()"
+                       onblur="registerValidate()" maxlength="45">
             </div>
             <div class="warnings">
                 <p id="emailWarn"></p>
@@ -37,7 +40,8 @@
                 <label for="password">Password:<span class="requiredField">*</span></label>
             </div>
             <div class="inputs">
-                <input type="password" name="password" id="password" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45">
+                <input type="password" name="password" id="password" required onkeyup="registerValidate()"
+                       onblur="registerValidate()" maxlength="45" placeholder="At least 6 characters">
             </div>
             <div class="warnings">
                 <p id="passwordWarn"></p>
@@ -47,7 +51,8 @@
                 <label for="confirmPassword">Confirm password:<span class="requiredField">*</span></label>
             </div>
             <div class="inputs">
-                <input type="password" name="confirmPassword" id="confirmPassword" required onkeyup="registerValidate()" onblur="registerValidate()" maxlength="45">
+                <input type="password" name="confirmPassword" id="confirmPassword" required onkeyup="registerValidate()"
+                       onblur="registerValidate()" maxlength="45">
             </div>
             <div class="warnings">
                 <p id="confirmPasswordWarn"></p>
@@ -56,21 +61,24 @@
             <div class="labels">
                 Gender:<span class="requiredField">*</span>
             </div>
-            <div class="inputs">
+            <div class="inputs" id="gender">
                 <label for="male">Male:</label>
-                <input type="radio" name="gender" required id="male" value="male" checked>
+                <input type="radio" name="gender" required id="male" value="male" onclick="registerValidate()">
                 <label for="female">Female:</label>
-                <input type="radio" name="gender" required id="female" value="female">
+                <input type="radio" name="gender" required id="female" value="female" onclick="registerValidate()">
+            </div>
+            <div class="warnings">
+                <p id="genderWarn"></p>
             </div>
 
             <div class="labels">
                 Date of birth:<span class="requiredField">*</span>
             </div>
             <div class="inputs">
-                <select name="day" id="day" onclick="registerValidate()" onblur="registerValidate()">
+                <select name="day" id="day" onclick="registerValidate()">
                     <option disabled selected>Day</option>
                     <script>
-                        for (var i = 1; i <= 31; i++){
+                        for (var i = 1; i <= 31; i++) {
                             var option = document.createElement('option');
                             option.value = i;
                             option.innerText = i;
@@ -78,10 +86,10 @@
                         }
                     </script>
                 </select>
-                <select name="month" id="month" onclick="registerValidate()" onblur="registerValidate()">
+                <select name="month" id="month" onclick="registerValidate()">
                     <option disabled selected>Month</option>
                     <script>
-                        for (var i = 1; i <= 12; i++){
+                        for (var i = 1; i <= 12; i++) {
                             var option = document.createElement('option');
                             option.value = i;
                             option.innerText = i;
@@ -89,10 +97,10 @@
                         }
                     </script>
                 </select>
-                <select name="year" id="year" onclick="registerValidate()" onblur="registerValidate()">
+                <select name="year" id="year" onclick="registerValidate()">
                     <option disabled selected>Year</option>
                     <script>
-                        for (var i = 1897; i <= (new Date()).getFullYear(); i++){
+                        for (var i = 1920; i <= (new Date()).getFullYear() - 7; i++) {
                             var option = document.createElement('option');
                             option.value = i;
                             option.innerText = i;
@@ -105,27 +113,25 @@
                 <p id="birthdayWarn"></p>
             </div>
 
-            <div id="notificationDiv">
-                <input type="radio" name="notification" id="notification" value='1'>
-                <label for="notification">I want to receive information about promotions and new products</label>
-            </div>
-
             <div id="termsDiv">
                 <input type="radio" name="terms" id="terms" value="1" onclick="registerValidate()">
-                <label for="terms">I accept the terms of use<span class="requiredField">*</span></label>
-                <a href="view/termsForOnlineShopping.html" target="_blank">Read terms</a>
+                <label for="terms"><span class="requiredField">* </span>I accept the terms of use</label>
+                <a href="view/termsForOnlineShopping.html" target="_blank" class="link">Read terms</a>
             </div>
             <div class="warnings">
                 <p id="termsWarn"></p>
             </div>
+        </div>
 
-            <div id="regSubmit">
-                <input type="submit" name="register" value="Register"  disabled id="regButton" class="button">
-            </div>
-        </form>
-    </fieldset>
-</div>
-<div class="links">
-    <a href="?page=login">Login</a>
-</div>
+        <div id="notificationDiv">
+            <input type="radio" name="notification" id="notification" value='1'>
+            <label for="notification">I want to receive information about promotions and new products</label>
+        </div>
+
+
+        <div id="regSubmit">
+            <input type="submit" name="register" value="Register" disabled id="regButton" class="button">
+        </div>
+    </form>
+</fieldset>
 <script src="js/registerJS.js"></script>
