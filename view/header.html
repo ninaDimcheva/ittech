@@ -15,6 +15,13 @@
     <script src="js/search.js"></script>
     <script src="js/userCartJS.js"></script>
     <script src="js/addPromoProduct"></script>
+    <script src="js/showTypeAppJS.js"></script>
+    <script src="js/showTypeGamingJS.js"></script>
+    <script src="js/showTypePCJS.js"></script>
+    <script src="js/showTypePhoneJS.js"></script>
+    <script src="js/showTypePhotoJS.js"></script>
+    <script src="js/showTypeSmallAppJS.js"></script>
+    <script src="js/showTypeTVJS.js"></script>
 </head>
 <body onload="showAllProducts();loginValidate();
 isLogged();showMainTypes(); viewSingleProduct(); showUserCart(); getPromoProduct();">
@@ -42,18 +49,41 @@ isLogged();showMainTypes(); viewSingleProduct(); showUserCart(); getPromoProduct
             <a href="?page=register">Register</a>
         </div>
     </div>
-    <button onclick="location.href='view/userCart.html'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart"></button>
+    <button onclick="location.href='?page=userCart'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart"></button>
 </header>
 <nav>
     <ul>
-        <li>TV sets and audio</li>
-        <li>Computer and periphery</li>
-        <li>Phones and tablets</li>
-        <li>Electrical appliances</li>
-        <li>Small electrical appliances</li>
-        <li>Photo and video</li>
-        <li>Gaming</li>
+        <li id="tv" onmouseover="showTypeTV()" onmouseout="hideTypeTV()">TV sets and audio</li>
+        <li onfocus="showTypePC()">Computer and periphery</li>
+        <li onmouseover="showTypePhone()">Phones and tablets</li>
+        <li onmouseover="showTypeApp()">Electrical appliances</li>
+        <li onmouseover="showTypeSmallApp()">Small electrical appliances</li>
+        <li onmouseover="showTypePhoto()">Photo and video</li>
+        <li onmouseover="showTypeGaming()">Gaming</li>
     </ul>
-</nav>
 
+    <div id="tvTypes"></div>
+    <div id="tvBrands"></div>
+
+    <div id="pcTypes"></div>
+    <div id="pcBrands"></div>
+
+    <div id="phoneTypes"></div>
+    <div id="phoneBrands"></div>
+
+    <div id="appTypes"></div>
+    <div id="appBrands"></div>
+
+    <div id="smallAppTypes"></div>
+    <div id="smallAppBrands"></div>
+
+    <div id="photoTypes"></div>
+    <div id="photoBrands"></div>
+
+    <div id="gamingTypes"></div>
+    <div id="gamingBrands"></div>
+
+
+
+</nav>
 <main>
