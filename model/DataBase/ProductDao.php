@@ -195,19 +195,31 @@ class ProductDao{
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function search($searched){
-        $stm = $this->pdo->prepare("SELECT  P.`product_id`
+    public function getPromoProducts(){
+        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price` - Pr.`discount` as price, P.`quontity`
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              JOIN `promotions` as Pr ON Pr.`product_id` = P.`product_id`
+                                              WHERE P.`archive` is null AND Pr.`archive` is NULL");
+        $stm->execute();
+        $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getSearchedMatches($searched){
+        $stm = $this->pdo->prepare("SELECT  T.`type`, B.`brand`, P.`model` 
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
-        $stm->execute(array("%$searched%", "%$searched%", "%$searched%"));
+        $stm->execute(array("%$searched%","%$searched%","%$searched%"));
 
-        if ($stm->rowCount() > 0) {
-            return  $stm->fetchAll(\PDO::FETCH_ASSOC);
-
-        }else{
-            return false;
-        }
+//        $stm = $this->pdo->prepare("SELECT model as searched FROM ittech.products WHERE model LIKE ?
+//                                              UNION
+//                                              SELECT brand FROM brands WHERE brand LIKE ?
+//                                              UNION
+//                                              SELECT type FROM types WHERE type LIKE ?");
+//        $stm->execute(array("%$searched%","%$searched%","%$searched%"));
+        return $stm -> fetchAll(\PDO::FETCH_ASSOC);
     }
 }

@@ -90,9 +90,8 @@
 
 
 function showAllProducts(searched) {
-
+    sessionStorage.search = null;
     searched = searched || null;
-
     var productNumber;
     var currentProduct = 0;
     var article = document.getElementById('article');
@@ -106,6 +105,7 @@ function showAllProducts(searched) {
                 var productsObject = JSON.parse(this.responseText);
                 //the last element of the array is isAdmin value
                 var productsCount = productsObject.length - 1;
+                var isAdmin = productsObject[productsCount];
                 article.innerHTML = '';
                 for (var i = 0; i < productsCount; i += 4) {
                     if (i % 4 === 0) {
@@ -135,7 +135,7 @@ function showAllProducts(searched) {
 
                     // ---------------------------------
                     // creates the single panel, which will show information only for one product;
-
+                    //TODO check if product is in promo and add the proper img, price and discount
                     for (var j = 1; j <= productNumber; j++) {
                         var panel = document.createElement('div');
                         panel.className = 'infoPanel';
@@ -169,7 +169,8 @@ function showAllProducts(searched) {
                         infoProduct.appendChild(price);
 
                         // TODO test the buy button
-                        if (productsObject[productsCount]) {
+                        if (isAdmin) {
+                            //TODO if product is in promo don't show the button add to promo
                             var addPromoButton = document.createElement('div');
                             addPromoButton.className = 'button';
                             addPromoButton.innerHTML = 'Add to promo';
@@ -206,9 +207,11 @@ function showAllProducts(searched) {
             }
 
         }
+
     };
     request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts=" + searched);
     request.send();
+
 }
 
 

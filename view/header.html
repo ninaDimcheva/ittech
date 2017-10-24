@@ -23,7 +23,7 @@
     <script src="js/showTypeSmallAppJS.js"></script>
     <script src="js/showTypeTVJS.js"></script>
 </head>
-<body onload="showAllProducts();loginValidate();
+<body onload="showAllProducts(sessionStorage.search);loginValidate();
 isLogged();showMainTypes(); viewSingleProduct(); showUserCart(); getPromoProduct();">
 <header>
     <ul>
@@ -35,9 +35,11 @@ isLogged();showMainTypes(); viewSingleProduct(); showUserCart(); getPromoProduct
     <a href="./"><img id="ittechLogo" src="assets/displayImages/logo.png" alt="Logo ITTech"></a>
     <div class="box">
         <div class="container">
-            <input type="search" id="search" placeholder="Search..." onkeyup="clickSearch(this.value)"/>
-            <button class="icon" onclick="clickSearch(this.value)" ><i class="fa fa-search"></i></button>
+            <input type="search" id="search" list='autocomplete' placeholder="Search..." onkeyup="clickSearch(event)"/>
+            <datalist id='autocomplete'></datalist>
+            <button class="icon" ><i class="fa fa-search"></i></button>
         </div>
+        <!--<div id="searchAutocomplete"></div>-->
     </div>
 
     <!--TODO make the drop down menu(user/administrator)-->
