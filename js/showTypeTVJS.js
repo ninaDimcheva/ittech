@@ -2,8 +2,8 @@ function showTypeTV() {
     var mainType = document.getElementById('tv');
     var typeDiv = document.getElementById('tvTypes');
     typeDiv.style.visibility = 'visible';
-    var showTypePC = new XMLHttpRequest();
-    showTypePC.onreadystatechange = function () {
+    var showTypeTV = new XMLHttpRequest();
+    showTypeTV.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
                 var types = JSON.parse(this.responseText);
