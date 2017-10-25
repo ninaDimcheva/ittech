@@ -259,7 +259,7 @@ function sendToCart(product) {
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send("object=" + JSON.stringify(product)); //goes in $_POST["object"]
+    request.send("singleProductToBuy=" + JSON.stringify(product)); //goes in $_POST["object"]
 }
 
 function sendToPromo(promoProduct) {

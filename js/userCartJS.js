@@ -26,34 +26,35 @@ function showUserCart() {
 
                 var newColumnPrice = document.createElement('td');
                 newColumnPrice.innerHTML = cartProducts[i].price;
-                newColumnPrice.id = 'price' + i;
+                newColumnPrice.id = 'price';
                 newRow.appendChild(newColumnPrice);
 
                 var newColumnQuantity = document.createElement('td');
                 var inputFiled = document.createElement('input');
                 inputFiled.type = 'number';
-                inputFiled.id = 'quantity';
+                inputFiled.id = i;
                 inputFiled.required = true;
                 inputFiled.value = '1';
-
-                var newColumnAmount = document.createElement('td');
-                newColumnAmount.id = 'amount' + i;
-                newColumnAmount.innerHTML = cartProducts[i].price;
+                inputFiled.min = '1';
 
                 inputFiled.onchange = function () {
-                    var productPrice = document.getElementById(newColumnPrice.id).innerHTML;
-                    checkQuantity(this.value, productPrice, newColumnAmount.id);
+                    var productPrice = document.getElementById('price').innerHTML;
+                    checkQuantity(this.value, productPrice,this.id);
                 };
-
-                // inputFiled.onkeyup = function () {
-                //     checkQuantity(this.value, document.getElementById(newColumnPrice.id).innerHTML, document.getElementById('amount' + i));
-                // };
 
                 newColumnQuantity.appendChild(inputFiled);
                 newRow.appendChild(newColumnQuantity);
 
-
+                var newColumnAmount = document.createElement('td');
+                newColumnAmount.id = 'quantity' + (i);
+                newColumnAmount.innerHTML = cartProducts[i].price;
                 newRow.appendChild(newColumnAmount);
+
+
+
+                // inputFiled.onkeyup = function () {
+                //     checkQuantity(this.value, document.getElementById(newColumnPrice.id).innerHTML, document.getElementById('amount' + i));
+                // };
 
                 userCart.appendChild(newRow);
             }
@@ -87,10 +88,11 @@ function showUserCart() {
 
 
 function checkQuantity(quantity, price, currentRow) {
+
     // if(quantity > cartProducts[i].quontity){
     //     var notEnoughQuantity = document.getElementById('checkQuantity');
     //     notEnoughQuantity.innerHTML = 'Not enough quantity!';
     // }
-
-        currentRow.innerHTML = Math.round(quantity * price).toFixed(2);
+        var totalRow = document.getElementById('quantity' + currentRow);
+        totalRow.innerHTML = Math.round(quantity * price).toFixed(2);
 }
