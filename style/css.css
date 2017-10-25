@@ -372,3 +372,20 @@ article{
 
 
 /*================== My profil ==========================*/
+
+
+
+/*================== User cart ==========================*/
+
+table#userCart{
+    border-collapse: collapse;
+    width: 90%;
+    border: 2px solid black;
+}
+
+table, th, td{
+    border: 2px solid black;
+}
+
+
+/*================== User cart ==========================*/

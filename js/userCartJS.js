@@ -4,6 +4,7 @@ function showUserCart() {
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             var cartProducts = JSON.parse(this.responseText);
+            var totalAmountOrder = Number(0);
             // cartProducts is a plain array with keys - numbers;
             for (var i = 0; i < cartProducts.length; i++) {
                 var newRow = document.createElement('tr');
@@ -26,7 +27,7 @@ function showUserCart() {
 
                 var newColumnPrice = document.createElement('td');
                 newColumnPrice.innerHTML = cartProducts[i].price;
-                newColumnPrice.id = 'price';
+                newColumnPrice.id = 'price' + (i);
                 newRow.appendChild(newColumnPrice);
 
                 var newColumnQuantity = document.createElement('td');
@@ -37,48 +38,58 @@ function showUserCart() {
                 inputFiled.value = '1';
                 inputFiled.min = '1';
 
+                var newColumnAmount = document.createElement('td');
+                newColumnAmount.id = 'quantity' + (i);
+                newColumnAmount.innerHTML = cartProducts[i].price;
+
                 inputFiled.onchange = function () {
-                    var productPrice = document.getElementById('price').innerHTML;
-                    checkQuantity(this.value, productPrice,this.id);
+                    var productPrice = document.getElementById('price' + this.id).innerHTML;
+                    checkQuantity(this.value, productPrice, this.id);
                 };
+
+                inputFiled.onkeyup = function () {
+                    var productPrice = document.getElementById('price' + this.id).innerHTML;
+                    checkQuantity(this.value, productPrice, this.id);
+                };
+
+                totalAmountOrder += Number(newColumnAmount.innerHTML);
 
                 newColumnQuantity.appendChild(inputFiled);
                 newRow.appendChild(newColumnQuantity);
 
-                var newColumnAmount = document.createElement('td');
-                newColumnAmount.id = 'quantity' + (i);
-                newColumnAmount.innerHTML = cartProducts[i].price;
                 newRow.appendChild(newColumnAmount);
-
-
-
-                // inputFiled.onkeyup = function () {
-                //     checkQuantity(this.value, document.getElementById(newColumnPrice.id).innerHTML, document.getElementById('amount' + i));
-                // };
 
                 userCart.appendChild(newRow);
             }
-            var row = document.createElement('tr');
+            var row1 = document.createElement('tr');
             var column = document.createElement('td');
-            column.colspan = '4';
-            row.appendChild(column);
+            column.colSpan = '4';
+            row1.appendChild(column);
 
-            column.innerHTML = 'Delivery';
-            row.appendChild(column);
+            var columnDelivery = document.createElement('td');
+            columnDelivery.innerHTML = 'Delivery';
+            row1.appendChild(columnDelivery);
 
-            column.innerHTML = 'Free delivery';
-            row.appendChild(column);
-            userCart.appendChild(row);
+            var columnFreeDelivery = document.createElement('td');
+            columnFreeDelivery.innerHTML = 'Free delivery';
+            row1.appendChild(columnFreeDelivery);
+            userCart.appendChild(row1);
 
             var lastRow = document.createElement('tr');
-            column.colspan = '4';
-            lastRow.appendChild(column);
-            column.innerHTML = 'Total amount';
-            lastRow.appendChild(column);
-            column.innerHTML = 'value';
-            lastRow.appendChild(column);
+            var columnSpan = document.createElement('td');
+            columnSpan.colSpan = '4';
+            lastRow.appendChild(columnSpan);
+            var totalAmountText = document.createElement('td');
+            totalAmountText.innerHTML = 'Total amount';
+            lastRow.appendChild(totalAmountText);
+            var totalAmountNumber = document.createElement('td');
+            totalAmountNumber.innerHTML = Math.round(totalAmountOrder).toFixed(2);
+            totalAmountNumber.id = 'totalAmount';
+            lastRow.appendChild(totalAmountNumber);
 
             userCart.appendChild(lastRow);
+            // userCart.setAttribute('border', '2');
+
         }
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
@@ -88,11 +99,18 @@ function showUserCart() {
 
 
 function checkQuantity(quantity, price, currentRow) {
+    var totalAmount = document.getElementById('totalAmount');
+    var totalRow = document.getElementById('quantity' + currentRow);
 
-    // if(quantity > cartProducts[i].quontity){
-    //     var notEnoughQuantity = document.getElementById('checkQuantity');
-    //     notEnoughQuantity.innerHTML = 'Not enough quantity!';
-    // }
-        var totalRow = document.getElementById('quantity' + currentRow);
-        totalRow.innerHTML = Math.round(quantity * price).toFixed(2);
+    var totalAmountNumber = Number(totalAmount.innerHTML);
+    // substract old value
+    totalAmountNumber -= Number(totalRow.innerHTML);
+
+    // calculate new value
+    totalRow.innerHTML = Math.round(quantity * price).toFixed(2);
+
+    // add new value
+    totalAmountNumber += Number(totalRow.innerHTML);
+
+    totalAmount.innerHTML = Math.round(totalAmountNumber).toFixed(2);
 }
