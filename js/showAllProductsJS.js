@@ -135,18 +135,26 @@ function showAllProducts(searched) {
 
                     // ---------------------------------
                     // creates the single panel, which will show information only for one product;
-                    //TODO check if product is in promo and add the proper img, price and discount
                     for (var j = 1; j <= productNumber; j++) {
+                        //TODO check if product is in promo and add the proper img, price and discount
                         var panel = document.createElement('div');
+                        var imageDiv = document.createElement('div');
+                        var img = document.createElement('img');
+                        var infoProduct = document.createElement('div');
+                        var brand = document.createElement('h4');
+                        var model = document.createElement('h6');
+                        var price = document.createElement('h2');
+                        var xSimbol = document.createElement('img');
+
                         panel.className = 'infoPanel';
                         panel.style.margin = '1.5px';
                         panel.style.border = '1px solid green';
                         panel.style.float = 'left';
                         document.getElementById(contentContainer.id).appendChild(panel);
-                        var imageDiv = document.createElement('div');
+
                         imageDiv.className = 'imageDiv';
                         panel.appendChild(imageDiv);
-                        var img = document.createElement('img');
+
                         img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
                         img.style.width = '150px';
                         img.style.height = 'auto';
@@ -155,19 +163,35 @@ function showAllProducts(searched) {
                             sendProductObject(this.value);
                         };
                         imageDiv.appendChild(img);
-                        var infoProduct = document.createElement('div');
+
                         infoProduct.className = 'infoProduct';
                         panel.appendChild(infoProduct);
-                        var brand = document.createElement('h4');
+
                         brand.innerText = productsObject[currentProduct].brand;
                         infoProduct.appendChild(brand);
-                        var model = document.createElement('h3');
+
                         model.innerText = productsObject[currentProduct].model;
                         infoProduct.appendChild(model);
-                        var price = document.createElement('h2');
-                        model.innerText = productsObject[currentProduct].price;
-                        infoProduct.appendChild(price);
 
+                        if(productsObject[currentProduct].inPromo){
+                            productsObject[currentProduct].price -= productsObject[currentProduct].inPromo;
+                            productsObject[currentProduct].price = productsObject[currentProduct].price.toFixed(2);
+
+                            var imgPromo = document.createElement('img');
+                            imgPromo.style.width = '80px';
+                            imgPromo.style.height = 'auto';
+                            imgPromo.style.float = 'left';
+                            imgPromo.src = "./assets/displayImages/promo.png";
+                            imageDiv.appendChild(imgPromo);
+
+                            price.innerText = 'Promo prise: $' + productsObject[currentProduct].price;
+
+                        }else {
+                            price.innerText ='$' + productsObject[currentProduct].price;
+                        }
+
+                        price.style.color = 'red';
+                        infoProduct.appendChild(price);
                         // TODO test the buy button
                         if (isAdmin) {
                             if(productsObject[currentProduct].inPromo){
@@ -189,8 +213,6 @@ function showAllProducts(searched) {
                                 };
                                 panel.appendChild(addPromoButton);
                             }
-                            //TODO if product is in promo don't show the button add to promo
-
 
                             var editProduct = document.createElement('div');
                             editProduct.className = 'button';

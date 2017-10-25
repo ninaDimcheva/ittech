@@ -126,11 +126,27 @@ function viewSingleProduct() {
 
             var price = document.createElement('div');
             price.id = 'price';
-            price.style.border = '1px solid green';
+            // price.style.border = '1px solid green';
             price.style.width = '100px';
             price.style.height = '50px';
             price.style.float = 'right';
-            price.innerHTML = viewProduct.price + ' $';
+            price.style.color = 'red';
+
+            if(viewProduct.inPromo){
+
+                var imgPromo = document.createElement('img');
+                imgPromo.style.width = '80px';
+                imgPromo.style.height = 'auto';
+                imgPromo.style.float = 'left';
+                imgPromo.src = "./assets/displayImages/promo.png";
+                mainImage.appendChild(imgPromo);
+
+                price.innerText = 'Promo prise: $' + viewProduct.price;
+
+            }else {
+                price.innerText ='$' + productsObject[currentProduct].price;
+            }
+
             viewSingleProduct.appendChild(price);
 
             // ---------------------------------
@@ -140,7 +156,7 @@ function viewSingleProduct() {
             buyNow.onclick = function () {
                 sendToCart(viewProduct);
             };
-            buyNow.style.border = '1px solid green';
+            // buyNow.style.border = '1px solid green';
             buyNow.style.width = '100px';
             buyNow.style.height = '50px';
             buyNow.style.float = 'right';

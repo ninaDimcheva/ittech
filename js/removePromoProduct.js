@@ -19,6 +19,13 @@ window.onload = function () {
         imageDiv.appendChild(image);
         viewRemovePromoProduct.appendChild(imageDiv);
 
+        var imgPromo = document.createElement('img');
+        imgPromo.style.width = '80px';
+        imgPromo.style.height = 'auto';
+        imgPromo.style.float = 'left';
+        imgPromo.src = "./assets/displayImages/promo.png";
+        imageDiv.appendChild(imgPromo);
+
         var productAtributesDiv = document.createElement('div');
         productAtributesDiv.id = 'productAtributes';
         productAtributesDiv.style.border = '1px solid black';
@@ -37,10 +44,11 @@ window.onload = function () {
 
         var priceDiv = document.createElement('div');
         priceDiv.id = 'price';
-        priceDiv.style.border = '1px solid green';
+        // priceDiv.style.border = '1px solid green';
         priceDiv.style.width = '100px';
         priceDiv.style.height = '50px';
-        priceDiv.innerHTML = removePromoProduct.price + ' $';
+        priceDiv.style.color = 'red';
+        priceDiv.innerText = 'Promo prise: $' + removePromoProduct.price;
         viewRemovePromoProduct.appendChild(priceDiv);
 
         var removePromoButton = document.getElementById('removePromoButton');

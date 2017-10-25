@@ -129,10 +129,11 @@ class ProductDao{
         foreach ($result as $row) {
             $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
             $product->setProductId($row['product_id']);
-            $stm = $this->pdo->prepare("Select `promotion_id` FROM `promotions` WHERE `product_id` = ? AND `end_date` > CURRENT_DATE ");
+            $stm = $this->pdo->prepare("Select `discount` FROM `promotions` WHERE `product_id` = ? AND `end_date` > CURRENT_DATE ");
             $stm->execute(array($row['product_id']));
             if ($stm->rowCount() > 0){
-                $product->setInPromo(1);
+                $discount = $stm->fetch(\PDO::FETCH_ASSOC)['discount'];
+                $product->setInPromo($discount);
             }
             $products[] = $product;
             }
