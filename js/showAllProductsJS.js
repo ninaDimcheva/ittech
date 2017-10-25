@@ -294,4 +294,9 @@ function removePromo(promoProduct) {
     window.location.replace("http://localhost/ITTech/?page=removePromoProduct");
 }
 
+function sendToEditProduct(product) {
+    sessionStorage.editProductObj = JSON.stringify(product);
+    window.location.replace("http://localhost/ITTech/?page=editProduct");
+}
+
 

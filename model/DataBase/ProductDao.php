@@ -94,9 +94,10 @@ class ProductDao{
      * @param $produvt_id
      * @param $quantity
      */
-    public function editProductQuantity($produvt_id,$quantity){
+    public function editProductQuantity($quantity,$productId){
         $stm = $this->pdo->prepare("UPDATE `products` SET `quontity` = ? WHERE `product_id` = ?");
-        $stm->execute(array($quantity,$produvt_id));
+        $stm->execute(array($quantity,$productId));
+        return $stm->rowCount();
     }
 
 	/**

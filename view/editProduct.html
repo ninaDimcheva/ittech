@@ -1,1 +1,24 @@
-<h1>editProduct</h1>
+<script src="js/editProduct.js"></script>
+
+<fieldset>
+    <legend>Edit product quontity</legend>
+    <div id="viewProductToEdit">
+
+    </div>
+    <div class="displayInlineBlock" id="editProductDiv">
+        <div>
+            <h4>Current quontity: <span id="currentQuontity"></span></h4>
+        </div>
+        <div class="labels">
+            <label for="newQuontity">New quontity:</label>
+        </div>
+        <div class="inputs">
+            <input type="number" name="quontity" id="newQuontity">
+        </div>
+        <div>
+            <button class="button" id="editProductButton" onclick="editProduct(this.value)">Change quontity</button>
+        </div>
+    </div>
+
+
+</fieldset>
