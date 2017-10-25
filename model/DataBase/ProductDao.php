@@ -129,6 +129,11 @@ class ProductDao{
         foreach ($result as $row) {
             $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
             $product->setProductId($row['product_id']);
+            $stm = $this->pdo->prepare("Select `promotion_id` FROM `promotions` WHERE `product_id` = ? AND `end_date` > CURRENT_DATE ");
+            $stm->execute(array($row['product_id']));
+            if ($stm->rowCount() > 0){
+                $product->setInPromo(1);
+            }
             $products[] = $product;
             }
 
@@ -213,13 +218,6 @@ class ProductDao{
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
         $stm->execute(array("%$searched%","%$searched%","%$searched%"));
-
-//        $stm = $this->pdo->prepare("SELECT model as searched FROM ittech.products WHERE model LIKE ?
-//                                              UNION
-//                                              SELECT brand FROM brands WHERE brand LIKE ?
-//                                              UNION
-//                                              SELECT type FROM types WHERE type LIKE ?");
-//        $stm->execute(array("%$searched%","%$searched%","%$searched%"));
         return $stm -> fetchAll(\PDO::FETCH_ASSOC);
     }
 }

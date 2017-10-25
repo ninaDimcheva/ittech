@@ -57,6 +57,10 @@ class Product extends JsonObject {
      * @var array
      */
     protected $specifications = []; //array of ProductSpec objects
+    /**
+     * @var int (inPromo = 1, not inPromo = NULL)
+     */
+    protected $inPromo;
 
     /**
      * Product constructor.
@@ -244,6 +248,14 @@ class Product extends JsonObject {
     public function setSpecifications($specifications)
     {
         $this->specifications = $specifications;
+    }
+
+    /**
+     * @param int $inPromo
+     */
+    public function setInPromo($inPromo)
+    {
+        $this->inPromo = $inPromo;
     }
 
 }

@@ -13,18 +13,8 @@ function __autoload($class_name)
 
 session_start();
 
-if (isset($_POST['getPromoProduct'])) {
-    if (isset($_SESSION['promoProductObj'])) {
-        $promoProduct = $_SESSION['promoProductObj'];
-        unset($_SESSION['promoProductObj']);
-        echo $promoProduct;
-    } else {
-        //TODO error
-    }
-}
-
-if (isset($_POST['promoProduct'])) {
-    $promoProduct = json_decode($_POST['promoProduct'], true);
+if (isset($_POST['addPromoProduct'])) {
+    $promoProduct = json_decode($_POST['addPromoProduct'], true);
     $startDate = trim(htmlentities($promoProduct['startDate']));
     $endDate = trim(htmlentities($promoProduct['endDate']));
     $discount = trim(htmlentities($promoProduct['discount']));
@@ -33,10 +23,27 @@ if (isset($_POST['promoProduct'])) {
     $promoProduct = new Promotion($productId, $startDate, $endDate, $discount);
 
     try {
-        $promoProductId = PromotionDao::getInstance()->insertPromotion($promoProduct);
-        echo $promoProductId;
+        if(PromotionDao::getInstance()->insertPromotion($promoProduct)){
+            //TODO return status code 200
+        }else{
+            //TODO propper status code
+        }
     } catch (\PDOException $e) {
         // TODO error
         echo $e->getMessage();
     }
+}
+
+if (isset($_GET['removePromoProduct'])){
+    $productId =  $_GET['removePromoProduct'];
+    try{
+        if (PromotionDao::getInstance()->deletePromotion($productId)){
+            //TODO return status code 200
+        }else{
+            //TODO propper status code
+        }
+    }catch (\PDOException $e){
+        //TODO error
+    }
+
 }

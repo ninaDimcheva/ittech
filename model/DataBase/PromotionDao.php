@@ -42,16 +42,16 @@ class PromotionDao{
 	public function insertPromotion(Promotion $promotion){
 		$stm = $this->pdo->prepare("INSERT INTO promotions (`product_id`, `start_date`, `end_date`, `discount`) VALUES (?, ?, ?, ?)");
 		$stm->execute(array($promotion->getProductId(), $promotion->getStartDate(), $promotion->getEndDate(),$promotion->getDiscount()));
-		$promotion->setPromotionId($this->pdo->lastInsertId());
-		return $promotion->getPromotionId();
+		return $stm->rowCount() > 0;
 	}
 
     /**
      * @param Promotion $promotion
      */
-	public function deletePromotion(Promotion $promotion){
-		$stm = $this->pdo->prepare("DELETE FROM promotions WHERE promotion_id = ?");
-		$stm->execute(array($promotion->getPromotionId()));
+	public function deletePromotion($productId){
+		$stm = $this->pdo->prepare("UPDATE `promotions` SET `end_date` = curdate() WHERE `product_id` = ?");
+		$stm->execute(array($productId));
+		return $stm->rowCount() > 0;
 	}
 	
 }

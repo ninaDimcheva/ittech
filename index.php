@@ -34,6 +34,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
                 break;
+            case 'removePromoProduct' : require_once 'view/removePromoProduct.html';
+                break;
             default : require_once 'view/error.html';
         }
     }else{

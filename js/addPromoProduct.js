@@ -1,61 +1,56 @@
-function getPromoProduct() {
-    var getPromoProduct = new XMLHttpRequest();
-    getPromoProduct.onreadystatechange = function () {
-        if (this.readyState === 4){
-            if (this.status === 200){
-                if (this.responseText.length < 3){
-                    document.getElementById('inputPromoFields').innerText = "There is no selected product";
-                }
+window.onload = function () {
+    var viewPromoProduct = document.getElementById('viewPromoProduct');
+    var inputPromoFields = document.getElementById('inputPromoFields');
 
-                var promoProduct = JSON.parse(this.responseText);
-                var viewPromoProduct = document.getElementById('viewPromoProduct');
-                //TODO show the product number, img, brand, model, price
+    if (sessionStorage.promoObj){
+        var promoProduct = JSON.parse(sessionStorage.promoObj);
+        sessionStorage.clear();
+        var imageDiv = document.createElement('div');
+        imageDiv.id = 'mainImage';
+        imageDiv.style.width = '250px';
+        imageDiv.style.border = '1px solid black';
+        imageDiv.style.textAlign = 'center';
 
-                var imageDiv = document.createElement('div');
-                imageDiv.id = 'mainImage';
-                imageDiv.style.width = '250px';
-                imageDiv.style.border = '1px solid black';
-                imageDiv.style.textAlign = 'center';
+        var image = document.createElement('img');
+        image.src = "http://localhost/ITTech/" + promoProduct.imgs[0].img_url;
+        image.style.width = '150px';
+        image.style.height = 'auto';
+        imageDiv.appendChild(image);
+        viewPromoProduct.appendChild(imageDiv);
 
-                var image = document.createElement('img');
-                image.src = "http://localhost/ITTech/" + promoProduct.imgs[0].img_url;
-                image.style.width = '150px';
-                image.style.height = 'auto';
-                imageDiv.appendChild(image);
-                viewPromoProduct.appendChild(imageDiv);
+        var productAtributesDiv = document.createElement('div');
+        productAtributesDiv.id = 'productAtributes';
+        productAtributesDiv.style.border = '1px solid black';
+        productAtributesDiv.style.width = '350px';
 
-                var productAtributesDiv = document.createElement('div');
-                productAtributesDiv.id = 'productAtributes';
-                productAtributesDiv.style.border = '1px solid black';
-                productAtributesDiv.style.width = '350px';
+        var productAtributes = document.createElement('h4');
+        productAtributes.innerText = promoProduct.type + ' ' + promoProduct.brand + ' ' + promoProduct.model;
+        productAtributesDiv.appendChild(productAtributes);
 
-                var productAtributes = document.createElement('h4');
-                productAtributes.innerText = promoProduct.type + ' ' + promoProduct.brand + ' ' + promoProduct.model;
-                productAtributesDiv.appendChild(productAtributes);
+        var productId = document.createElement('h5');
+        productId.id = 'productId';
+        productId.value = promoProduct.product_id;
+        productId.innerText = 'Art.№' + promoProduct.product_id;
+        productAtributesDiv.appendChild(productId);
+        viewPromoProduct.appendChild(productAtributesDiv);
 
-                var productId = document.createElement('h5');
-                productId.id = 'productId';
-                productId.value = promoProduct.product_id;
-                productId.innerText = 'Art.№' + promoProduct.product_id;
-                productAtributesDiv.appendChild(productId);
-                viewPromoProduct.appendChild(productAtributesDiv);
-
-                var priceDiv = document.createElement('div');
-                priceDiv.id = 'price';
-                priceDiv.style.border = '1px solid green';
-                priceDiv.style.width = '100px';
-                priceDiv.style.height = '50px';
-                priceDiv.innerHTML = promoProduct.price + ' $';
-                viewPromoProduct.appendChild(priceDiv);
-
-            }
-        }
-
-    };
-    getPromoProduct.open("POST", "http://localhost/ittech/controller/addPromoProductController.php");
-    getPromoProduct.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    getPromoProduct.send('getPromoProduct');
-}
+        var priceDiv = document.createElement('div');
+        priceDiv.id = 'price';
+        priceDiv.style.border = '1px solid green';
+        priceDiv.style.width = '100px';
+        priceDiv.style.height = '50px';
+        priceDiv.innerHTML = promoProduct.price + ' $';
+        viewPromoProduct.appendChild(priceDiv);
+    }else {
+        viewPromoProduct = "There is no selected product";
+        inputPromoFields.innerHTML = '';
+        var allProductsLink = document.createElement('a');
+        allProductsLink.className = 'link';
+        allProductsLink.innerText = 'Select another product';
+        allProductsLink.href = './';
+        inputPromoFields.appendChild(allProductsLink);
+    }
+};
 
 function promoValidate() {
     var startDay = document.getElementById('startDay').value;
@@ -66,6 +61,7 @@ function promoValidate() {
     var endYear = document.getElementById('endYear').value;
     var discount = document.getElementById('discount').value;
     var productId = document.getElementById('productId').value;
+    var productPrice = document.getElementById('price').innerHTML.replace(' $','');
     var discountWarning = document.getElementById('discountWarning');
     var startDateWarning = document.getElementById('startDateWarning');
     var endDateWarning = document.getElementById('endDateWarning');
@@ -95,13 +91,14 @@ function promoValidate() {
             endDateWarning.innerText = 'The End date must be bigger than Start date!';
         }
     }
-    if (discount > 0 && discount.length > 0 && discount.length < 45 && /\d/.test(discount)){
+    if (discount > 0 && discount < 100 && discount.length > 0 && discount.length < 45 && /\d/.test(discount)){
         discountWarning.innerText = '✔';
     }else {
         error = true;
         discountWarning.innerText = '✘';
     }
     if(!error){
+        discount = (productPrice*discount)/100;
         promoButton.onclick = function () {
             sendPromoProduct(productId,startDate, endDate, discount);
         };
@@ -127,20 +124,22 @@ function sendPromoProduct(productId,startDate, endDate, discount) {
               viewPromoProduct.innerText = 'Successfully added product in promotion';
               var br = document.createElement('br');
               viewPromoProduct.appendChild(br);
-              productsOnPromotionLink = document.createElement('a');
+              var productsOnPromotionLink = document.createElement('a');
+              productsOnPromotionLink.className = 'link';
               productsOnPromotionLink.innerText = 'View products on promotion';
               productsOnPromotionLink.href = '?page=productsOnPromotions';
               viewPromoProduct.appendChild(productsOnPromotionLink);
               var inputPromoFields = document.getElementById('inputPromoFields');
               inputPromoFields.innerHTML = '';
               var allProductsLink = document.createElement('a');
+              allProductsLink.className = 'link';
               allProductsLink.innerText = 'Select another product';
-              allProductsLink.href = '?page=main';
+              allProductsLink.href = './';
               inputPromoFields.appendChild(allProductsLink);
           }
       }
     };
-    request.open("POST","http://localhost/ittech/controller/addPromoProductController.php");
+    request.open("POST","http://localhost/ittech/controller/promoProductController.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send('promoProduct='+json);
+    request.send('addPromoProduct='+json);
 }

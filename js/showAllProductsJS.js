@@ -170,15 +170,27 @@ function showAllProducts(searched) {
 
                         // TODO test the buy button
                         if (isAdmin) {
+                            if(productsObject[currentProduct].inPromo){
+                                var removePromoButton = document.createElement('div');
+                                removePromoButton.className = 'button';
+                                removePromoButton.innerHTML = 'Remove promo';
+                                removePromoButton.value = productsObject[currentProduct];
+                                removePromoButton.onclick = function () {
+                                    removePromo(this.value);
+                                };
+                                panel.appendChild(removePromoButton);
+                            }else {
+                                var addPromoButton = document.createElement('div');
+                                addPromoButton.className = 'button';
+                                addPromoButton.innerHTML = 'Add to promo';
+                                addPromoButton.value = productsObject[currentProduct];
+                                addPromoButton.onclick = function () {
+                                    sendToPromo(this.value);
+                                };
+                                panel.appendChild(addPromoButton);
+                            }
                             //TODO if product is in promo don't show the button add to promo
-                            var addPromoButton = document.createElement('div');
-                            addPromoButton.className = 'button';
-                            addPromoButton.innerHTML = 'Add to promo';
-                            addPromoButton.value = productsObject[currentProduct];
-                            addPromoButton.onclick = function () {
-                                sendToPromo(this.value);
-                            };
-                            panel.appendChild(addPromoButton);
+
 
                             var editProduct = document.createElement('div');
                             editProduct.className = 'button';
@@ -251,17 +263,13 @@ function sendToCart(product) {
 }
 
 function sendToPromo(promoProduct) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            if (this.status === 200){
-                window.location.replace("http://localhost/ITTech/?page=addPromoProduct");
-            }
-        }
-    };
-    request.open("POST", "http://localhost/ittech/controller/mainController.php");
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send("promoProductObj=" + JSON.stringify(promoProduct));
+    sessionStorage.promoObj = JSON.stringify(promoProduct);
+    window.location.replace("http://localhost/ITTech/?page=addPromoProduct");
+}
+
+function removePromo(promoProduct) {
+    sessionStorage.removePromoObj = JSON.stringify(promoProduct);
+    window.location.replace("http://localhost/ITTech/?page=removePromoProduct");
 }
 
 

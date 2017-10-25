@@ -4,119 +4,122 @@
     <div id="viewPromoProduct">
     </div>
 
-    <div id="inputPromoFields">
-        <div class="labels">
-            <label for="discount">$ Discount<span class="requiredField">*</span></label>
+    <div class="displayInlineBlock" id="inputPromoFields">
+        <div>
+            <div class="labels">
+                <label for="discount">Discount %<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs">
+                <input type="number" id="discount" name="discount" autofocus required onfocus="promoValidate()"
+                       onkeyup="promoValidate()" onblur="promoValidate()"  maxlength="10" >
+            </div>
+            <div class="warnings">
+                <p id="discountWarning"></p>
+            </div>
         </div>
-        <div class="inputs">
-            <input type="number" id="discount" name="discount" onclick="promoValidate()" onkeyup="promoValidate()"
-                   onblur="promoValidate()" required maxlength="10" autofocus>
-        </div>
-        <div class="warnings">
-            <p id="discountWarning"></p>
-        </div>
+        <div>
+            <div class="labels">
+                Start date:<span class="requiredField">*</span>
+            </div>
 
-        <div class="labels">
-            Start date:<span class="requiredField">*</span>
-        </div>
-
-        <div class="inputs">
-            <select name="startDay" id="startDay" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Day</option>
-                <script>
-                    for (var i = 1; i <= 31; i++) {
-                        var option = document.createElement('option');
-                        if (i < 10) {
-                            option.value = '0' + i;
-                        } else {
-                            option.value = i;
+            <div class="inputs">
+                <select name="startDay" id="startDay" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Day</option>
+                    <script>
+                        for (var i = 1; i <= 31; i++) {
+                            var option = document.createElement('option');
+                            if (i < 10) {
+                                option.value = '0' + i;
+                            } else {
+                                option.value = i;
+                            }
+                            option.innerText = i;
+                            document.getElementById('startDay').appendChild(option);
                         }
-                        option.innerText = i;
-                        document.getElementById('startDay').appendChild(option);
-                    }
-                </script>
-            </select>
-            <select name="startMonth" id="startMonth" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Month</option>
-                <script>
-                    for (var i = 1; i <= 12; i++) {
-                        var option = document.createElement('option');
-                        if (i < 10) {
-                            option.value = '0' + i;
-                        } else {
-                            option.value = i;
+                    </script>
+                </select>
+                <select name="startMonth" id="startMonth" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Month</option>
+                    <script>
+                        for (var i = 1; i <= 12; i++) {
+                            var option = document.createElement('option');
+                            if (i < 10) {
+                                option.value = '0' + i;
+                            } else {
+                                option.value = i;
+                            }
+                            option.innerText = i;
+                            document.getElementById('startMonth').appendChild(option);
                         }
-                        option.innerText = i;
-                        document.getElementById('startMonth').appendChild(option);
-                    }
-                </script>
-            </select>
-            <select name="startYear" id="startYear" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Year</option>
-                <script>
-                    for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear() + 1; i++) {
-                        var option = document.createElement('option');
-                        option.value = i;
-                        option.innerText = i;
-                        document.getElementById('startYear').appendChild(option);
-                    }
-                </script>
-            </select>
-        </div>
-        <div class="warnings">
-            <p id="startDateWarning"></p>
-        </div>
-
-        <div class="labels">
-            End date:<span class="requiredField">*</span>
-        </div>
-        <div class="inputs">
-            <select name="endDay" id="endDay" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Day</option>
-                <script>
-                    for (var i = 1; i <= 31; i++) {
-                        var option = document.createElement('option');
-                        if (i < 10) {
-                            option.value = '0' + i;
-                        } else {
+                    </script>
+                </select>
+                <select name="startYear" id="startYear" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Year</option>
+                    <script>
+                        for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear() + 1; i++) {
+                            var option = document.createElement('option');
                             option.value = i;
+                            option.innerText = i;
+                            document.getElementById('startYear').appendChild(option);
                         }
-                        option.innerText = i;
-                        document.getElementById('endDay').appendChild(option);
-                    }
-                </script>
-            </select>
-            <select name="endMonth" id="endMonth" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Month</option>
-                <script>
-                    for (var i = 1; i <= 12; i++) {
-                        var option = document.createElement('option');
-                        if (i < 10) {
-                            option.value = '0' + i;
-                        } else {
+                    </script>
+                </select>
+            </div>
+            <div class="warnings">
+                <p id="startDateWarning"></p>
+            </div>
+        </div>
+        <div>
+            <div class="labels">
+                End date:<span class="requiredField">*</span>
+            </div>
+            <div class="inputs">
+                <select name="endDay" id="endDay" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Day</option>
+                    <script>
+                        for (var i = 1; i <= 31; i++) {
+                            var option = document.createElement('option');
+                            if (i < 10) {
+                                option.value = '0' + i;
+                            } else {
+                                option.value = i;
+                            }
+                            option.innerText = i;
+                            document.getElementById('endDay').appendChild(option);
+                        }
+                    </script>
+                </select>
+                <select name="endMonth" id="endMonth" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Month</option>
+                    <script>
+                        for (var i = 1; i <= 12; i++) {
+                            var option = document.createElement('option');
+                            if (i < 10) {
+                                option.value = '0' + i;
+                            } else {
+                                option.value = i;
+                            }
+                            option.innerText = i;
+                            document.getElementById('endMonth').appendChild(option);
+                        }
+                    </script>
+                </select>
+                <select name="endYear" id="endYear" onclick="promoValidate()" onblur="promoValidate()">
+                    <option disabled selected>Year</option>
+                    <script>
+                        for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear() + 2; i++) {
+                            var option = document.createElement('option');
                             option.value = i;
+                            option.innerText = i;
+                            document.getElementById('endYear').appendChild(option);
                         }
-                        option.innerText = i;
-                        document.getElementById('endMonth').appendChild(option);
-                    }
-                </script>
-            </select>
-            <select name="endYear" id="endYear" onclick="promoValidate()" onblur="promoValidate()">
-                <option disabled selected>Year</option>
-                <script>
-                    for (var i = (new Date()).getFullYear(); i <= (new Date()).getFullYear() + 2; i++) {
-                        var option = document.createElement('option');
-                        option.value = i;
-                        option.innerText = i;
-                        document.getElementById('endYear').appendChild(option);
-                    }
-                </script>
-            </select>
+                    </script>
+                </select>
+            </div>
+            <div class="warnings">
+                <p id="endDateWarning"></p>
+            </div>
         </div>
-        <div class="warnings">
-            <p id="endDateWarning"></p>
-        </div>
-
         <div id="promoSubmit">
             <button id="promoButton" class="button">Add product in promo</button>
         </div>
