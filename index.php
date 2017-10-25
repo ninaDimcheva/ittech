@@ -1,7 +1,7 @@
 <?php
 
 use model\users\User;
-
+require_once 'model/JsonObject.php';
 require_once 'model/users/User.php';
 require_once 'view/header.html';
 

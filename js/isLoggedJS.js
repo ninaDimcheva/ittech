@@ -8,9 +8,18 @@ function isLogged(){
                 var userObject = JSON.parse(this.responseText);
                 for(var i in userObject) {
                     var navigationButton = document.getElementById('loginButton');
-                    navigationButton.innerHTML = i;
+                    function capitalizeFirstLetter(string) {
+                        return string.charAt(0).toUpperCase() + string.slice(1);
+                    }
+                    navigationButton.innerHTML =capitalizeFirstLetter(i) ;
+                    var image = document.createElement('img');
+                   image.src="http://localhost/ITTech/assets/displayImages/person.png";
+                   image.alt='Person';
+                   image.id = 'login';
+                   navigationButton.appendChild(image);
                     var mainDiv = document.getElementById('mainNavigation'); // the inner div
                     mainDiv.innerHTML = '';
+                    // it is administrator:
                     if(userObject[i] == 1){
                         var adminProfil = document.createElement('a');
                         adminProfil.innerHTML = 'Admin Profile';
@@ -39,15 +48,16 @@ function isLogged(){
                         logout.appendChild(inputFiled);
                         mainDiv.appendChild(logout);
                     }
-                    else{
-                        var profil = document.createElement('a');
-                        profil.innerHTML = 'Profil';
-                        profil.href = '?page=myProfile';
+                    // it is normal user:
+                    else {
+                        var profile = document.createElement('a');
+                        profile.innerHTML = 'My profile';
+                        profile.href = '?page=myProfile';
                         var lineNew = document.createElement('br');
-                        mainDiv.appendChild(profil);
+                        mainDiv.appendChild(profile);
                         mainDiv.appendChild(lineNew);
                         var orders = document.createElement('a');
-                        orders.innerHTML = 'Orders';
+                        orders.innerHTML = 'My orders';
                         orders.href = '?page=myOrders';
                         mainDiv.appendChild(orders);
                         var newRow = document.createElement('br');
@@ -66,9 +76,7 @@ function isLogged(){
                         input.class = 'button';
                         form.appendChild(input);
                         mainDiv.appendChild(form);
-
                     }
-
                 }
             }
         }

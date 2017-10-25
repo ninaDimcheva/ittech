@@ -8,44 +8,44 @@
 
 namespace model\users;
 
-
-class User{
+use model\JsonObject;
+class User extends JsonObject {
     /**
      * @var integer
      */
-    private $user_id;
+	protected $user_id;
     /**
      * @var string
      */
-    private $name;
+	protected $name;
     /**
      * @var string
      */
-    private $family_name;
+	protected $family_name;
     /**
      * @var string
      */
-    private $email;
+	protected $email;
     /**
      * @var string
      */
-    private $password;
+	protected $password;
     /**
      * @var string
      */
-    private $gender;
+	protected $gender;
     /**
      * @var string (YEAR-MONTH-DAY)
      */
-    private $birthday;
+	protected $birthday;
     /**
      * @var int (get notifications = 1, don't get notifications = 0)
      */
-    private $notifications;
+	protected $notifications;
     /**
      * @var int (is admin = 1, not admin = 0)
      */
-    private $is_admin;
+	protected $is_admin;
 
     /**
      * User constructor.

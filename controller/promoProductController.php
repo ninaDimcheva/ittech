@@ -13,6 +13,7 @@ function __autoload($class_name)
 
 session_start();
 
+
 if (isset($_POST['addPromoProduct'])) {
     $promoProduct = json_decode($_POST['addPromoProduct'], true);
     $startDate = trim(htmlentities($promoProduct['startDate']));
@@ -47,3 +48,4 @@ if (isset($_GET['removePromoProduct'])){
     }
 
 }
+
