@@ -45,6 +45,17 @@ if (isset($_POST['getCartProducts'])) {
 	echo json_encode($_SESSION['cart'], JSON_UNESCAPED_SLASHES);
 }
 
+if(isset($_GET['deleteProductFromCart'])){
+	$deleteProductID = $_GET['deleteProductFromCart'];
+	for ($i = 0; $i < count($_SESSION['cart']); $i ++) {
+		if($i == $deleteProductID){
+			array_splice($_SESSION['cart'], $deleteProductID, 1);
+			// array_splice is used on purpose, because the function reindex the array in the $_SESSION['cart'];
+		}
+	}
+	echo "Deleted";
+}
+
 
 
 
