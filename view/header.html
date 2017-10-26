@@ -21,6 +21,7 @@
     <script src="js/showTypePhotoJS.js"></script>
     <script src="js/showTypeSmallAppJS.js"></script>
     <script src="js/showTypeTVJS.js"></script>
+    <script src="js/getPromoProducts.js"></script>
 
 </head>
 <body onload="showAllProducts(sessionStorage.search); loginValidate();
@@ -28,7 +29,7 @@ isLogged();showMainTypes(); viewSingleProduct();  showUserCart();">
 <header>
     <ul>
         <li><a href="?page=contactITTech"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">0000 00 000</a></li>
-        <li><a href="?page=productsOnPromotions"><img id="promotion" src="assets/displayImages/promotions.png" alt="Promotions">Promotions</a></li>
+        <li onclick="getPromoProducts()"><img id="promotion" src="assets/displayImages/promotions.png" alt="Promotions">Promotions</li>
         <li><a href="?page=main"><img id="homePage" src="assets/displayImages/homePage.png" alt="Home page">Home page</a></li>
     </ul>
     <hr>

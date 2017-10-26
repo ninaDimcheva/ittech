@@ -113,6 +113,19 @@ class ProductDao{
                                               WHERE P.`archive` is null");
             $stm->execute();
             $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        }elseif ($searched === 'getAllProductsInPromo'){
+            $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
+                                                    FROM `products` as P
+                                                    JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                                    JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                                    JOIN `promotions` as Promo ON Promo.`product_id` = P.`product_id`
+                                                    WHERE P.`archive` is null AND Promo.`end_date` > CURRENT_DATE AND `start_date` <= CURRENT_DATE");
+            $stm->execute();
+            if ($stm->rowCount() > 0){
+                $result = $stm -> fetchAll(\PDO::FETCH_ASSOC);
+            }else{
+                return 'noPromoProducts';
+            }
         }else{
 
             $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity` 
@@ -130,7 +143,7 @@ class ProductDao{
         foreach ($result as $row) {
             $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
             $product->setProductId($row['product_id']);
-            $stm = $this->pdo->prepare("Select `discount` FROM `promotions` WHERE `product_id` = ? AND `end_date` > CURRENT_DATE ");
+            $stm = $this->pdo->prepare("Select `discount` FROM `promotions` WHERE `product_id` = ? AND `end_date` > CURRENT_DATE AND `start_date` <= CURRENT_DATE");
             $stm->execute(array($row['product_id']));
             if ($stm->rowCount() > 0){
                 $discount = $stm->fetch(\PDO::FETCH_ASSOC)['discount'];

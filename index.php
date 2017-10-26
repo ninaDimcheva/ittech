@@ -67,8 +67,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
 	            case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
 		            break;
-                case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
-                    break;
                 default : require_once 'view/error.html';
             }
         }else{

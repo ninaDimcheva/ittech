@@ -74,13 +74,17 @@ function removePromoProduct(productId) {
                 viewRemovePromoProduct.innerHTML = 'Successfully remove the promotion';
                 var br = document.createElement('br');
                 viewRemovePromoProduct.appendChild(br);
-                productsOnPromotionLink = document.createElement('a');
+                productsOnPromotionLink = document.createElement('p');
+                productsOnPromotionLink.className = 'link';
                 productsOnPromotionLink.innerText = 'View products on promotion';
-                productsOnPromotionLink.href = '?page=productsOnPromotions';
+                productsOnPromotionLink.onclick = function () {
+                    getPromoProducts();
+                };
                 viewRemovePromoProduct.appendChild(productsOnPromotionLink);
                 var removePromoSubmit = document.getElementById('removePromoSubmit');
                 removePromoSubmit.innerHTML = '';
                 var allProductsLink = document.createElement('a');
+                allProductsLink.className = 'link';
                 allProductsLink.innerText = 'View all products';
                 allProductsLink.href = './';
                 removePromoSubmit.appendChild(allProductsLink);

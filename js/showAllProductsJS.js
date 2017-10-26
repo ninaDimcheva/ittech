@@ -98,10 +98,14 @@ function showAllProducts(searched) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            if (this.responseText == searched) {
+            if (this.responseText === searched) {
                 article.innerHTML = '';
                 article.innerHTML = 'no product matching by ' + searched;
-            } else {
+            }else if(this.responseText === 'noPromoProducts'){
+                article.innerHTML = '';
+                article.innerHTML = 'There is no products in promotion';
+            }
+            else {
                 var productsObject = JSON.parse(this.responseText);
                 //the last element of the array is isAdmin value
                 var productsCount = productsObject.length - 1;

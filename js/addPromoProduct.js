@@ -124,10 +124,12 @@ function sendPromoProduct(productId,startDate, endDate, discount) {
               viewPromoProduct.innerText = 'Successfully added product in promotion';
               var br = document.createElement('br');
               viewPromoProduct.appendChild(br);
-              var productsOnPromotionLink = document.createElement('a');
+              var productsOnPromotionLink = document.createElement('p');
               productsOnPromotionLink.className = 'link';
               productsOnPromotionLink.innerText = 'View products on promotion';
-              productsOnPromotionLink.href = '?page=productsOnPromotions';
+              productsOnPromotionLink.onclick = function () {
+                  getPromoProducts();
+              };
               viewPromoProduct.appendChild(productsOnPromotionLink);
               var inputPromoFields = document.getElementById('inputPromoFields');
               inputPromoFields.innerHTML = '';
