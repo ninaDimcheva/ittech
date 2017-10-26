@@ -210,23 +210,23 @@ function updateSessionCart(cartProducts) {
     var updateQunatityCart = new XMLHttpRequest();
     updateQunatityCart.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            var result = this.responseText;
-
-            // TODO redirect to login here!
-
-
-            // if (result == 'Logged') {
+            var resultCheckQuantityDB = JSON.parse(this.responseText);
+            if(resultCheckQuantityDB){
+                sessionStorage.cartArrayObjectProducts = JSON.stringify(cartProducts);
+                window.location.replace("http://localhost/ITTech/?page=confirmOrder");
+            }
+            else{
+                    var notenoughQuanityDB = document.getElementById('quantityWarning');
+                    notenoughQuanityDB.innerHTML = 'Sorry, for the inconvenience, not enough quantity on stock!'
+            }
+            // if(resultCheckQuantityDB == 'not enough quantity'){
+            //     var notenoughQuanityDB = document.getElementById('quantityWarning');
+            //     notenoughQuanityDB.innerHTML = 'Sorry, for the inconvenience, not enough quantity on stock!'
+            // }
+            // else{
             //     window.location.replace("http://localhost/ITTech/?page=confirmOrder");
             // }
-            // else {
-            //     var userInformation = document.getElementById('loginConfirmation');
-            //     userInformation.innerHTML = 'You must be logged to make an order. Please fallow the link.';
-            //     userInformation.style.backgroundColor = 'red';
-            //     var link = document.createElement('a');
-            //     link.href = '?page=login';
-            //     link.innerHTML = 'Login';
-            //     userInformation.appendChild(link);
-            // }
+
         }
     };
     updateQunatityCart.open("POST", "http://localhost/ittech/controller/updateQuantitySessionController.php");

@@ -32,6 +32,7 @@ if(isset($_GET['islogged'])){
 }
 
 if(isset($_GET['isSetUser']) && isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
-	echo "Logged";
+	$email = $_SESSION['user']->getEmail();
+	echo $email;
 }
 

@@ -39,7 +39,12 @@ if (isset($_POST['login'])) {
             $_SESSION['isLogged'] = true;
             $_SESSION['user'] = $userObject;
             unset($_SESSION["invalidUser"]);
-            header('Location:../?page=main');
+            if(count($_SESSION['cart']) == 0){
+	            header('Location:../?page=main');
+            }
+            else{
+	            header('Location:../?page=confirmOrder');
+            }
         }
         else{
             $_SESSION["invalidUser"] = true;

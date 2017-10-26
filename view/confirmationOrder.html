@@ -1,10 +1,23 @@
+<script src="js/confirmationOrderJS.js"></script>
+
 <h3>Please confirm your order</h3>
 
+<div id="statusOrder" style="border: 1px solid black; height: 150px;"></div>
 
+<br/>
+
+<div id="productsCartInformation" style="border: 1px solid red; height: 200px"></div>
+
+<br/>
 <!--TODO make the vizualisation of the product and make link to the cart-->
 
 <form method="post" action="controller/orderController.php">
-    Delivery address:
-    <input type="text" maxlength="70" size="70" required>
-    <input type="submit" name="order" value="Order">
+    Delivery address: *
+    <br/>
+    <input type="text" name= 'address' id="address" maxlength="70" size="70" required onkeyup="validateAddress()" onblur="validateAddress()" onfocus="validateAddress()"><br/>
+    <br/>
+    <div class="warnings">
+        <p id="addressWarning"></p>
+    </div>
+    <input type="submit" name="confirmedOrder" id='confirmedOrder' value="Confirm order" class="button" disabled>
 </form>

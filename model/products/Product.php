@@ -65,7 +65,6 @@ class Product extends JsonObject {
 	 * @var int (the quantity ordered from the user, default value is 1)
 	 */
 	protected $orderedQuantity;
-    
 
     /**
      * Product constructor.

@@ -111,7 +111,15 @@ class User extends JsonObject {
 	   $this->is_admin = $isAdmin;
     }
 	
-    /**
+	/**
+	 * @return integer
+	 */
+	public function getUserId(){
+		return $this->user_id;
+	}
+	
+	
+	/**
      * @return string
      */
     public function getName(){
@@ -166,11 +174,5 @@ class User extends JsonObject {
         return $this->is_admin;
     }
 
-    /**
-     * @return integer
-     */
-    public function getUserId(){
-        return $this->user_id;
-    }
 
 }
