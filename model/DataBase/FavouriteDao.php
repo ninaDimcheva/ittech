@@ -36,17 +36,29 @@ class FavouriteDao{
     /**
      * @param Favorite $favorite
      */
-	public function addNewFavorite(Favorite $favorite){
+	public function addFavourite(Favorite $favorite){
 		$stm = $this->pdo->prepare("INSERT INTO `favorites` (`product_id`, `user_id`) VALUES (?, ?)");
 			$stm-> execute(array($favorite->getProductId(), $favorite->getUserId()));
-			return ($stm->rowCount()>0);
+			return $stm->rowCount() > 0;
 	}
 
     /**
      * @param Favorite $favorite
      */
-	public function deleteFavorite(Favorite $favorite){
+	public function removeFavorite(Favorite $favorite){
 		$stm = $this->pdo->prepare("DELETE FROM favorites WHERE (product_id = ? AND user_id = ?)");
 		$stm->execute(array($favorite->getProductId(), $favorite->getUserId()));
 	}
+
+    public function inFavorites(Favorite $favorite){
+        if ($favorite->getProductId() == null){
+            $stm = $this->pdo->prepare("Select `product_id` FROM `favorites` WHERE `user_id` = ?");
+            $stm -> execute(array($favorite->getUserId()));
+            return $stm -> fetchAll(\PDO::FETCH_ASSOC);
+        }else{
+            $stm = $this->pdo->prepare("Select * FROM `favorites` WHERE `user_id` = ? AND `product_id` = ?");
+            $stm->execute(array($favorite->getUserId(), $favorite->getProductId()));
+            return $stm->rowCount() > 0;
+        }
+    }
 }
