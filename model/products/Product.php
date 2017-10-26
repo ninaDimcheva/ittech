@@ -61,6 +61,11 @@ class Product extends JsonObject {
      * @var int (inPromo = 1, not inPromo = NULL)
      */
     protected $inPromo;
+	/**
+	 * @var int (the quantity ordered from the user, default value is 1)
+	 */
+	protected $orderedQuantity;
+    
 
     /**
      * Product constructor.
@@ -73,7 +78,7 @@ class Product extends JsonObject {
      * @param array $imgs
      * @param array $specifications
      */
-    public function __construct($type, $brand, $model, $price, $quontity, array $imgs, array $specifications){
+    public function __construct($type, $brand, $model, $price, $quontity, array $imgs, array $specifications, $orderedQuantity = 1){
         $this->type = $type;
         $this->brand = $brand;
         $this->model = $model;
@@ -81,6 +86,7 @@ class Product extends JsonObject {
         $this->quontity = $quontity;
         $this->imgs = $imgs;
         $this->specifications = $specifications;
+        $this->orderedQuantity = $orderedQuantity;
     }
     /**
      * @return integer
@@ -161,7 +167,14 @@ class Product extends JsonObject {
     {
         return $this->specifications;
     }
-
+	
+	/**
+	 * @return int
+	 */
+	public function getOrderedQuantity()
+	{
+		return $this -> orderedQuantity;
+	}
     /**
      * @param integer $product_id
      */
@@ -257,5 +270,13 @@ class Product extends JsonObject {
     {
         $this->inPromo = $inPromo;
     }
+	
+	/**
+	 * @param int $orderedQuantity
+	 */
+	public function setOrderedQuantity($orderedQuantity)
+	{
+		$this -> orderedQuantity = $orderedQuantity;
+	}
 
 }

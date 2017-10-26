@@ -39,23 +39,25 @@ function showUserCart() {
                 inputFiled.type = 'number';
                 inputFiled.id = i;
                 inputFiled.required = true;
-                inputFiled.value = '1';
+                inputFiled.value = cartProducts[i].orderedQuantity;
                 inputFiled.min = '1';
                 inputFiled.max = Number(cartProducts[i].quontity) + Number(1); // to check for maximum exceeding;
 
                 var newColumnAmount = document.createElement('td');
-                newColumnAmount.id = 'quantity' + (i);
-                newColumnAmount.innerHTML = cartProducts[i].price;
+                newColumnAmount.id = 'amount' + (i);
+                newColumnAmount.innerHTML = Number(Number(cartProducts[i].price) *
+                    Number(cartProducts[i].orderedQuantity)).toFixed(2);
 
                 inputFiled.onchange = function () {
                     var productPrice = document.getElementById('price' + this.id).innerHTML;
-                    checkQuantity(this.value, productPrice, this.id, this.max - Number(1));
+                    checkQuantity(cartProducts[this.id], this.value, productPrice, this.id, this.max - Number(1));
                 };
 
                 inputFiled.onkeyup = function () {
                     var productPrice = document.getElementById('price' + this.id).innerHTML;
-                    checkQuantity(this.value, productPrice, this.id, this.max - Number(1));
+                    checkQuantity(cartProducts[this.id], this.value, productPrice, this.id, this.max - Number(1));
                 };
+
 
                 totalAmountOrder += Number(newColumnAmount.innerHTML);
 
@@ -67,14 +69,17 @@ function showUserCart() {
                 var removeProduct = document.createElement('td');
                 var removeButton = document.createElement('button');
                 removeButton.innerHTML = 'Remove';
+                removeButton.id = 'removeButton' + i;
                 removeButton.value = i;
                 removeButton.className = 'button';
                 removeButton.onclick = function () {
+                    //var rowIndex = this.value;
                     deleteProductFromCart(this.value);
+                    //cartProducts.splice(rowIndex, 1);
                 };
 
-               removeProduct.appendChild(removeButton);
-               newRow.appendChild(removeProduct);
+                removeProduct.appendChild(removeButton);
+                newRow.appendChild(removeProduct);
 
                 userCart.appendChild(newRow);
             }
@@ -100,13 +105,21 @@ function showUserCart() {
             totalAmountText.innerHTML = 'Total amount';
             lastRow.appendChild(totalAmountText);
             var totalAmountNumber = document.createElement('td');
-            totalAmountNumber.innerHTML = Math.round(totalAmountOrder).toFixed(2);
+            totalAmountNumber.innerHTML = Number(totalAmountOrder).toFixed(2);
             totalAmountNumber.id = 'totalAmount';
             lastRow.appendChild(totalAmountNumber);
 
             userCart.appendChild(lastRow);
-        }
 
+            var orderButtonDiv = document.getElementById('order');
+            var orderButton = document.createElement('button');
+            orderButton.className = 'button';
+            orderButton.onclick = function () {
+                updateSessionCart(cartProducts);
+            };
+            orderButton.innerHTML = 'Order';
+            orderButtonDiv.appendChild(orderButton);
+        }
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -114,44 +127,48 @@ function showUserCart() {
 }
 
 
-function checkQuantity(quantity, price, currentRow, maxQuantityOnStock) {
+function checkQuantity(currCartProduct, quantity, price, currentRow, maxQuantityOnStock) {
     var totalAmount = document.getElementById('totalAmount');
     var inputField = document.getElementById(currentRow);
-    var totalRow = document.getElementById('quantity' + currentRow);
+    var totalRow = document.getElementById('amount' + currentRow);
 
-    if(quantity > maxQuantityOnStock){
-        var alertQuantity = document.getElementById('invalidQuantity');
-        alertQuantity.style.display = 'block';
+    if (quantity > maxQuantityOnStock) {
+        var invalidQuantity = document.getElementById('invalidQuantity');
+        invalidQuantity.style.display = 'block';
         inputField.value = maxQuantityOnStock;
+        quantity = maxQuantityOnStock;
     }
+
+    //set the actual user selected quantity amount:
+    currCartProduct.orderedQuantity = Number(inputField.value);
 
     var totalAmountNumber = Number(totalAmount.innerHTML);
     // substract old value
     totalAmountNumber -= Number(totalRow.innerHTML);
 
     // calculate new value
-    totalRow.innerHTML = Math.round(quantity * price).toFixed(2);
+    totalRow.innerHTML = Number(quantity * price).toFixed(2);
 
     // add new value
     totalAmountNumber += Number(totalRow.innerHTML);
 
-    totalAmount.innerHTML = Math.round(totalAmountNumber).toFixed(2);
+    totalAmount.innerHTML = Number(totalAmountNumber).toFixed(2);
 }
 
-function deleteProductFromCart(productObjectID){
+function deleteProductFromCart(productObjectID) {
     var request = new XMLHttpRequest();
-    request.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
             var result = this.responseText;
             if (result == "Deleted") {
-                var row = document.getElementById("row"+productObjectID);
-                var totalAmountForProduct = document.getElementById('quantity' + productObjectID);
+                var row = document.getElementById("row" + productObjectID);
+                var totalAmountForProduct = document.getElementById('amount' + Number(productObjectID));  //warning
                 var totalAmount = document.getElementById('totalAmount');
                 var totalAmountNumber = Number(totalAmount.innerHTML);
                 totalAmountNumber -= Number(totalAmountForProduct.innerHTML);
 
                 //recalculate new total value for the whole order
-                totalAmount.innerHTML = Math.round(totalAmountNumber).toFixed(2);
+                totalAmount.innerHTML = Number(totalAmountNumber).toFixed(2);
 
                 //delete selected row
                 row.parentNode.removeChild(row);
@@ -161,23 +178,59 @@ function deleteProductFromCart(productObjectID){
 
                 //start from deleted row
                 //and it is minus 2, because the final rows don't include in the numbering of the table
-                for(var i = Number(productObjectID) + 1; i < rowCount - 2; i++){
-                    var newCurrentRow = document.getElementById('tableRow' + (i +1));
-                    newCurrentRow.id = i;
-                    newCurrentRow.innerHTML = i;
+                for (var i = Number(productObjectID) + 1; i < rowCount - 2; i++) {
+                    var newCurrentRow = document.getElementById('row' + i);
+                    newCurrentRow.id = 'row' + (i - 1);
+
+                    var newCurrentRowNumber = document.getElementById('tableRow' + (i + 1));
+                    newCurrentRowNumber.id = 'tableRow' + i;
+                    newCurrentRowNumber.innerHTML = i;
+
+                    var removeButton = document.getElementById('removeButton' + i);
+                    removeButton.id = 'removeButton' + (i - 1);
+                    removeButton.value = (i - 1);
+
+                    var newColumnAmount = document.getElementById('amount' + i);
+                    newColumnAmount.id = 'amount' + (i - 1);
+
+                    var newColumnPrice = document.getElementById('price' + i);
+                    newColumnPrice.id = 'price' + (i - 1);
+
+                    var newInputField = document.getElementById(i);
+                    inputFiled.id = i - 1;
                 }
-
-
-
-                // for(var i = Number(productObjectID); i < rowCount - 2; i++){
-                //     var newCurrentRow = document.getElementById('tableRow' + (i +1));
-                //     newCurrentRow.id = 'tableRow' + i;
-                //     newCurrentRow.innerHTML = i;
-                // }
             }
         }
     };
     request.open("GET", "http://localhost/ittech/controller/sendToCartController.php?deleteProductFromCart=" + productObjectID);
     request.send();
+}
+
+function updateSessionCart(cartProducts) {
+    var updateQunatityCart = new XMLHttpRequest();
+    updateQunatityCart.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var result = this.responseText;
+
+            // TODO redirect to login here!
+
+
+            // if (result == 'Logged') {
+            //     window.location.replace("http://localhost/ITTech/?page=confirmOrder");
+            // }
+            // else {
+            //     var userInformation = document.getElementById('loginConfirmation');
+            //     userInformation.innerHTML = 'You must be logged to make an order. Please fallow the link.';
+            //     userInformation.style.backgroundColor = 'red';
+            //     var link = document.createElement('a');
+            //     link.href = '?page=login';
+            //     link.innerHTML = 'Login';
+            //     userInformation.appendChild(link);
+            // }
+        }
+    };
+    updateQunatityCart.open("POST", "http://localhost/ittech/controller/updateQuantitySessionController.php");
+    updateQunatityCart.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    updateQunatityCart.send('userCart=' + JSON.stringify(cartProducts));
 }
 

@@ -20,23 +20,14 @@ session_start();
 
 if (isset($_POST['singleProductToBuy'])) {
 	$isNewProduct = true;
-	$newProductId = json_decode($_POST['singleProductToBuy'], true)['product_id'];
+	$newProductId = json_decode($_POST['singleProductToBuy']) -> product_id;
 	for ($i = 0; $i < count($_SESSION['cart']); $i ++) {
-		$array = get_object_vars($_SESSION['cart'][$i]);
-		foreach ($array as $key => $value) {
-			if ($key == 'product_id') {
-				if ($value == $newProductId) {
-					$isNewProduct = false;
-					break;
-				}
-			}
-		}
-		if (!$isNewProduct) {
+		if ($_SESSION['cart'][$i] -> product_id == $newProductId) {
+			$isNewProduct = false;
 			break;
 		}
 	}
-	
-	if($isNewProduct){
+	if ($isNewProduct) {
 		$_SESSION['cart'][] = json_decode($_POST['singleProductToBuy']);
 	}
 }
@@ -47,14 +38,10 @@ if (isset($_POST['getCartProducts'])) {
 
 if(isset($_GET['deleteProductFromCart'])){
 	$deleteProductID = $_GET['deleteProductFromCart'];
-	for ($i = 0; $i < count($_SESSION['cart']); $i ++) {
-		if($i == $deleteProductID){
-			array_splice($_SESSION['cart'], $deleteProductID, 1);
-			// array_splice is used on purpose, because the function reindex the array in the $_SESSION['cart'];
-		}
-	}
+	array_splice($_SESSION['cart'], $deleteProductID, 1);
 	echo "Deleted";
 }
+
 
 
 

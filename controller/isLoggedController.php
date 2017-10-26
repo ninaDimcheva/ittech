@@ -29,6 +29,9 @@ if(isset($_GET['islogged'])){
 	else {
 		echo false;
 	}
-	
+}
+
+if(isset($_GET['isSetUser']) && isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
+	echo "Logged";
 }
 
