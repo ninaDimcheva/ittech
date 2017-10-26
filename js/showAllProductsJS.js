@@ -119,11 +119,7 @@ function showAllProducts(searched) {
 
                         var contentContainer = document.createElement('div');
                         contentContainer.id = "contentContainer" + ((i / 4) + 1);
-                        // contentContainer.style.width = '';
-                        // contentContainer.style.height = '140px';
-                        contentContainer.style.border = '1px solid red';
-                        contentContainer.style.margin = '0.5px';
-                        contentContainer.style.clear = 'both';
+                        contentContainer.className = 'contentContainer'
                         article.appendChild(contentContainer);
 
                     }
@@ -140,51 +136,43 @@ function showAllProducts(searched) {
                     // ---------------------------------
                     // creates the single panel, which will show information only for one product;
                     for (var j = 1; j <= productNumber; j++) {
-                        //TODO check if product is in promo and add the proper img, price and discount
                         var panel = document.createElement('div');
-                        var imageDiv = document.createElement('div');
-                        var img = document.createElement('img');
-                        var infoProduct = document.createElement('div');
-                        var brand = document.createElement('h4');
-                        var model = document.createElement('h6');
-                        var price = document.createElement('h2');
-                        var xSimbol = document.createElement('img');
-
-                        panel.className = 'infoPanel';
-                        panel.style.margin = '1.5px';
-                        panel.style.border = '1px solid green';
-                        panel.style.float = 'left';
+                        panel.className = 'productPanel';
                         document.getElementById(contentContainer.id).appendChild(panel);
 
+                        var imageDiv = document.createElement('div');
                         imageDiv.className = 'imageDiv';
                         panel.appendChild(imageDiv);
 
+                        var img = document.createElement('img');
                         img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
-                        img.style.width = '150px';
-                        img.style.height = 'auto';
+                        img.className = 'frontImg';
                         img.value = productsObject[currentProduct];
                         img.onclick = function () {
                             sendProductObject(this.value);
                         };
                         imageDiv.appendChild(img);
 
+                        var infoProduct = document.createElement('div');
                         infoProduct.className = 'infoProduct';
                         panel.appendChild(infoProduct);
 
+                        var brand = document.createElement('h4');
                         brand.innerText = productsObject[currentProduct].brand;
                         infoProduct.appendChild(brand);
 
+                        var model = document.createElement('h6');
                         model.innerText = productsObject[currentProduct].model;
                         infoProduct.appendChild(model);
+
+                        var price = document.createElement('h2');
 
                         if(productsObject[currentProduct].inPromo){
                             productsObject[currentProduct].price -= productsObject[currentProduct].inPromo;
                             productsObject[currentProduct].price = productsObject[currentProduct].price.toFixed(2);
 
                             var imgPromo = document.createElement('img');
-                            imgPromo.style.width = '80px';
-                            imgPromo.style.height = 'auto';
-                            imgPromo.style.float = 'left';
+                            imgPromo.className = 'imgPromo';
                             imgPromo.src = "./assets/displayImages/promo.png";
                             imageDiv.appendChild(imgPromo);
 
@@ -228,7 +216,7 @@ function showAllProducts(searched) {
                             panel.appendChild(editProduct);
                         } else {
                             var buyButton = document.createElement('div');
-                            buyButton.className = 'button';
+                            buyButton.className = 'button prevBuyButton';
                             buyButton.innerHTML = 'BUY';
                             buyButton.value = productsObject[currentProduct];
                             buyButton.onclick = function () {
