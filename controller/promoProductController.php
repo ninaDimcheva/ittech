@@ -2,6 +2,7 @@
 
 use \model\DataBase\PromotionDao;
 use \model\promotions\Promotion;
+use \model\DataBase\ProductDao;
 use \model\products\Product;
 
 function __autoload($class_name)
@@ -42,6 +43,24 @@ if (isset($_GET['removePromoProduct'])){
             //TODO return status code 200
         }else{
             //TODO propper status code
+        }
+    }catch (\PDOException $e){
+        //TODO error
+    }
+
+}
+
+if (isset($_POST['getPromoProducts'])){
+    if (isset($_SESSION['user'])) {
+        $isAdmin = $_SESSION['user']->getIsAdmin();
+    } else {
+        $isAdmin = false;
+    }
+    try {
+        $promoProducts = ProductDao::getInstance()->getProductsInPromo();
+        if ($promoProducts){
+            $promoProducts[] = $isAdmin;
+            echo json_encode($promoProducts);
         }
     }catch (\PDOException $e){
         //TODO error

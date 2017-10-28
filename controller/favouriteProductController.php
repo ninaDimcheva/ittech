@@ -3,6 +3,7 @@
 use \model\users\User;
 use \model\DataBase\FavouriteDao;
 use \model\favorites\Favorite;
+use \model\DataBase\ProductDao;
 
 function __autoload($class_name)
 {
@@ -63,6 +64,26 @@ if (isset($_GET['removeFavourite'])) {
             //TODO error
         }
     } else {
+        //TODO error
+    }
+}
+
+if (isset($_POST['getFavorites'])){
+    if (isset($_SESSION['user'])){
+        $userId = $_SESSION['user']->getUserId();
+        $isAdmin = $_SESSION['user']->getIsAdmin();
+        try{
+            $products = ProductDao::getInstance()->getFavorites($userId);
+            if ($products){
+                $products[] = $isAdmin;
+                echo json_encode($products);
+            }else{
+                echo false;
+            }
+        }catch (\PDOException $e){
+            //TODO error
+        }
+    }else{
         //TODO error
     }
 }

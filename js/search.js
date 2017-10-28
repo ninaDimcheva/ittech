@@ -1,13 +1,41 @@
+function search(searched) {
+    var getSearchedProducts = new XMLHttpRequest();
+    getSearchedProducts.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                if (this.responseText) {
+                    var searchedProducts = JSON.parse(this.responseText);
+                    showProducts(searchedProducts, 'article');
+                } else {
+                    document.getElementById('article').innerHTML = "Can't find it!";
+                }
+            } else {
+                //TODO error
+            }
+        }
+    };
+    getSearchedProducts.open("POST", "http://localhost/ittech/controller/searchController.php");
+    getSearchedProducts.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    getSearchedProducts.send("getSearchedProducts=" + searched);
+}
+
+
 function clickSearch(event) {
+
     var searched = document.getElementById('search');
     var datalist = document.getElementById('autocomplete');
 
     if (event.keyCode === 13 || event.which === 13) {
-        sessionStorage.search = searched.value;
-        window.location.replace("http://localhost/ITTech");
+        if (self.location == 'http://localhost/ITTech/' || self.location == 'http://localhost/ITTech/?page=main'){
+            searched.innerHTML = '';
+            search(searched.value);
+        }else{
+            sessionStorage.search = searched.value;
+            window.location.replace("http://localhost/ITTech/");
+        }
     } else {
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
+        var getMatchedWords = new XMLHttpRequest();
+        getMatchedWords.onreadystatechange = function () {
             if (this.readyState === 4) {
                 if (this.status === 200) {
                     var matchedWords = JSON.parse(this.responseText);
@@ -20,7 +48,7 @@ function clickSearch(event) {
                 }
             }
         };
-        request.open("GET", "http://localhost/ittech/controller/searchController.php?getMatchedWords=" + searched.value)
-        request.send();
+        getMatchedWords.open("GET", "http://localhost/ittech/controller/searchController.php?getMatchedWords=" + searched.value);
+        getMatchedWords.send();
     }
 }

@@ -23,19 +23,12 @@ if (isset($_GET['getAllProducts'])) {
         $isAdmin = false;
     }
     try {
-        $products = ProductDao::getInstance()->getAllProducts($_GET['getAllProducts']);
-
+        $products = ProductDao::getInstance()->getAllProducts();
         if ($products) {
-
-            if ($products == $_GET['getAllProducts'] || $products === 'noPromoProducts') {
-                //return the serched word or no promo products to show
-                echo $products;
-            } else {
-                //add isAdmin value in the last element of the array with products
-                $products[] = $isAdmin;
-                //return the searched products or all if there is no search
-                echo json_encode($products, JSON_UNESCAPED_SLASHES);
-            }
+            //add isAdmin value in the last element of the array with products
+            $products[] = $isAdmin;
+            //return the searched products or all if there is no search
+            echo json_encode($products, JSON_UNESCAPED_SLASHES);
 
         } else {
 //            TODO    header('Location:../?page=error');

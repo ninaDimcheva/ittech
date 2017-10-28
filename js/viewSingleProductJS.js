@@ -1,4 +1,5 @@
 function viewSingleProduct() {
+
     var viewSingleProduct = document.getElementById('viewSingleProduct');
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -231,16 +232,15 @@ function viewSingleProduct() {
  *
  * @param product = Object product
  */
-function sendToCart(product) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ITTech/?page=userCart");
-        }
-    };
-    request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send("singleProductToBuy=" + JSON.stringify(product)); //goes in $_POST["singleProductToBuy"]
-}
-
+// function sendToCart(product) {
+//     var request = new XMLHttpRequest();
+//     request.onreadystatechange = function () {
+//         if (this.readyState === 4 && this.status === 200) {
+//             // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
+//             window.location.replace("http://localhost/ITTech/?page=userCart");
+//         }
+//     };
+//     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
+//     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//     request.send("singleProductToBuy=" + JSON.stringify(product)); //goes in $_POST["singleProductToBuy"]
+// }

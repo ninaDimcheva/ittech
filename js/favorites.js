@@ -1,3 +1,19 @@
+function showFavorites() {
+    var getFavorites = new XMLHttpRequest();
+    getFavorites.onreadystatechange = function () {
+        if (this.responseText){
+            var favoriteProduucts = JSON.parse(this.responseText);
+
+            showProducts(favoriteProduucts, 'favoritesArticle');
+        }else {
+            document.getElementById('favoritesArticle').innerHTML = 'You have no products in favorites';
+        }
+    };
+    getFavorites.open("Post", "http://localhost/ittech/controller/favouriteProductController.php");
+    getFavorites.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    getFavorites.send('getFavorites');
+}
+
 function addFavourite(productId) {
     var addFavouriteRequest = new XMLHttpRequest();
     addFavouriteRequest.onreadystatechange = function () {

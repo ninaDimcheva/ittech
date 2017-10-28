@@ -1,243 +1,19 @@
-// var distToBottom, data, dataObj;
-// var page = 1;
-// var pollingForData = false;
-// var xhr = new XMLHttpRequest();
-// var contentContainer = document.getElementsByClassName('content-container')[0];
-// var loadingContainer = document.getElementsByClassName('loading-container')[0];
-//
-// function getDistFromBottom () {
-//
-//     var scrollPosition = window.pageYOffset;
-//     var windowSize     = window.innerHeight;
-//     var bodyHeight     = document.body.offsetHeight;
-//
-//     return Math.max(bodyHeight - (scrollPosition + windowSize), 0);
-//
-// }
-//
-// xhr.onload = function() {
-//     if(xhr.status === 200) {
-//
-//         pollingForData = false;
-//         data = xhr.responseText;
-//         dataObj = JSON.parse(data);
-//
-//         // for iterating through the data
-//         // Using a ForEach
-//
-//         dataObj.posts.forEach(function(post, index) {
-//
-//             var postElement = document.createElement('article');
-//
-//             var title = document.createElement('h3');
-//             title.appendChild(document.createTextNode(post.title));
-//             title.classList.add('title');
-//
-//             var img = document.createElement('img');
-//             img.src = post.featured_image.source;
-//             img.classList.add('feat');
-//
-//
-//             var author = document.createElement('p');
-//             author.appendChild(document.createTextNode(post.author));
-//             author.classList.add('author');
-//
-//             // since the text already comes out as this
-//             var desc = document.createElement('div');
-//             desc.innerHTML = post.content;
-//             desc.classList.add('content');
-//
-//             var hrElem = document.createElement('hr');
-//             hrElem.classList.add('separator');
-//
-//             postElement.appendChild(title);
-//             postElement.appendChild(img);
-//             // postElement.appendChild(desc);
-//             postElement.appendChild(hrElem);
-//
-//             contentContainer.appendChild(postElement);
-//         })
-//
-// //     // Using a For Loop
-// //     for(var i = 0; i <= dataObj.posts.length; i++ ) {
-// //       console.log('data ', i);
-// //     }
-//
-//         // removing the spinner
-//         // loadingContainer.classList.remove('no-content');
-//
-//     }
-// };
-//
-// xhr.open('GET', 'https://www.techinasia.com/wp-json/techinasia/2.0/posts?page=1&per_page=5', true);
-// xhr.send();
-// pollingForData = true;
-//
-// document.addEventListener('scroll', function() {
-//     distToBottom = getDistFromBottom();
-//     // console.log('scrolling', getDistFromBottom());
-//
-//     if (!pollingForData && distToBottom > 0 && distToBottom <= 8888) {
-//         pollingForData = true;
-//         loadingContainer.classList.add('no-content');
-//
-//         page++;
-//         xhr.open('GET', 'https://www.techinasia.com/wp-json/techinasia/2.0/posts?page='+page+'&per_page=5', true);
-//         xhr.send();
-//
-//     }
-// });
-
-
-function showAllProducts(searched) {
-    sessionStorage.search = null;
-    searched = searched || null;
-    var productNumber;
-    var currentProduct = 0;
-    var article = document.getElementById('article');
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            if (this.responseText === searched) {
-                article.innerHTML = '';
-                article.innerHTML = 'no product matching by ' + searched;
-            }else if(this.responseText === 'noPromoProducts'){
-                article.innerHTML = '';
-                article.innerHTML = 'There is no products in promotion';
-            }
-            else {
+function showAllProducts() {
+    if (sessionStorage.search) {
+        search(sessionStorage.search);
+        sessionStorage.clear();
+    } else {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
                 var productsObject = JSON.parse(this.responseText);
-                //the last element of the array is isAdmin value
-                var productsCount = productsObject.length - 1;
-                var isAdmin = productsObject[productsCount];
-                article.innerHTML = '';
-                for (var i = 0; i < productsCount; i += 4) {
-                    if (i % 4 === 0) {
-
-                        // ---------------------------------
-                        // creates the main content container which will show 4 products;
-
-                        var contentContainer = document.createElement('div');
-                        contentContainer.id = "contentContainer" + ((i / 4) + 1);
-                        contentContainer.className = 'contentContainer'
-                        article.appendChild(contentContainer);
-
-                    }
-                    // ---------------------------------
-
-
-                    if ((productsCount - i) > 4) {
-                        productNumber = 4;
-                    }
-                    else {
-                        productNumber = productsCount - i;
-                    }
-
-                    // ---------------------------------
-                    // creates the single panel, which will show information only for one product;
-                    for (var j = 1; j <= productNumber; j++) {
-                        var panel = document.createElement('div');
-                        panel.className = 'productPanel';
-                        document.getElementById(contentContainer.id).appendChild(panel);
-
-                        var imageDiv = document.createElement('div');
-                        imageDiv.className = 'imageDiv';
-                        panel.appendChild(imageDiv);
-
-                        var img = document.createElement('img');
-                        img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
-                        img.className = 'frontImg';
-                        img.value = productsObject[currentProduct];
-                        img.onclick = function () {
-                            sendProductObject(this.value);
-                        };
-                        imageDiv.appendChild(img);
-
-                        var infoProduct = document.createElement('div');
-                        infoProduct.className = 'infoProduct';
-                        panel.appendChild(infoProduct);
-
-                        var brand = document.createElement('h4');
-                        brand.innerText = productsObject[currentProduct].brand;
-                        infoProduct.appendChild(brand);
-
-                        var model = document.createElement('h6');
-                        model.innerText = productsObject[currentProduct].model;
-                        infoProduct.appendChild(model);
-
-                        var price = document.createElement('h2');
-
-                        if(productsObject[currentProduct].inPromo){
-                            productsObject[currentProduct].price -= productsObject[currentProduct].inPromo;
-                            productsObject[currentProduct].price = productsObject[currentProduct].price.toFixed(2);
-
-                            var imgPromo = document.createElement('img');
-                            imgPromo.className = 'imgPromo';
-                            imgPromo.src = "./assets/displayImages/promo.png";
-                            imageDiv.appendChild(imgPromo);
-
-                            price.innerText = 'Promo prise: $' + productsObject[currentProduct].price;
-
-                        }else {
-                            price.innerText ='$' + productsObject[currentProduct].price;
-                        }
-
-                        price.style.color = 'red';
-                        infoProduct.appendChild(price);
-                        // TODO test the buy button
-                        if (isAdmin) {
-                            if(productsObject[currentProduct].inPromo){
-                                var removePromoButton = document.createElement('div');
-                                removePromoButton.className = 'button';
-                                removePromoButton.innerHTML = 'Remove promo';
-                                removePromoButton.value = productsObject[currentProduct];
-                                removePromoButton.onclick = function () {
-                                    removePromo(this.value);
-                                };
-                                panel.appendChild(removePromoButton);
-                            }else {
-                                var addPromoButton = document.createElement('div');
-                                addPromoButton.className = 'button';
-                                addPromoButton.innerHTML = 'Add to promo';
-                                addPromoButton.value = productsObject[currentProduct];
-                                addPromoButton.onclick = function () {
-                                    sendToPromo(this.value);
-                                };
-                                panel.appendChild(addPromoButton);
-                            }
-
-                            var editProduct = document.createElement('div');
-                            editProduct.className = 'button';
-                            editProduct.innerHTML = 'Edit product';
-                            editProduct.value = productsObject[currentProduct];
-                            editProduct.onclick = function () {
-                                sendToEditProduct(this.value);
-                            };
-                            panel.appendChild(editProduct);
-                        } else {
-                            var buyButton = document.createElement('div');
-                            buyButton.className = 'button prevBuyButton';
-                            buyButton.innerHTML = 'BUY';
-                            buyButton.value = productsObject[currentProduct];
-                            buyButton.onclick = function () {
-                                sendToCart(this.value);
-                            };
-                            panel.appendChild(buyButton);
-                        }
-
-
-                        currentProduct++;
-                    }
-                }
+                showProducts(productsObject, 'article');
 
             }
-
-        }
-
-    };
-    request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts=" + searched);
-    request.send();
-
+        };
+        request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts");
+        request.send();
+    }
 }
 
 
@@ -291,4 +67,131 @@ function sendToEditProduct(product) {
     window.location.replace("http://localhost/ITTech/?page=editProduct");
 }
 
+function showProducts(productsObject, id) {
+    var productNumber;
+    var currentProduct = 0;
+    var article = document.getElementById(id);
+    //the last element of the array is isAdmin value
+    var productsCount = productsObject.length - 1;
+    var isAdmin = productsObject[productsCount];
+    article.innerHTML = '';
+    for (var i = 0; i < productsCount; i += 4) {
+        if (i % 4 === 0) {
+
+            // ---------------------------------
+            // creates the main content container which will show 4 products;
+
+            var contentContainer = document.createElement('div');
+            contentContainer.id = "contentContainer" + ((i / 4) + 1);
+            contentContainer.className = 'contentContainer';
+            article.appendChild(contentContainer);
+
+        }
+        // ---------------------------------
+
+
+        if ((productsCount - i) > 4) {
+            productNumber = 4;
+        }
+        else {
+            productNumber = productsCount - i;
+        }
+
+        // ---------------------------------
+        // creates the single panel, which will show information only for one product;
+        for (var j = 1; j <= productNumber; j++) {
+            var panel = document.createElement('div');
+            panel.className = 'productPanel';
+            document.getElementById(contentContainer.id).appendChild(panel);
+
+            var imageDiv = document.createElement('div');
+            imageDiv.className = 'imageDiv';
+            panel.appendChild(imageDiv);
+
+            var img = document.createElement('img');
+            img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
+            img.className = 'frontImg';
+            img.value = productsObject[currentProduct];
+            img.onclick = function () {
+                sendProductObject(this.value);
+            };
+            imageDiv.appendChild(img);
+
+            var infoProduct = document.createElement('div');
+            infoProduct.className = 'infoProduct';
+            panel.appendChild(infoProduct);
+
+            var brand = document.createElement('h4');
+            brand.innerText = productsObject[currentProduct].brand;
+            infoProduct.appendChild(brand);
+
+            var model = document.createElement('h6');
+            model.innerText = productsObject[currentProduct].model;
+            infoProduct.appendChild(model);
+
+            var price = document.createElement('h2');
+
+            if (productsObject[currentProduct].inPromo) {
+                productsObject[currentProduct].price -= productsObject[currentProduct].inPromo;
+                productsObject[currentProduct].price = productsObject[currentProduct].price.toFixed(2);
+
+                var imgPromo = document.createElement('img');
+                imgPromo.className = 'imgPromo';
+                imgPromo.src = "./assets/displayImages/promo.png";
+                imageDiv.appendChild(imgPromo);
+
+                price.innerText = 'Promo prise: $' + productsObject[currentProduct].price;
+
+            } else {
+                price.innerText = '$' + productsObject[currentProduct].price;
+            }
+
+            price.style.color = 'red';
+            infoProduct.appendChild(price);
+            // TODO test the buy button
+            if (isAdmin) {
+                if (productsObject[currentProduct].inPromo) {
+                    var removePromoButton = document.createElement('div');
+                    removePromoButton.className = 'button';
+                    removePromoButton.innerHTML = 'Remove promo';
+                    removePromoButton.value = productsObject[currentProduct];
+                    removePromoButton.onclick = function () {
+                        removePromo(this.value);
+                    };
+                    panel.appendChild(removePromoButton);
+                } else {
+                    var addPromoButton = document.createElement('div');
+                    addPromoButton.className = 'button';
+                    addPromoButton.innerHTML = 'Add to promo';
+                    addPromoButton.value = productsObject[currentProduct];
+                    addPromoButton.onclick = function () {
+                        sendToPromo(this.value);
+                    };
+                    panel.appendChild(addPromoButton);
+                }
+
+                var editProduct = document.createElement('div');
+                editProduct.className = 'button';
+                editProduct.innerHTML = 'Edit product';
+                editProduct.value = productsObject[currentProduct];
+                editProduct.onclick = function () {
+                    sendToEditProduct(this.value);
+                };
+                panel.appendChild(editProduct);
+            } else {
+                var buyButton = document.createElement('div');
+                buyButton.className = 'button prevBuyButton';
+                buyButton.innerHTML = 'BUY';
+                buyButton.value = productsObject[currentProduct];
+                buyButton.onclick = function () {
+                    sendToCart(this.value);
+                };
+                panel.appendChild(buyButton);
+            }
+
+
+            currentProduct++;
+        }
+    }
+}
 

@@ -1,16 +1,16 @@
 // the function validates the phone number fallowing the pattern +XXX-XXX-XXXXXX;
-function phonenumber(inputtxt)
-{
-    var phoneno = /^\+?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{6})$/;
-    if((inputtxt.value.match(phoneno)))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+// function phonenumber(inputtxt)
+// {
+//     var phoneno = /^\+?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{6})$/;
+//     if((inputtxt.value.match(phoneno)))
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//         return false;
+//     }
+// }
 function inputValidation(){
     var name = document.getElementById('name').value;
     var nameWorn = document.getElementById('nameWarn');
@@ -39,12 +39,12 @@ function inputValidation(){
         error = true;
         emailWorn.innerText = 'NOT OK';
     }
-    if(phonenumber(phoneNumber)){
-        phoneNumberWorn.innerText = 'OK';
-    }else{
-        error = true;
-        phoneNumberWorn.innerText = 'NOT OK';
-    }
+    // if(phonenumber(phoneNumber)){
+    //     phoneNumberWorn.innerText = 'OK';
+    // }else{
+    //     error = true;
+    //     phoneNumberWorn.innerText = 'NOT OK';
+    // }
     if(message.length === 0){
         message.innerText = 'OK';
     }else{

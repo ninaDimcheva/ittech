@@ -1,4 +1,7 @@
 // TODO br don't work
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function isLogged(){
     var request = new XMLHttpRequest();
@@ -6,12 +9,10 @@ function isLogged(){
         if (this.readyState === 4) {
             if (this.status === 200) {
                 var userObject = JSON.parse(this.responseText);
-                for(var i in userObject) {
-                    var navigationButton = document.getElementById('loginButton');
-                    function capitalizeFirstLetter(string) {
-                        return string.charAt(0).toUpperCase() + string.slice(1);
-                    }
-                    navigationButton.innerHTML =capitalizeFirstLetter(i) ;
+                var name = userObject.name;
+                var isAdmin = userObject.is_admin;
+                var navigationButton = document.getElementById('loginButton');
+                navigationButton.innerHTML =capitalizeFirstLetter(name) ;
                     var image = document.createElement('img');
                    image.src="http://localhost/ITTech/assets/displayImages/person.png";
                    image.alt='Person';
@@ -19,8 +20,7 @@ function isLogged(){
                    navigationButton.appendChild(image);
                     var mainDiv = document.getElementById('mainNavigation'); // the inner div
                     mainDiv.innerHTML = '';
-                    // it is administrator:
-                    if(userObject[i] == 1){
+                        if(isAdmin){
                         var adminProfil = document.createElement('a');
                         adminProfil.innerHTML = 'Admin Profile';
                         adminProfil.href = '?page=myProfile';
@@ -47,9 +47,7 @@ function isLogged(){
                         inputFiled.class = 'button';
                         logout.appendChild(inputFiled);
                         mainDiv.appendChild(logout);
-                    }
-                    // it is normal user:
-                    else {
+                    } else {
                         var profile = document.createElement('a');
                         profile.innerHTML = 'My profile';
                         profile.href = '?page=myProfile';
@@ -77,11 +75,11 @@ function isLogged(){
                         form.appendChild(input);
                         mainDiv.appendChild(form);
                     }
-                }
+                // }
             }
         }
     };
-    request.open("GET", "http://localhost/ittech/controller/isLoggedController.php?islogged");
+    request.open("GET", "http://localhost/ittech/controller/isLoggedController.php?isLogged");
     request.send();
 }
 

@@ -27,3 +27,24 @@ if (isset($_GET['getMatchedWords'])){
     }
 
 }
+
+if (isset($_POST['getSearchedProducts'])){
+    $searched = $_POST['getSearchedProducts'];
+    if (isset($_SESSION['user'])) {
+        $isAdmin = $_SESSION['user']->getIsAdmin();
+    } else {
+        $isAdmin = false;
+    }
+    try {
+        $matchedProducts = ProductDao::getInstance()->search($searched);
+        if ($matchedProducts){
+            $matchedProducts[] = $isAdmin;
+            echo json_encode($matchedProducts);
+        }else{
+            return false;
+        }
+    }catch (\PDOException $e){
+        //TODO error
+    }
+
+}

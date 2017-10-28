@@ -7,8 +7,8 @@ use \model\DataBase\OrderDao;
 use \model\DataBase\ProductDao;
 use \model\DataBase\UserDao;
 
-require_once '../model/DataBase/ProductDao.php';
-require_once '../model/DataBase/DBManager.php';
+//require_once '../model/DataBase/ProductDao.php';
+//require_once '../model/DataBase/DBManager.php';
 
 function __autoload($class_name)
 {
@@ -18,21 +18,19 @@ function __autoload($class_name)
 }
 
 session_start();
-if(isset($_GET['islogged'])){
-	if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
-		$name = $_SESSION["user"] -> getName();
-		$admin = $_SESSION["user"] -> getIsAdmin();
-		$user = array();
-		$user["$name"] = $admin;
-		echo json_encode($user, JSON_UNESCAPED_SLASHES);
-	}
-	else {
-		echo false;
-	}
+
+if (isset($_GET['isLogged'])){
+    if (isset($_SESSION['user'])){
+        echo json_encode($_SESSION['user'], JSON_UNESCAPED_SLASHES);
+    }else{
+        echo false;
+    }
 }
 
 if(isset($_GET['isSetUser']) && isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
 	$email = $_SESSION['user']->getEmail();
 	echo $email;
 }
+
+
 

@@ -3,7 +3,7 @@
 
 <?php
 if(isset($_POST['send'])){
-	$to = "nkd_911@mail.bg"; // this is the receiver's Email address
+	$to = "ittech.eshop@egmail.com"; // this is the receiver's Email address
     $from = $_POST['email']; // this is the sender's Email address
 	$firstName = $_POST['name'];
 	$phoneNumber = $_POST['phoneNumber'];
@@ -14,10 +14,25 @@ if(isset($_POST['send'])){
 	
 	$headers = "From:" . $from;
 	$headers2 = "From:" . $to;
-	mail($to,$subject,$phoneNumber,$message,$headers);
+	mail($to,$subject,$message,$headers);
 	mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
 	
 	echo "Mail Sent. Thank you " . $firstName . ", we will contact you shortly.";
 	// You can also use header('Location: thank_you.php'); to redirect to another page.
 }
 ?>
+
+<?php
+//$to      = 'georgi.dimov@onlinedirect.bg';
+//$subject = 'Fake sendmail test';
+//$message = 'If we can read this, it means that our fake Sendmail setup works!';
+//$headers = 'From: ittech.eshop@egmail.com' . "\r\n" .
+//    'BCC: shogydimov@gmail.com,ittech.eshop@gmail.com' . "\r\n" .
+//    'X-Mailer: PHP/' . phpversion();
+//
+//if(mail($to, $subject, $message, $headers)) {
+//    echo 'Email sent successfully!';
+//} else {
+//    die('Failure: Email was not sent!');
+//}
+//?>
