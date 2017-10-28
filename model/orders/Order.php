@@ -8,7 +8,6 @@
 
 namespace model\orders;
 
-
 class Order{
     /**
      * @var integer
