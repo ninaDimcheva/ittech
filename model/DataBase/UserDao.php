@@ -73,4 +73,22 @@ class UserDao{
         $stm->execute(array($changePrivilege,$email));
         return $stm->rowCount() > 0;
     }
+
+    public function editNotifications($notification,$userId){
+        $stm = $this->pdo->prepare("UPDATE `users` SET `notifications` = ? WHERE `user_id` = ?");
+        $stm->execute(array($notification,$userId));
+        return $stm->rowCount() > 0;
+    }
+
+    public function editFamilyName($familyName, $userId){
+        $stm = $this->pdo->prepare("UPDATE `users` SET `family_name` = ? WHERE `user_id` = ?");
+        $stm->execute(array($familyName,$userId));
+        return $stm->rowCount() > 0;
+    }
+
+    public function editPassword($password, $userId){
+        $stm = $this->pdo->prepare("UPDATE `users` SET `password` = ? WHERE `user_id` = ?");
+        $stm->execute(array($password,$userId));
+        return $stm->rowCount() > 0;
+    }
 }

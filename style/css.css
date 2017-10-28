@@ -21,6 +21,10 @@ input:focus, select:focus {
     outline: none;
 }
 
+.floatleft {
+    float: left;
+}
+
 .button {
     background:none;
     border: 1px solid #e60000;
@@ -394,6 +398,10 @@ article{
 
 
 /*================== My profil ==========================*/
+.profileInfo{
+    width: 600px;
+}
+
 #userProfilImage{
     width: 20px;
     height: auto;
@@ -409,7 +417,10 @@ article{
 #userNavigation ul{
     list-style-type: disc;
 }
-
+#userInformation, #myFavorites, #userProfile {
+    text-align: center;
+    margin: 10px;
+}
 
 /*================== My profil ==========================*/
 

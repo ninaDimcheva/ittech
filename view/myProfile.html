@@ -1,9 +1,7 @@
-<h3>MyProfile</h3>
-<hr>
-
 <div id="userProfile">
     <aside id="userNavigation">
-        <ul><img id="userProfilImage" src="assets/displayImages/person.png" alt="Person"> My Profile
+        <ul><img id="userProfilImage" src="assets/displayImages/person.png" alt="Person"> My profile
+            <hr>
             <li><a href="?page=myProfile">My profile</a></li>
             <li><a href="?page=myOrders">My orders</a></li>
             <li><a href="?page=myFavorites">Favourites</a></li>
@@ -14,8 +12,72 @@
             </div>
         </ul>
     </aside>
-    <main id="userInformation">
+    <div class="title">
+        <h1>My profile</h1>
+    </div>
+    <hr>
+    <article id="userInformation">
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                Name:
+            </div>
+            <div class="inputs" id="myProfileName">
 
+            </div>
+        </div>
 
-    </main>
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                Family name:
+            </div>
+            <div class="inputs" id="myProfileFamilyName">
+
+            </div>
+            <button class="button floatleft" id="editFamilyName" onclick="editFamilyName()">Edit</button>
+        </div>
+
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                E-mail:
+            </div>
+            <div class="inputs" id="myProfileEmail">
+
+            </div>
+        </div>
+
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                Password:
+            </div>
+            <div class="inputs" id="myProfilePassword">
+                **********
+            </div>
+            <button class="button floatleft" id="editPassword" onclick="editPassword()">Edit</button>
+        </div>
+
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                Gender:
+            </div>
+            <div class="inputs" id="myProfileGender">
+
+            </div>
+        </div>
+
+        <div class="profileInfo displayInlineBlock">
+            <div class="labels">
+                Birth date:
+            </div>
+            <div class="inputs" id="myProfileBirthday">
+
+            </div>
+        </div>
+        <div class="profileInfo displayInlineBlock">
+            <div class="floatleft" id="myProfileNotifications">
+
+            </div>
+            <button class="button floatleft" onclick="editNotifications()">Edit</button>
+        </div>
+
+    </article>
 </div>
