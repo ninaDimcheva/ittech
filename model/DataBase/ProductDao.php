@@ -171,6 +171,21 @@ class ProductDao
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
+	
+	/**
+	 * @return array
+	 */
+	public function getBrandsForType($type)
+	{
+		$stm = $this->pdo->prepare("SELECT b.`brand` FROM `brands` as b
+                                              JOIN `products` as p
+                                              ON (b.`brand_id` = p.`brand_id`)
+                                              JOIN `types` as t
+                                              ON (t.`type_id` = p.`type_id`)
+                                              WHERE t.`type` = ?");
+		$stm->execute(array($type));
+		return $stm->fetchAll(\PDO::FETCH_ASSOC);
+	}
 
     /**
      * @param $searched
