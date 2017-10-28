@@ -1,10 +1,12 @@
 // TODO make the message with the quantity more fancy;
 
 function showUserCart() {
+
     var userCart = document.getElementById('userCart');
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
+
             var cartProducts = JSON.parse(this.responseText);
             var totalAmountOrder = Number(0);
             // cartProducts is a plain array with keys - numbers;
@@ -49,6 +51,7 @@ function showUserCart() {
                     Number(cartProducts[i].orderedQuantity)).toFixed(2);
 
                 inputFiled.onchange = function () {
+
                     var productPrice = document.getElementById('price' + this.id).innerHTML;
                     checkQuantity(cartProducts[this.id], this.value, productPrice, this.id, this.max - Number(1));
                 };

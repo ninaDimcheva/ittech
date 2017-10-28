@@ -1,5 +1,7 @@
 <script src="js/confirmationOrderJS.js"></script>
 
+<div id="confirmOrder" style="border: 1px solid orange; height: 150px;">
+
 <h3>Please confirm your order</h3>
 
 <div id="statusOrder" style="border: 1px solid black; height: 150px;"></div>
@@ -11,13 +13,18 @@
 <br/>
 <!--TODO make the vizualisation of the product and make link to the cart-->
 
-<form method="post" action="controller/orderController.php">
-    Delivery address: *
-    <br/>
-    <input type="text" name= 'address' id="address" maxlength="70" size="70" required onkeyup="validateAddress()" onblur="validateAddress()" onfocus="validateAddress()"><br/>
-    <br/>
-    <div class="warnings">
-        <p id="addressWarning"></p>
-    </div>
-    <input type="submit" name="confirmedOrder" id='confirmedOrder' value="Confirm order" class="button" disabled>
-</form>
+<div id="addressConfirmOrder" style="border: 1px solid green; height: 150px;">
+
+</div>
+
+</div>
+
+<!--< method="post" action="controller/orderController.php">-->
+    <!--Delivery address: *-->
+    <!--<br/>-->
+    <!--<input type="text" name= 'address' id="address" maxlength="70" size="70" required onkeyup="validateAddress()" onblur="validateAddress()" onfocus="validateAddress()"><br/>-->
+    <!--<br/>-->
+    <!--<div class="warnings">-->
+        <!--<p id="addressWarning"></p>-->
+    <!--</div>-->
+    <!--<input type="submit" name="confirmedOrder" id='confirmedOrder' value="Confirm order" class="button" disabled>-->

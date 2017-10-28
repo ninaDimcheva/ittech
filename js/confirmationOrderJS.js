@@ -36,7 +36,6 @@ window.onload = function () {
                 emailUser.innerHTML = 'E-mail: ' + userEmail;
                 statusInformation.appendChild(emailUser);
 
-
                 // ------------------------------------------------------------------//
 
                 var userCartToOrder = document.getElementById('productsCartInformation');
@@ -73,10 +72,61 @@ window.onload = function () {
 
                 }
                 var totalAmountForOrder = document.createElement('h4');
-                totalAmountForOrder.innerHTML = 'Ordered quantity: ' + totalAmount;
+                totalAmountForOrder.innerHTML = 'Total: ' + totalAmount;
                 totalAmountForOrder.style.clear = 'both';
                 userCartToOrder.appendChild(totalAmountForOrder);
 
+                // ------------------------------------------------------------------//
+
+                var addressAndConfirmOrder = document.getElementById('addressConfirmOrder');
+                var deliveryAddressLabel = document.createElement('label');
+                deliveryAddressLabel.innerHTML = 'Delivery address: *';
+                deliveryAddressLabel.style.clear = 'both';
+                addressAndConfirmOrder.appendChild(deliveryAddressLabel);
+
+                var addressInput = document.createElement('input');
+                addressInput.type = 'text';
+                addressInput.name = 'address';
+                addressInput.id = 'address';
+                addressInput.maxLength = '70';
+                addressInput.size = '70';
+                addressInput.required = true;
+
+                addressInput.onkeyup = function () {
+                    validateAddress(this.value);
+                };
+
+                addressInput.onblur = function () {
+                    validateAddress(this.value);
+                };
+
+                addressInput.onfocus = function () {
+                    validateAddress(this.value);
+                };
+
+                addressAndConfirmOrder.appendChild(addressInput);
+
+                var warnings = document.createElement('div');
+                warnings.className = 'warnings';
+                addressAndConfirmOrder.appendChild(warnings);
+                var warningInfo = document.createElement('p');
+                warningInfo.id = 'addressWarning';
+                warnings.appendChild(warningInfo);
+
+                var confirmButton = document.createElement('input');
+                confirmButton.type = 'submit';
+                confirmButton.name = 'confirmedOrder';
+                confirmButton.id = 'confirmedOrder';
+                confirmButton.value = 'Confirm order';
+                confirmButton.className = 'button';
+                confirmButton.disabled = true;
+
+                confirmButton.onclick = function () {
+                    var addressOrder = document.getElementById('address').value;
+                    finalizationOrder(addressOrder);
+                };
+
+                addressAndConfirmOrder.appendChild(confirmButton);
             }
             else {
                 window.location.replace("http://localhost/ITTech/?page=login");
@@ -91,24 +141,52 @@ window.onload = function () {
 // -------------   validate the entered address:   --------------------//
 
 
-function validateAddress() {
-    var inputFieldAddress = document.getElementById('address').value;
+function validateAddress(addressOrder) {
     var addressWarning = document.getElementById('addressWarning');
     var error = false;
 
-    if (inputFieldAddress.length > 0 && inputFieldAddress.length <= 70){
+    if (addressOrder.length > 0 && addressOrder.length <= 70) {
         addressWarning.innerText = '✔';
         addressWarning.style.color = 'green';
 
-    }else {
+    } else {
         error = true;
         addressWarning.innerText = '✘';
         addressWarning.style.color = '#e60000';
     }
 
-    if (!error){
+    if (!error) {
         document.getElementById('confirmedOrder').disabled = false;
-    }else {
+    } else {
         document.getElementById('confirmedOrder').disabled = true;
     }
+}
+
+function finalizationOrder(addressOrder) {
+    var mainDiv = document.getElementById('confirmOrder');
+    mainDiv.innerHTML = '';
+    var finalStepNewOrder = new XMLHttpRequest();
+    finalStepNewOrder.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var detailsOrder = JSON.parse(this.responseText);
+            if (detailsOrder) {
+                var orderNumber = document.createElement('h4');
+                orderNumber.innerHTML = 'Your order number is: ' + detailsOrder['newOrderId'];
+                mainDiv.appendChild(orderNumber);
+
+                var statusOrder = document.createElement('h4');
+                statusOrder.innerHTML = 'The status of your order is: ' + detailsOrder['status'];
+                mainDiv.appendChild(statusOrder);
+
+                var addressDelivery = document.createElement('h4');
+                addressDelivery.innerHTML = 'The address for your delivery is: ' + detailsOrder['addressDelivery'];
+                mainDiv.appendChild(addressDelivery);
+
+            }
+
+        }
+    };
+    finalStepNewOrder.open("POST", "http://localhost/ittech/controller/orderController.php");
+    finalStepNewOrder.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    finalStepNewOrder.send("confirmedOrder=" + addressOrder);
 }
