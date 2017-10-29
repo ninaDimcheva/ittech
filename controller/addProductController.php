@@ -62,6 +62,19 @@ if (isset($_GET['getBrands'])){
     }
 }
 
+if(isset($_GET['getBrandsForType'])) {
+	$type = $_GET['getBrandsForType'];
+	try{
+		$result = ProductDao::getInstance()->getBrandsForType($type);
+		foreach ($result as $row) {
+			$brands[] = $row['brand'];
+		}
+		echo json_encode($brands,JSON_UNESCAPED_SLASHES);
+	}catch (\PDOException $e){
+//        TODO header("Location:../?page=error");
+	}
+}
+
 if (isset($_POST['addProduct'])){
     $error = false;
     $mainType = trim(htmlentities($_POST['mainType']));
@@ -127,9 +140,4 @@ if (isset($_POST['addProduct'])){
     }else{
 //        TODO header("Location:../?page=error");
     }
-
-
-
-
-
 }
