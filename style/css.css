@@ -305,7 +305,6 @@ nav ul li:hover {
     display: block;
     padding: 0;
     text-decoration: none;
-    border: 4px solid green;
 
 }
 
@@ -580,3 +579,20 @@ table, th, td{
 
 
 /*================== User cart ==========================*/
+
+/*================== My orders ==========================*/
+#tableUserOrders{
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+    width: 60%;
+    margin: 0 auto;
+
+}
+
+#tableUserOrders th td{
+    border: 1px solid black;
+
+}
+
+/*================== My orders ==========================*/
