@@ -7,7 +7,12 @@ function search(searched) {
                     var searchedProducts = JSON.parse(this.responseText);
                     showProducts(searchedProducts, 'article');
                 } else {
-                    document.getElementById('article').innerHTML = "Can't find it!";
+                    var article = document.getElementById('article');
+                    article.innerHTML = "";
+                    var noResult = document.createElement('img');
+                    noResult.src = './assets/displayImages/noResult.jpg';
+                    noResult.alt = 'no search result';
+                    article.appendChild(noResult);
                 }
             } else {
                 //TODO error
