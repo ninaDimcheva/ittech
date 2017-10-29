@@ -22,7 +22,7 @@ function showTypeApp() {
             }
         }
     };
-    showTypeElectric.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Computer and periphery');
+    showTypeElectric.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Electrical appliances');
     showTypeElectric.send();
 }
 

@@ -22,7 +22,7 @@ function showTypeGaming() {
             }
         }
     };
-    showTypeGaming.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Computer and periphery');
+    showTypeGaming.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Gaming');
     showTypeGaming.send();
 }
 

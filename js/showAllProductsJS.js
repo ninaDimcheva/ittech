@@ -196,6 +196,8 @@ function showProducts(productsObject, id) {
 
             currentProduct++;
         }
+
+
     }
 }
 

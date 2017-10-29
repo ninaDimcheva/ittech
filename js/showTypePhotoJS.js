@@ -22,7 +22,7 @@ function showTypePhoto() {
             }
         }
     };
-    showTypePhoto.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Computer and periphery');
+    showTypePhoto.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Photo and video');
     showTypePhoto.send();
 }
 

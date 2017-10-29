@@ -12,4 +12,4 @@ function showPromoProducts(orderBy) {
     getPromoProducts.open("Post", "http://localhost/ittech/controller/promoProductController.php");
     getPromoProducts.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     getPromoProducts.send('getPromoProducts=' + orderBy);
-};
+}

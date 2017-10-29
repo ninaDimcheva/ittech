@@ -120,7 +120,7 @@ class ProductDao
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE P.`archive` is null
-                                              ORDER BY $orderBy");
+                                              ORDER BY $orderBy LIMIT 4 OFFSET " . ((2 * 4) - 4));
         $stm->execute();
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 

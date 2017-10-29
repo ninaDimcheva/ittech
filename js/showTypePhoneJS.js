@@ -22,7 +22,7 @@ function showTypePhone() {
             }
         }
     };
-    showTypePhone.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Computer and periphery');
+    showTypePhone.open("GET", "http://localhost/ittech/controller/addProductController.php?getTypes=" + 'Phones and tablets');
     showTypePhone.send();
 }
 

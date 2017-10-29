@@ -49,4 +49,16 @@ if (isset($_POST['promoProductObj'])) {
 }
 
 
+// -----------------------------------------------
+//if(isset($_GET["page"])){
+//	$page = $_GET["page"];
+//	if($page < 0){
+//		$page = 1;
+//	}
+//	echo json_encode(getImagesForUser($_SESSION["user_id"], $page), JSON_UNESCAPED_SLASHES);
+//}
+//else{
+//	echo json_encode(getImagesForUser($_SESSION["user_id"]), JSON_UNESCAPED_SLASHES);
+//}
+
 

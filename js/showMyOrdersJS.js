@@ -1,5 +1,4 @@
-window.onload = function () {
-
+function showMyOrders () {
     var myOrders = document.getElementById('myOrders');
     var userOrders = new XMLHttpRequest();
     userOrders.onreadystatechange = function () {
@@ -35,5 +34,5 @@ window.onload = function () {
     userOrders.open("POST","http://localhost/ittech/controller/showMyOrdersController.php");
     userOrders.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     userOrders.send('getOrdersUser');
-};
+}
 
