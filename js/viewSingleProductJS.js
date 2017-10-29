@@ -64,8 +64,9 @@ function viewSingleProduct() {
             specifications.margin = '250px';
             var list = document.createElement('ul');
             for (var i = 0; i < viewProduct.specifications.length; i++) {
+                // alert(viewProduct.specifications[i].name + ' - ' + viewProduct.specifications[i].value);
                 var li = document.createElement('li');
-                li.innerHTML = viewProduct.specifications[i].name + '-' + viewProduct.specifications[i].value;
+                li.innerHTML = viewProduct.specifications[i].name + ': ' + viewProduct.specifications[i].value;
                 list.appendChild(li);
             }
             li.innerHTML = 'On stock: ' + viewProduct.quontity + ' psc;';

@@ -182,7 +182,7 @@ class ProductDao
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
-                                              WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
+                                              WHERE (T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ?) AND P.`archive` is null");
         $stm->execute(array("%$searched%", "%$searched%", "%$searched%"));
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -218,7 +218,7 @@ class ProductDao
      * @param $productsArray
      * @return array with product objects
      */
-    protected function createProductsObjs($productsArray)
+    private function createProductsObjs($productsArray)
     {
         foreach ($productsArray as $row) {
             $product = new Product($row['type'], $row['brand'], $row['model'], $row['price'], $row['quontity'], array(), array());
@@ -237,7 +237,7 @@ class ProductDao
     /**
      * @param $products
      */
-    protected function addSpecObj(&$products)
+    private function addSpecObj(&$products)
     {
         $stm = $this->pdo->prepare("SELECT S.`name` as spec_name, PS.`value` as spec_value
                                               FROM `products_specifications` as PS
@@ -259,7 +259,7 @@ class ProductDao
     /**
      * @param $products
      */
-    protected function addImgObjs(&$products)
+    private function addImgObjs(&$products)
     {
         $stm = $this->pdo->prepare("SELECT `img_url`, `alt` FROM `products_imgs` WHERE `product_id` = ? ORDER BY `product_id`");
         foreach ($products as $product) {
@@ -274,9 +274,6 @@ class ProductDao
         }
     }
 
-    /**
-     * @return array|bool
-     */
     public function getProductsInPromo()
     {
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
@@ -300,17 +297,13 @@ class ProductDao
         return $products;
     }
 
-    /**
-     * @param $searched
-     * @return array|bool
-     */
     public function search($searched)
     {
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
-                                              WHERE T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ? AND P.`archive` is null");
+                                              WHERE (T.`type` LIKE ? OR B.`brand` LIKE ? OR P.`model` LIKE ?) AND P.`archive` is null");
         $stm->execute(array("%$searched%", "%$searched%", "%$searched%"));
         if ($stm->rowCount() > 0) {
             $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
@@ -324,28 +317,6 @@ class ProductDao
         $this->addImgObjs($products);
 
         return $products;
-    }
 
-    public function getFavorites($userId){
-        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
-                                              FROM `products` as P
-                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
-                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
-                                              JOIN `favorites` as F ON F.`product_id` = P.`product_id`
-                                              WHERE P.`archive` is null AND F.`user_id` = ?");
-        $stm->execute(array($userId));
-        if ($stm->rowCount() == 0){
-            return false;
-        }
-
-        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
-
-        $products = $this->createProductsObjs($result);
-
-        $this->addSpecObj($products);
-
-        $this->addImgObjs($products);
-
-        return $products;
     }
 }
