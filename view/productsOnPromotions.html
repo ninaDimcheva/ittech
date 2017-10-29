@@ -1,4 +1,17 @@
-
+<aside>
+    <div id="orderByDiv">
+        Order by:
+        <select name="orderBy" id="orderBy" onchange="showPromoProducts(this.value)">
+            <option value='promotion_id desc' selected>Newest</option>
+            <option value="price asc">Price asc.</option>
+            <option value="type asc">Type asc.</option>
+            <option value="brand asc">Brand asc.</option>
+            <option value="price desc">Price desc.</option>
+            <option value="type desc">Type desc.</option>
+            <option value="brand desc">Brand desc.</option>
+        </select>
+    </div>
+</aside>
 
 <article id="promoArticle">
 

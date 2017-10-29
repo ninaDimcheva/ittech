@@ -1,4 +1,7 @@
-function showAllProducts() {
+function showAllProducts(orderBy) {
+
+    orderBy = orderBy || null;
+
     if (sessionStorage.search) {
         search(sessionStorage.search);
         sessionStorage.clear();
@@ -11,8 +14,9 @@ function showAllProducts() {
 
             }
         };
-        request.open("GET", "http://localhost/ittech/controller/mainController.php?getAllProducts");
-        request.send();
+        request.open("POST", "http://localhost/ittech/controller/mainController.php");
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send("getAllProducts=" + orderBy);
     }
 }
 
@@ -195,3 +199,16 @@ function showProducts(productsObject, id) {
     }
 }
 
+// function mainOrderBy(orderBy) {
+//     var orderBy = new XMLHttpRequest();
+//     orderBy.onreadystatechange = function () {
+//         if (this.readyState === 4 && this.status === 200) {
+//             var productsObject = JSON.parse(this.responseText);
+//             showProducts(productsObject, 'article');
+//
+//         }
+//     };
+//     orderBy.open("POST", "http://localhost/ittech/controller/mainController.php");
+//     orderBy.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//     orderBy.send("orderBy");
+// }

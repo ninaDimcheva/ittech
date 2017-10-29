@@ -1,4 +1,7 @@
-function showPromoProducts() {
+function showPromoProducts(orderBy) {
+
+    orderBy = orderBy || null;
+
     var getPromoProducts = new XMLHttpRequest();
     getPromoProducts.onreadystatechange = function () {
         var productsObject = JSON.parse(this.responseText);
@@ -8,5 +11,5 @@ function showPromoProducts() {
     };
     getPromoProducts.open("Post", "http://localhost/ittech/controller/promoProductController.php");
     getPromoProducts.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    getPromoProducts.send('getPromoProducts');
+    getPromoProducts.send('getPromoProducts=' + orderBy);
 };

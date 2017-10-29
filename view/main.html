@@ -1,58 +1,15 @@
 <aside>
-    <!--&lt;!&ndash;TODO MAKE THE FILTRATION SIDE, MAKE IT AN ADDITIONAL PAGE TO ADD&ndash;&gt;-->
-
-    <div class="links">
-        <a href="?page=login">Login</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=contactITTech">contactITTech</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=productsOnPromotions">productsOnPromotions</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=shops">shops</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=terms">termsForOnlineShopping</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=myCart">myCart</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=myProfile">myProfile</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=myOrders">myOrders</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=editProduct">editProduct</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=addProduct">addProduct</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=addPromoProduct">addPromoProduct</a>
-    </div>
-
-    <div class="links">
-        <a href="?page=editUserPrivilege">editUserPrivilege</a>
-    </div>
-
-    <div>
-        <form action="controller/logoutController.php" method="post">
-            <input type="submit" name="logout" value="Logout" class="button">
-        </form>
+    <div id="orderByDiv">
+        Order by:
+        <select name="orderBy" id="orderBy" onchange="showAllProducts(this.value)">
+            <option value='product_id desc' selected>Newest</option>
+            <option value="price asc">Price asc.</option>
+            <option value="type asc">Type asc.</option>
+            <option value="brand asc">Brand asc.</option>
+            <option value="price desc">Price desc.</option>
+            <option value="type desc">Type desc.</option>
+            <option value="brand desc">Brand desc.</option>
+        </select>
     </div>
 </aside>
 <article id="article">

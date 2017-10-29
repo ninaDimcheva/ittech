@@ -109,14 +109,20 @@ class ProductDao
     /**
      * @return array with product objects
      */
-    public function getAllProducts(){
-            $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
+    public function getAllProducts($orderBy)
+    {
+        if ($orderBy == 'null') {
+            $orderBy = 'product_id desc';
+        }
+
+        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
-                                              WHERE P.`archive` is null");
-            $stm->execute();
-            $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+                                              WHERE P.`archive` is null
+                                              ORDER BY $orderBy");
+        $stm->execute();
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 
         $products = $this->createProductsObjs($result);
 
@@ -171,21 +177,21 @@ class ProductDao
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
-	
-	/**
-	 * @return array
-	 */
-	public function getBrandsForType($type)
-	{
-		$stm = $this->pdo->prepare("SELECT b.`brand` FROM `brands` as b
+
+    /**
+     * @return array
+     */
+    public function getBrandsForType($type)
+    {
+        $stm = $this->pdo->prepare("SELECT b.`brand` FROM `brands` as b
                                               JOIN `products` as p
                                               ON (b.`brand_id` = p.`brand_id`)
                                               JOIN `types` as t
                                               ON (t.`type_id` = p.`type_id`)
                                               WHERE t.`type` = ?");
-		$stm->execute(array($type));
-		return $stm->fetchAll(\PDO::FETCH_ASSOC);
-	}
+        $stm->execute(array($type));
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     /**
      * @param $searched
@@ -257,8 +263,7 @@ class ProductDao
         $stm = $this->pdo->prepare("SELECT S.`name` as spec_name, PS.`value` as spec_value
                                               FROM `products_specifications` as PS
                                               JOIN `specifications` as S ON PS.`spec_id` = S.`spec_id`
-                                              WHERE `product_id` = ?
-                                              order by `product_id`");
+                                              WHERE `product_id` = ?");
         foreach ($products as $product) {
             $stm->execute(array($product->getProductId()));
             $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
@@ -276,7 +281,7 @@ class ProductDao
      */
     private function addImgObjs(&$products)
     {
-        $stm = $this->pdo->prepare("SELECT `img_url`, `alt` FROM `products_imgs` WHERE `product_id` = ? ORDER BY `product_id`");
+        $stm = $this->pdo->prepare("SELECT `img_url`, `alt` FROM `products_imgs` WHERE `product_id` = ?");
         foreach ($products as $product) {
             $stm->execute(array($product->getProductId()));
             $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
@@ -289,14 +294,20 @@ class ProductDao
         }
     }
 
-    public function getProductsInPromo()
+    public function getProductsInPromo($orderBy)
     {
+
+        if ($orderBy == 'null') {
+            $orderBy = 'promotion_id desc';
+        }
+
         $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
                                                     FROM `products` as P
                                                     JOIN `types` as T ON P.`type_id` = T.`type_id`
                                                     JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                                     JOIN `promotions` as Promo ON Promo.`product_id` = P.`product_id`
-                                                    WHERE P.`archive` is null AND Promo.`end_date` > CURRENT_DATE AND `start_date` <= CURRENT_DATE");
+                                                    WHERE P.`archive` is null AND Promo.`end_date` > CURRENT_DATE AND `start_date` <= CURRENT_DATE
+                                                    ORDER BY $orderBy");
         $stm->execute();
         if ($stm->rowCount() > 0) {
             $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
@@ -333,5 +344,29 @@ class ProductDao
 
         return $products;
 
+    }
+
+    public function getFavorites($userId)
+    {
+        $stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              JOIN `favorites` as F ON F.`product_id` = P.`product_id`
+                                              WHERE P.`archive` is null AND F.`user_id` = ?");
+        $stm->execute(array($userId));
+        if ($stm->rowCount() == 0) {
+            return false;
+        }
+
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+        $products = $this->createProductsObjs($result);
+
+        $this->addSpecObj($products);
+
+        $this->addImgObjs($products);
+
+        return $products;
     }
 }

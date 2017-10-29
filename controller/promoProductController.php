@@ -57,7 +57,8 @@ if (isset($_POST['getPromoProducts'])){
         $isAdmin = false;
     }
     try {
-        $promoProducts = ProductDao::getInstance()->getProductsInPromo();
+        $orderBy = trim(htmlentities($_POST['getPromoProducts']));
+        $promoProducts = ProductDao::getInstance()->getProductsInPromo($orderBy);
         if ($promoProducts){
             $promoProducts[] = $isAdmin;
             echo json_encode($promoProducts);

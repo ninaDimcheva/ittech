@@ -16,14 +16,15 @@ function __autoload($class_name)
 }
 
 session_start();
-if (isset($_GET['getAllProducts'])) {
+if (isset($_POST['getAllProducts'])) {
     if (isset($_SESSION['user'])) {
         $isAdmin = $_SESSION['user']->getIsAdmin();
     } else {
         $isAdmin = false;
     }
     try {
-        $products = ProductDao::getInstance()->getAllProducts();
+        $orderBy = trim(htmlentities($_POST['getAllProducts']));
+        $products = ProductDao::getInstance()->getAllProducts($orderBy);
         if ($products) {
             //add isAdmin value in the last element of the array with products
             $products[] = $isAdmin;

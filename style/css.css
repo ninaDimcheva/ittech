@@ -479,9 +479,10 @@ main{
 }
 aside{
     width: 15%;
-    border: 1px solid black;
+    border: 1px solid gray;
     float: left;
     box-sizing: border-box;
+    min-height: 400px;
 }
 article{
     width: 85%;
@@ -553,9 +554,12 @@ article{
 #userNavigation ul{
     list-style-type: disc;
 }
-#userInformation, #myFavorites, #userProfile {
+#userInformation,  #userProfile {
     text-align: center;
     margin: 10px;
+}
+#myFavorites{
+    text-align: center;
 }
 
 /*================== My profil ==========================*/
