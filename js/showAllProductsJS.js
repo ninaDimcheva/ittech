@@ -1,22 +1,25 @@
 function showAllProducts(orderBy) {
 
-    orderBy = orderBy || null;
+    if (self.location == 'http://localhost/ittech/' || self.location == 'http://localhost/ittech/?page=main') {
 
-    if (sessionStorage.search) {
-        search(sessionStorage.search);
-        sessionStorage.clear();
-    } else {
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                var productsObject = JSON.parse(this.responseText);
-                showProducts(productsObject, 'article');
+        orderBy = orderBy || null;
 
-            }
-        };
-        request.open("POST", "http://localhost/ittech/controller/mainController.php");
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        request.send("getAllProducts=" + orderBy);
+        if (sessionStorage.search) {
+            search(sessionStorage.search);
+            sessionStorage.clear();
+        } else {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var productsObject = JSON.parse(this.responseText);
+                    showProducts(productsObject, 'article');
+
+                }
+            };
+            request.open("POST", "http://localhost/ittech/controller/mainController.php");
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.send("getAllProducts=" + orderBy);
+        }
     }
 }
 
@@ -30,7 +33,7 @@ function sendProductObject(product) {
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ITTech/?page=viewSingleProduct");
+            window.location.replace("http://localhost/ittech/?page=viewSingleProduct");
         }
     };
     request.open("POST", "http://localhost/ittech/controller/mainController.php");
@@ -48,7 +51,7 @@ function sendToCart(product) {
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ITTech/?page=userCart");
+            window.location.replace("http://localhost/ittech/?page=userCart");
         }
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
@@ -58,17 +61,17 @@ function sendToCart(product) {
 
 function sendToPromo(promoProduct) {
     sessionStorage.promoObj = JSON.stringify(promoProduct);
-    window.location.replace("http://localhost/ITTech/?page=addPromoProduct");
+    window.location.replace("http://localhost/ittech/?page=addPromoProduct");
 }
 
 function removePromo(promoProduct) {
     sessionStorage.removePromoObj = JSON.stringify(promoProduct);
-    window.location.replace("http://localhost/ITTech/?page=removePromoProduct");
+    window.location.replace("http://localhost/ittech/?page=removePromoProduct");
 }
 
 function sendToEditProduct(product) {
     sessionStorage.editProductObj = JSON.stringify(product);
-    window.location.replace("http://localhost/ITTech/?page=editProduct");
+    window.location.replace("http://localhost/ittech/?page=editProduct");
 }
 
 function showProducts(productsObject, id) {
@@ -113,7 +116,7 @@ function showProducts(productsObject, id) {
             panel.appendChild(imageDiv);
 
             var img = document.createElement('img');
-            img.src = "http://localhost/ITTech/" + productsObject[currentProduct].imgs[0].img_url;
+            img.src = "http://localhost/ittech/" + productsObject[currentProduct].imgs[0].img_url;
             img.className = 'frontImg';
             img.value = productsObject[currentProduct];
             img.onclick = function () {

@@ -9,10 +9,17 @@ function showTypeTV() {
                 var types = JSON.parse(this.responseText);
                 typeDiv.innerHTML = '';
                 var typeList = document.createElement("ul");
+                typeList.onclick = function () {
+                    alert('OK')
+                };
                 for(var i in types){
                     var list = document.createElement('li');
                     list.innerHTML = types[i];
                     list.className = 'types';
+                    list.onclick = function () {
+                        alert('OK')
+                      // showProductsByType(types[i]);
+                    };
                     // list.onmouseover = function () {
                     //     showBrandTV(this.innerText);
                     // };
@@ -79,5 +86,8 @@ function hideTypeTV(){
 // }
 
 
-
+function showProductsByType(type){
+    sessionStorage.selectedType = type;
+    window.location.replace("http://localhost/ittech/?page=productsByType");
+}
 

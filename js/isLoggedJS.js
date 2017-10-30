@@ -14,7 +14,7 @@ function isLogged(){
                 var navigationButton = document.getElementById('loginButton');
                 navigationButton.innerHTML =capitalizeFirstLetter(name) ;
                     var image = document.createElement('img');
-                   image.src="http://localhost/ITTech/assets/displayImages/person.png";
+                   image.src="http://localhost/ittech/assets/displayImages/person.png";
                    image.alt='Person';
                    image.id = 'login';
                    navigationButton.appendChild(image);

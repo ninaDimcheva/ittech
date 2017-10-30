@@ -1,39 +1,41 @@
 function showMainTypes() {
-    var getMainTypes = new XMLHttpRequest();
-    getMainTypes.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            if (this.status === 200) {
-                if(this.responseText.length > 2){
-                    document.getElementById('mainTypeDiv').innerHTML = '';
-                    var mainTypes = JSON.parse(this.responseText);
-                    var select = document.createElement('select');
-                    select.id = 'mainType';
-                    select.name = 'mainType';
-                    select.onchange = function () {
-                        showTypes(this.value);
-                    };
-                    document.getElementById('mainTypeDiv').appendChild(select);
-                    var mainOption = document.createElement('option');
-                    mainOption.disabled = true;
-                    mainOption.selected = true;
-                    mainOption.innerText = 'Main Type';
-                    document.getElementById('mainType').appendChild(mainOption);
-                    for (var i in mainTypes) {
-                        var option = document.createElement('option');
-                        option.value = mainTypes[i];
-                        option.innerText = mainTypes[i];
-                        document.getElementById('mainType').appendChild(option);
+    if (self.location == 'http://localhost/ittech/?page=addProduct') {
+        var getMainTypes = new XMLHttpRequest();
+        getMainTypes.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    if (this.responseText.length > 2) {
+                        document.getElementById('mainTypeDiv').innerHTML = '';
+                        var mainTypes = JSON.parse(this.responseText);
+                        var select = document.createElement('select');
+                        select.id = 'mainType';
+                        select.name = 'mainType';
+                        select.onchange = function () {
+                            showTypes(this.value);
+                        };
+                        document.getElementById('mainTypeDiv').appendChild(select);
+                        var mainOption = document.createElement('option');
+                        mainOption.disabled = true;
+                        mainOption.selected = true;
+                        mainOption.innerText = 'Main Type';
+                        document.getElementById('mainType').appendChild(mainOption);
+                        for (var i in mainTypes) {
+                            var option = document.createElement('option');
+                            option.value = mainTypes[i];
+                            option.innerText = mainTypes[i];
+                            document.getElementById('mainType').appendChild(option);
+                        }
+                    } else {
+                        // TODO window.location.replace('http://localhost/ittech?page=error');
                     }
-                }else {
+                } else {
                     // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
-            }else {
-                // TODO window.location.replace('http://localhost/ittech?page=error');
             }
-        }
-    };
-    getMainTypes.open("GET", "http://localhost/ittech/controller/addProductController.php?getMainTypes");
-    getMainTypes.send();
+        };
+        getMainTypes.open("GET", "http://localhost/ittech/controller/addProductController.php?getMainTypes");
+        getMainTypes.send();
+    }
 }
 
 function showTypes(mainType) {
@@ -41,7 +43,7 @@ function showTypes(mainType) {
     getTypes.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if(this.responseText.length > 2){
+                if (this.responseText.length > 2) {
                     document.getElementById('typeDiv').innerHTML = '';
                     document.getElementById('brandDiv').innerHTML = '';
                     document.getElementById('inputModel').innerHTML = '';
@@ -73,10 +75,10 @@ function showTypes(mainType) {
                         document.getElementById('type').appendChild(option);
                     }
 
-                }else {
+                } else {
                     // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
-            }else {
+            } else {
                 // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
@@ -86,13 +88,12 @@ function showTypes(mainType) {
 }
 
 
-
 function showBrands(type) {
     var getBrands = new XMLHttpRequest();
     getBrands.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if(this.responseText.length > 2){
+                if (this.responseText.length > 2) {
                     document.getElementById('brandDiv').innerHTML = '';
                     document.getElementById('inputModel').innerHTML = '';
                     document.getElementById('inputPrice').innerHTML = '';
@@ -123,10 +124,10 @@ function showBrands(type) {
                         option.innerText = brands[i];
                         document.getElementById('brand').appendChild(option);
                     }
-                }else {
+                } else {
                     // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
-            }else {
+            } else {
                 // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
@@ -140,7 +141,7 @@ function showAttributes(type) {
     getSpecifications.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if(this.responseText.length > 2){
+                if (this.responseText.length > 2) {
                     document.getElementById('inputModel').innerHTML = '';
                     document.getElementById('inputPrice').innerHTML = '';
                     document.getElementById('inputQuontity').innerHTML = '';
@@ -250,10 +251,10 @@ function showAttributes(type) {
                     submit.name = 'addProduct';
                     submit.value = 'Add product';
                     document.getElementById('submit').appendChild(submit);
-                }else {
+                } else {
                     // TODO window.location.replace('http://localhost/ittech?page=error');
                 }
-            }else {
+            } else {
                 // TODO window.location.replace('http://localhost/ittech?page=error');
             }
         }
@@ -262,8 +263,8 @@ function showAttributes(type) {
     getSpecifications.send();
 }
 
-function checkImgSize(size, id){
-    if (size > 2097152){
+function checkImgSize(size, id) {
+    if (size > 2097152) {
         alert('The size of uploded image must be up to 2M');
         document.getElementById(id).value = '';
     }

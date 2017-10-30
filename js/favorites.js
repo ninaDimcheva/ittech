@@ -1,17 +1,19 @@
 function showFavorites() {
-    var getFavorites = new XMLHttpRequest();
-    getFavorites.onreadystatechange = function () {
-        if (this.responseText){
-            var favoriteProduucts = JSON.parse(this.responseText);
+    if (self.location == 'http://localhost/ittech/?page=myFavorites') {
+        var getFavorites = new XMLHttpRequest();
+        getFavorites.onreadystatechange = function () {
+            if (this.responseText) {
+                var favoriteProduucts = JSON.parse(this.responseText);
 
-            showProducts(favoriteProduucts, 'favoritesArticle');
-        }else {
-            document.getElementById('favoritesArticle').innerHTML = 'You have no products in favorites';
-        }
-    };
-    getFavorites.open("Post", "http://localhost/ittech/controller/favouriteProductController.php");
-    getFavorites.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    getFavorites.send('getFavorites');
+                showProducts(favoriteProduucts, 'favoritesArticle');
+            } else {
+                document.getElementById('favoritesArticle').innerHTML = 'You have no products in favorites';
+            }
+        };
+        getFavorites.open("Post", "http://localhost/ittech/controller/favouriteProductController.php");
+        getFavorites.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        getFavorites.send('getFavorites');
+    }
 }
 
 function addFavourite(productId) {
@@ -24,13 +26,13 @@ function addFavourite(productId) {
                 favoritesSpan.style.color = 'red';
 
                 var imageFavourites = document.getElementById('imageFavourites');
-                imageFavourites.src = "http://localhost/ITTech/assets/displayImages/heart.png";
+                imageFavourites.src = "http://localhost/ittech/assets/displayImages/heart.png";
 
                 var favourites = document.getElementById('favourites');
-                favourites.onclick = function (){
+                favourites.onclick = function () {
                     removeFavourite(productId);
                 };
-            }else {
+            } else {
                 //TODO error
             }
         }
@@ -50,13 +52,13 @@ function removeFavourite(productId) {
                 favoritesSpan.style.color = 'black';
 
                 var imageFavourites = document.getElementById('imageFavourites');
-                imageFavourites.src = "http://localhost/ITTech/assets/displayImages/emptyHeart.png";
+                imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
 
                 var favourites = document.getElementById('favourites');
-                favourites.onclick = function (){
+                favourites.onclick = function () {
                     addFavourite(productId);
                 };
-            }else {
+            } else {
                 //TODO error
             }
         }

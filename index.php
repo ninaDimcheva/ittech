@@ -24,7 +24,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'main' : require_once 'view/main.html';
                 break;
-            case  'contactITTech' : require_once 'view/contactITTech.html';
+            case  'contactittech' : require_once 'view/contactittech.html';
                 break;
             case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                 break;
@@ -35,6 +35,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
             case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
                 break;
             case 'removePromoProduct' : require_once 'view/removePromoProduct.html';
+                break;
+            case 'productsByType' : require_once 'view/productsByType.html';
                 break;
             default : require_once 'view/error.html';
         }
@@ -55,7 +57,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
                 case 'main' : require_once 'view/main.html';
                     break;
-                case  'contactITTech' : require_once 'view/contactITTech.html';
+                case  'contactittech' : require_once 'view/contactittech.html';
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;
@@ -69,6 +71,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
 	            case 'confirmOrder' : require_once 'view/confirmationOrder.html';
 		            break;
+                case 'productsByType' : require_once 'view/productsByType.html';
+                    break;
                 default : require_once 'view/error.html';
             }
         }else{
@@ -83,7 +87,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'main' : require_once 'view/main.html';
                     break;
-                case  'contactITTech' : require_once 'view/contactITTech.html';
+                case  'contactittech' : require_once 'view/contactittech.html';
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;
@@ -97,6 +101,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
 	            case 'confirmOrder' : require_once 'view/confirmationOrder.html';
 		            break;
+                case 'productsByType' : require_once 'view/productsByType.html';
+                    break;
                 default : require_once 'view/error.html';
             }
         }else{

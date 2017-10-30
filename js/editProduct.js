@@ -12,7 +12,7 @@ window.onload = function () {
         imageDiv.style.textAlign = 'center';
 
         var image = document.createElement('img');
-        image.src = "http://localhost/ITTech/" + productToEditObj.imgs[0].img_url;
+        image.src = "http://localhost/ittech/" + productToEditObj.imgs[0].img_url;
         image.style.width = '150px';
         image.style.height = 'auto';
         imageDiv.appendChild(image);

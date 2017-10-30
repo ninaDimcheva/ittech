@@ -31,12 +31,12 @@ function clickSearch(event) {
     var datalist = document.getElementById('autocomplete');
 
     if (event.keyCode === 13 || event.which === 13) {
-        if (self.location == 'http://localhost/ITTech/' || self.location == 'http://localhost/ITTech/?page=main'){
+        if (self.location == 'http://localhost/ittech/' || self.location == 'http://localhost/ittech/?page=main'){
             searched.innerHTML = '';
             search(searched.value);
         }else{
             sessionStorage.search = searched.value;
-            window.location.replace("http://localhost/ITTech/");
+            window.location.replace("http://localhost/ittech/");
         }
     } else {
         var getMatchedWords = new XMLHttpRequest();

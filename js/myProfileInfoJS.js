@@ -1,38 +1,40 @@
 function showMyProfile() {
-    var getUserProfile = new XMLHttpRequest();
-    getUserProfile.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            if (this.status === 200) {
-                var userProfile = JSON.parse(this.responseText);
-                var name = document.getElementById('myProfileName');
-                name.innerText = capitalizeFirstLetter(userProfile.name);
+    if (self.location == 'http://localhost/ittech/?page=myProfile') {
+        var getUserProfile = new XMLHttpRequest();
+        getUserProfile.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    var userProfile = JSON.parse(this.responseText);
+                    var name = document.getElementById('myProfileName');
+                    name.innerText = capitalizeFirstLetter(userProfile.name);
 
-                var familyName = document.getElementById('myProfileFamilyName');
-                familyName.innerText = capitalizeFirstLetter(userProfile.family_name);
+                    var familyName = document.getElementById('myProfileFamilyName');
+                    familyName.innerText = capitalizeFirstLetter(userProfile.family_name);
 
-                var email = document.getElementById('myProfileEmail');
-                email.innerText = userProfile.email;
+                    var email = document.getElementById('myProfileEmail');
+                    email.innerText = userProfile.email;
 
-                var gender = document.getElementById('myProfileGender');
-                gender.innerText = userProfile.gender;
+                    var gender = document.getElementById('myProfileGender');
+                    gender.innerText = userProfile.gender;
 
-                var birthday = document.getElementById('myProfileBirthday');
-                birthday.innerText = userProfile.birthday;
+                    var birthday = document.getElementById('myProfileBirthday');
+                    birthday.innerText = userProfile.birthday;
 
-                var notifications = document.getElementById('myProfileNotifications');
-                if (userProfile.notifications) {
-                    notifications.innerText = 'You are subscribed to receive information about promotions and new products!';
+                    var notifications = document.getElementById('myProfileNotifications');
+                    if (userProfile.notifications) {
+                        notifications.innerText = 'You are subscribed to receive information about promotions and new products!';
+                    } else {
+                        notifications.innerText = 'You are not subscribed to receive information about promotions and new products!';
+
+                    }
                 } else {
-                    notifications.innerText = 'You are not subscribed to receive information about promotions and new products!';
-
+                    //TODO error
                 }
-            } else {
-                //TODO error
             }
-        }
-    };
-    getUserProfile.open("GET", "http://localhost/ittech/controller/userProfileController.php?getUserProfile");
-    getUserProfile.send();
+        };
+        getUserProfile.open("GET", "http://localhost/ittech/controller/userProfileController.php?getUserProfile");
+        getUserProfile.send();
+    }
 }
 
 function editNotifications() {
