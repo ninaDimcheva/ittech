@@ -1,3 +1,33 @@
 <div id="viewSingleProduct">
 
 </div>
+<div id="reviewDiv" class="clearBoth">
+    <div id="ratingStarsDiv">
+
+    </div>
+    <p><span id="customerReviewsNum"></span> customer reviews</p>
+</div>
+
+<button class="button" onclick="showAddReview(this.value)" id="showAddReviewBtn">Review product</button>
+
+<div id="addReviewDiv">
+    <h3>Review product</h3>
+    <div id="reviewStarsDiv">
+        <i id="reviewStar1" class="fa fa-star-o fa-2x" onclick="rate(this.id)"></i>
+        <i id="reviewStar2" class="fa fa-star-o fa-2x" onclick="rate(this.id)"></i>
+        <i id="reviewStar3" class="fa fa-star-o fa-2x" onclick="rate(this.id)"></i>
+        <i id="reviewStar4" class="fa fa-star-o fa-2x" onclick="rate(this.id)"></i>
+        <i id="reviewStar5" class="fa fa-star-o fa-2x" onclick="rate(this.id)"></i>
+    </div>
+    <div class="clearBoth">
+        <textarea name="review" id="reviewMessage" cols="60" rows="5" placeholder="...up to 500 characters"></textarea>
+    </div>
+    <button class="button" id="addReview" onclick="addReview(this.value)" >Review</button>
+</div>
+
+<div id="usersReviews">
+
+</div>
+
+
+

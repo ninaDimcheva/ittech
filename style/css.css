@@ -237,7 +237,7 @@ header ul li:hover {
 #mainNavigation{
     width:150px;
     height:80px;
-    border:1px solid threedshadow;
+    border:1px solid black;
     display:none;
     z-index: 1;
     position: absolute;
@@ -295,17 +295,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
-}
-
-#tvBrands{
-    position: absolute;
-    float: left;
-    display: none;
-    width: 167px;
-    text-align: left;
-    z-index: 1;
-    background-color: #e60000;
-    color: white;
+    margin-top: 10px;
 }
 
 .types{
@@ -313,12 +303,6 @@ nav ul li:hover {
     padding: 0;
     text-decoration: none;
 
-}
-
-.brands{
-    display: block;
-    padding: 0;
-    text-decoration: none;
 }
 
 #pc{
@@ -336,6 +320,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 #phones{
@@ -353,6 +338,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 #electric{
@@ -370,6 +356,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 #smallApp{
@@ -387,6 +374,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 #photo{
@@ -404,6 +392,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 #gaming{
@@ -421,6 +410,7 @@ nav ul li:hover {
     z-index: 1;
     background-color: #e60000;
     color: white;
+    margin-top: 10px;
 }
 
 
@@ -514,7 +504,7 @@ article{
 
 .imageDiv{
     width: 240px;
-    height:300px;
+    height:250px;
 }
 .frontImg{
     max-width:100%;
@@ -522,7 +512,7 @@ article{
 }
 
 .imgPromo{
-    width: 80px;
+    width: 70px;
     height: auto;
     float: left;
 }

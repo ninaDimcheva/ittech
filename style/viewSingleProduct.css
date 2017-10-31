@@ -1,0 +1,30 @@
+
+.fa-star {
+    color: #b30000;
+
+}
+
+.fa-star-o {
+    color: #b30000;
+    cursor: pointer;
+}
+
+#addReviewDiv {
+    text-align: center;
+    width: 500px;
+    display: none;
+    border: 1px solid grey;
+}
+
+.userReview {
+    margin-top: 5px;
+    width: 500px;
+    border: 1px solid grey;
+}
+
+#userMessage {
+    height: 50px;
+    border: 1px solid lightgrey;
+}
+
+

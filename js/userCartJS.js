@@ -1,6 +1,7 @@
 // TODO make the message with the quantity more fancy;
 
 function showUserCart() {
+
     if (self.location == 'http://localhost/ittech/?page=userCart') {
         var userCart = document.getElementById('userCart');
         var request = new XMLHttpRequest();
@@ -76,9 +77,9 @@ function showUserCart() {
                     removeButton.value = i;
                     removeButton.className = 'button';
                     removeButton.onclick = function () {
-                        //var rowIndex = this.value;
-                        deleteProductFromCart(this.value);
-                        //cartProducts.splice(rowIndex, 1);
+                        var indexToBeDeleted = this.value;        // remember index, because the button is about to be removed
+                        deleteProductFromCart(indexToBeDeleted);  // delete selected row from table
+                        cartProducts.splice(indexToBeDeleted, 1); // clear from cart products, the deleted row from the table
                     };
 
                     removeProduct.appendChild(removeButton);
@@ -174,34 +175,44 @@ function deleteProductFromCart(productObjectID) {
                 //recalculate new total value for the whole order
                 totalAmount.innerHTML = Number(totalAmountNumber).toFixed(2);
 
+                var userCart = document.getElementById('userCart');
+
                 //delete selected row
                 row.parentNode.removeChild(row);
 
-                //update the remaining row numbers
-                var rowCount = Number(document.getElementById('userCart').rows.length);
+                //we need to update the remaining row numbers
+                var rowCount = Number(userCart.rows.length);
 
                 //start from deleted row
-                //and it is minus 2, because the final rows don't include in the numbering of the table
-                for (var i = Number(productObjectID) + 1; i < rowCount - 2; i++) {
-                    var newCurrentRow = document.getElementById('row' + i);
-                    newCurrentRow.id = 'row' + (i - 1);
+                var startRowIndex = Number(productObjectID);
 
-                    var newCurrentRowNumber = document.getElementById('tableRow' + (i + 1));
-                    newCurrentRowNumber.id = 'tableRow' + i;
-                    newCurrentRowNumber.innerHTML = i;
+                //minus 2, because the final 2 rows don't include in the numbering of the table
+                var endRowIndex = rowCount - 2;
 
-                    var removeButton = document.getElementById('removeButton' + i);
-                    removeButton.id = 'removeButton' + (i - 1);
-                    removeButton.value = (i - 1);
+                for (var i = startRowIndex; i < endRowIndex; i++) {
+                    var newCurrentRow = document.getElementById('row' + (i + 1)); //get next row
+                    newCurrentRow.id = 'row' + i;                                 //update it's id to previous index
 
-                    var newColumnAmount = document.getElementById('amount' + i);
-                    newColumnAmount.id = 'amount' + (i - 1);
+                    var newCurrentRowNumber =
+                        document.getElementById('tableRow' + (i + 2));            //get next tableRow
+                    newCurrentRowNumber.id = 'tableRow' + (i + 1);                //update it's id to previous index
+                    newCurrentRowNumber.innerHTML = (i + 1);                      //update it's value to be drawn
 
-                    var newColumnPrice = document.getElementById('price' + i);
-                    newColumnPrice.id = 'price' + (i - 1);
+                    var removeButton =
+                        document.getElementById('removeButton' + (i + 1));        //get next removeButton
+                    removeButton.id = 'removeButton' + i;                         //update it's id to previous index
+                    removeButton.value = i;                                       //update it's value to previous index
 
-                    var newInputField = document.getElementById(i);
-                    inputFiled.id = i - 1;
+                    var newColumnAmount =
+                        document.getElementById('amount' + (i + 1));              //get next amount field
+                    newColumnAmount.id = 'amount' + i;                            //update it's id to previous index
+
+                    var newColumnPrice =
+                        document.getElementById('price' + (i + 1));               //get next price field
+                    newColumnPrice.id = 'price' + i;                              //update it's id to previous index
+
+                    var newInputField = document.getElementById('' + (i + 1));    //get next input field
+                    newInputField.id = i;                                         //update it's id to previous index
                 }
             }
         }

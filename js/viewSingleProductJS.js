@@ -1,5 +1,4 @@
 function viewSingleProduct() {
-
     if (self.location == 'http://localhost/ittech/?page=viewSingleProduct') {
         var viewSingleProduct = document.getElementById('viewSingleProduct');
         var request = new XMLHttpRequest();
@@ -91,6 +90,79 @@ function viewSingleProduct() {
                     smallImage.appendChild(images);
                     viewSingleProduct.appendChild(smallImage);
                 }
+
+                //------- rating -----
+
+                var ratingStarsDiv = document.getElementById('ratingStarsDiv');
+
+                if (viewProduct.rating) {
+                    for (var k = 1; k < 6; k++) {
+                        if (k <= viewProduct.rating) {
+                            var redStar = document.createElement('i');
+                            redStar.className = 'fa fa-star fa-2x';
+                            ratingStarsDiv.appendChild(redStar);
+                        } else {
+                            var emptyStar = document.createElement('i');
+                            emptyStar.className = 'fa fa-star-o fa-2x';
+                            ratingStarsDiv.appendChild(emptyStar);
+                        }
+                    }
+                    document.getElementById('customerReviewsNum').innerText = viewProduct.customerReviewsNum;
+                } else {
+                    for (var k = 1; k < 6; k++) {
+                        var emptyStar = document.createElement('i');
+                        emptyStar.className = 'fa fa-star-o fa-lg';
+                        ratingStarsDiv.appendChild(emptyStar);
+                    }
+                    document.getElementById('customerReviewsNum').innerText = 0;
+                }
+
+                //---------- reviews --------------
+
+                if (viewProduct.reviews) {
+                    var usersReviews = document.getElementById('usersReviews');
+                    for (k in viewProduct.reviews) {
+
+                        var userReview = document.createElement('div');
+                        userReview.className = 'userReview';
+
+
+                        var userName = document.createElement('h4');
+                        userName.innerText = viewProduct.reviews[k].fullName + "'s review:";
+                        userReview.appendChild(userName);
+
+                        var dateDiv = document.createElement('div');
+                        dateDiv.innerText = viewProduct.reviews[k].reviewDate;
+                        userReview.appendChild(dateDiv);
+
+                        var userRate = document.createElement('div');
+
+                        for (i = 1; i < 6; i++) {
+                            if (i <= viewProduct.reviews[k].rating) {
+                                var userRedStar = document.createElement('i');
+                                userRedStar.className = 'fa fa-star fa-lg';
+                                userRate.appendChild(userRedStar);
+                            } else {
+                                var userEmptyStar = document.createElement('i');
+                                userEmptyStar.className = 'fa fa-star-o fa-lg';
+                                userRate.appendChild(userEmptyStar);
+                            }
+                        }
+                        userReview.appendChild(userRate);
+
+                        var userMessage = document.createElement('div');
+                        userMessage.id = 'userMessage';
+                        userMessage.innerText = viewProduct.reviews[k].review;
+                        userReview.appendChild(userMessage);
+
+                        usersReviews.appendChild(userReview);
+                    }
+                }
+
+                //----------------------------------
+
+                var showAddReviewBtn = document.getElementById('showAddReviewBtn');
+                showAddReviewBtn.value = viewProduct.product_id;
 
                 // ---------------------------------
 
@@ -208,15 +280,22 @@ function viewSingleProduct() {
 
                                 var buyNow = document.createElement('div');
                                 buyNow.className = 'button';
-                                buyNow.onclick = function () {
-                                    sendToCart(viewProduct);
-                                };
+                                if (viewProduct.quontity == 0) {
+                                    buyNow.innerHTML = 'OUT OF STOCK';
+                                    buyNow.disabled = true;
+                                }
+                                else {
+                                    buyNow.innerHTML = 'BUY NOW';
+                                    buyNow.onclick = function () {
+                                        sendToCart(viewProduct);
+                                    };
+                                }
                                 // buyNow.style.border = '1px solid green';
                                 buyNow.style.width = '100px';
                                 buyNow.style.height = '50px';
                                 buyNow.style.float = 'right';
-                                buyNow.innerHTML = 'BUY NOW';
                                 viewSingleProduct.appendChild(buyNow);
+
                             }
                         }
                     }
@@ -231,4 +310,118 @@ function viewSingleProduct() {
     }
 }
 
+function showAddReview(productId) {
+    var showAddReviewBtn = document.getElementById('showAddReviewBtn');
+    showAddReviewBtn.style.display = 'none';
+    var addReviewDiv = document.getElementById('addReviewDiv');
+    addReviewDiv.style.display = 'block';
+    var addReview = document.getElementById('addReview');
+    addReview.value = productId;
+}
+
+function rate(reviewStarId) {
+    var reviewStar = reviewStarId.replace('reviewStar', '');
+    var addReview = document.getElementById('addReview');
+
+    for (var i = 1; i < 6; i++) {
+        if (i <= reviewStar) {
+            document.getElementById('reviewStar' + i).className = 'fa fa-star fa-2x';
+        } else {
+            document.getElementById('reviewStar' + i).className = 'fa fa-star-o fa-2x';
+        }
+    }
+
+    var reviewToSend = {
+        productId: addReview.value,
+        rating: reviewStar
+    };
+    addReview.value = JSON.stringify({productId: addReview.value, rating: reviewStar});
+
+}
+
+function addReview(rateAndProductId) {
+    var reviewMessage = document.getElementById('reviewMessage');
+    var review = JSON.parse(rateAndProductId);
+    review.reviewMessage = reviewMessage.value;
+
+    var reviewJson = JSON.stringify(review);
+
+    var sendReview = new XMLHttpRequest();
+    sendReview.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                emptyStars();
+                reviewMessage.value = '';
+                var showAddReviewBtn = document.getElementById('showAddReviewBtn');
+                showAddReviewBtn.style.display = 'block';
+                var addReviewDiv = document.getElementById('addReviewDiv');
+                addReviewDiv.style.display = 'none';
+
+                var reviewObj = JSON.parse(this.responseText);
+                var newRating = reviewObj.newRating;
+                var ratingStarsDiv = document.getElementById('ratingStarsDiv');
+                ratingStarsDiv.innerHTML = '';
+                for (var i = 1; i < 6; i++) {
+
+                    if (i <= newRating) {
+                        var redStar = document.createElement('i');
+                        redStar.className = 'fa fa-star fa-2x';
+                        ratingStarsDiv.appendChild(redStar);
+                    } else {
+                        var emptyStar = document.createElement('i');
+                        emptyStar.className = 'fa fa-star-o fa-2x';
+                        ratingStarsDiv.appendChild(emptyStar);
+                    }
+                }
+
+                document.getElementById('customerReviewsNum').innerText = reviewObj.customerReviewsNum;
+
+                var usersReviews = document.getElementById('usersReviews');
+
+                var userReview = document.createElement('div');
+                userReview.className = 'userReview';
+
+
+                var userName = document.createElement('h4');
+                userName.innerText = reviewObj.userName + "'s review:";
+                userReview.appendChild(userName);
+
+                var dateDiv = document.createElement('div');
+                dateDiv.innerText = reviewObj.reviewDate;
+                userReview.appendChild(dateDiv);
+
+                var userRate = document.createElement('div');
+
+                for (i = 1; i < 6; i++) {
+                    if (i <= review.rating) {
+                        var userRedStar = document.createElement('i');
+                        userRedStar.className = 'fa fa-star fa-lg';
+                        userRate.appendChild(userRedStar);
+                    } else {
+                        var userEmptyStar = document.createElement('i');
+                        userEmptyStar.className = 'fa fa-star-o fa-lg';
+                        userRate.appendChild(userEmptyStar);
+                    }
+                }
+                userReview.appendChild(userRate);
+
+                var userMessage = document.createElement('div');
+                userMessage.id = 'userMessage';
+                userMessage.innerText = review.reviewMessage;
+                userReview.appendChild(userMessage);
+
+                usersReviews.appendChild(userReview);
+            }
+        }
+    };
+    sendReview.open("GET", "http://localhost/ittech/controller/reviewController.php?addReview=" + reviewJson);
+    sendReview.send();
+}
+
+function emptyStars() {
+
+    for (var i = 1; i < 6; i++) {
+        document.getElementById('reviewStar' + i).className = 'fa fa-star-o fa-2x';
+    }
+}
 

@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>ITTech-online shop</title>
-    <link rel="stylesheet" href="style/css.css">
-
+    <link rel="stylesheet" href="./style/css.css">
+    <link rel="stylesheet" href="./style/viewSingleProduct.css">
+    <script src="https://use.fontawesome.com/2dae2b01a3.js"></script>
 </head>
 <body onload="showAllProducts(); viewSingleProduct(); isLogged(); showUserCart(); loginValidate(); showPromoProducts(); showFavorites();
 showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder();
@@ -39,7 +40,7 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder();
         </div>
     </div>
 </header>
-<nav>
+<nav >
     <ul>
         <li id="tv" onmouseover="showTypeTV()" onmouseout="hideTypeTV()">TV sets and audio</li>
         <li id="pc" onmouseover="showTypePC()" onmouseout="hideTypePC()">Computer and periphery</li>
@@ -50,25 +51,60 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder();
         <li id="gaming" onmouseover="showTypeGaming()" onmouseout="hideTypeGaming()">Gaming</li>
     </ul>
 
-    <div id="tvTypes"></div>
-    <!--<div id="tvBrands"></div>-->
+    <div id="tvTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Television')">Television</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Home theater')">Home theater</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Audio systems')">Audio systems</li>
+        </ul>
+    </div>
 
-    <div id="pcTypes"></div>
-    <!--<div id="pcBrands"></div>-->
+    <div id="pcTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Laptops')">Laptops</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Personal computers')">Personal computers</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Monitors')">Monitors</li>
+        </ul>
+    </div>
 
-    <div id="phoneTypes"></div>
-    <!--<div id="phoneBrands"></div>-->
+    <div id="phoneTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Mobile phones')">Mobile phones</li>
+            <li class="types" onclick="showAllProducts('type asc', 'E-books')">E-books</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Tabletes')">Tabletes</li>
+        </ul>
+    </div>
 
-    <div id="appTypes"></div>
-    <!--<div id="appBrands"></div>-->
+    <div id="appTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Air conditioner')">Air conditioner</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Washing machines')">Washing machines</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Microwaves')">Microwaves</li>
+        </ul>
+    </div>
 
-    <div id="smallAppTypes"></div>
-    <!--<div id="smallAppBrands"></div>-->
+    <div id="smallAppTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Hair press')">Hair press</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Iron')">Iron</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Kitchen scales')">Kitchen scales</li>
+        </ul>
+    </div>
 
-    <div id="photoTypes"></div>
-    <!--<div id="photoBrands"></div>-->
+    <div id="photoTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Photo cameras')">Photo cameras</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Video cameras')">Video cameras</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Digital photo album')">Digital photo album</li>
+        </ul>
+    </div>
 
-    <div id="gamingTypes"></div>
-    <!--<div id="gamingBrands"></div>-->
+    <div id="gamingTypes">
+        <ul>
+            <li class="types" onclick="showAllProducts('type asc', 'Sony playstation')">Sony playstation</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Nintendo')">Nintendo</li>
+            <li class="types" onclick="showAllProducts('type asc', 'Drons')">Drons</li>
+        </ul>
+    </div>
 </nav>
 <main>

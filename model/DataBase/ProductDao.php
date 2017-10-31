@@ -11,6 +11,7 @@ namespace model\DataBase;
 use model\products\Product;
 use model\products\ProductSpec;
 use model\products\ProductImg;
+use model\products\Review;
 
 class ProductDao
 {
@@ -130,8 +131,35 @@ class ProductDao
 
         $this->addImgObjs($products);
 
+        $this->addReviewObjs($products);
+
+        $this->addRating($products);
+
         return $products;
     }
+	
+	/**
+	 * @return array with product objects
+	 */
+	public function getAllProductsForType($typeForOrder)
+	{
+		$stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              WHERE P.`archive` is null AND T.`type` = '$typeForOrder'");
+                                             
+		$stm->execute();
+		$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+		
+		$products = $this->createProductsObjs($result);
+		
+		$this->addSpecObj($products);
+		
+		$this->addImgObjs($products);
+		
+		return $products;
+	}
 
     /**
      * @return array with main_types
@@ -320,6 +348,10 @@ class ProductDao
 
         $this->addImgObjs($products);
 
+        $this->addReviewObjs($products);
+
+        $this->addRating($products);
+
         return $products;
     }
 
@@ -341,6 +373,10 @@ class ProductDao
         $this->addSpecObj($products);
 
         $this->addImgObjs($products);
+
+        $this->addReviewObjs($products);
+
+        $this->addRating($products);
 
         return $products;
 
@@ -367,6 +403,46 @@ class ProductDao
 
         $this->addImgObjs($products);
 
+        $this->addReviewObjs($products);
+
+        $this->addRating($products);
+
         return $products;
+    }
+
+    private function addReviewObjs(&$products){
+        $stm = $this->pdo->prepare("SELECT `review_id`, `product_id`, `user_id`, `name`, `family_name`, `rating`, `review`, `review_date`
+                                                FROM `reviews`
+                                                JOIN `users` USING(user_id)
+                                                WHERE `product_id` = ?");
+        foreach ($products as $product) {
+            $stm->execute(array($product->getProductId()));
+            $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+            $reviews = array();
+            if ($stm->rowCount() > 0){
+                foreach ($result as $row) {
+                    $review = new Review($row['product_id'], $row['user_id'], $row['rating'], $row['review']);
+                    $review->setReviewId($row['review_id']);
+                    $review->setReviewDate($row['review_date']);
+                    $name = ucfirst($row['name']);
+                    $familyName = ucfirst($row['family_name']);
+                    $fullName = $name . ' ' . $familyName;
+                    $review->setFullName($fullName);
+                    $reviews[] = $review;
+                }
+            }
+            $product->setReviews($reviews);
+        }
+    }
+
+    private function addRating(&$products){
+        $stm = $this->pdo->prepare("SELECT  round(avg(`rating`)) as rating, count(*) as customerReviewsNum FROM `reviews` WHERE `product_id` = ?");
+
+        foreach ($products as $product) {
+            $stm->execute(array($product->getProductId()));
+            $result =  $stm->fetch(\PDO::FETCH_ASSOC);
+            $product->setRating($result['rating']);
+            $product->setCustomerReviewsNum($result['customerReviewsNum']);
+        }
     }
 }

@@ -65,6 +65,18 @@ class Product extends JsonObject {
 	 * @var int (the quantity ordered from the user, default value is 1)
 	 */
 	protected $orderedQuantity;
+    /**
+     * @var array
+     */
+	protected $reviews = []; //array of ProductReview objects
+    /**
+     * @var int
+     */
+    protected $rating;
+    /**
+     * @var int
+     */
+    protected $customerReviewsNum;
 
     /**
      * Product constructor.
@@ -278,4 +290,27 @@ class Product extends JsonObject {
 		$this -> orderedQuantity = $orderedQuantity;
 	}
 
+    /**
+     * @param array $reviews
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+    }
+
+    /**
+     * @param int $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
+    /**
+     * @param int $customerReviewsNum
+     */
+    public function setCustomerReviewsNum($customerReviewsNum)
+    {
+        $this->customerReviewsNum = $customerReviewsNum;
+    }
 }
