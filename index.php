@@ -5,10 +5,7 @@ require_once 'model/JsonObject.php';
 require_once 'model/users/User.php';
 
 session_start();
-
 require_once 'view/header.html';
-
-
 
 if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
     if (isset($_GET['page'])){
@@ -40,6 +37,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
             case 'removePromoProduct' : require_once 'view/removePromoProduct.html';
                 break;
             case 'productsByType' : require_once 'view/productsByType.html';
+                break;
+            case 'removeProduct' : require_once 'view/removeProduct.html';
                 break;
             default : require_once 'view/error.html';
         }

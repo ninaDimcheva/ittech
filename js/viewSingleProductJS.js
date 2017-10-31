@@ -231,6 +231,17 @@ function viewSingleProduct() {
                                     sendToEditProduct(this.value);
                                 };
                                 viewSingleProduct.appendChild(editProduct);
+
+                                var removeProductDiv = document.createElement('div');
+                                removeProductDiv.className = 'button';
+                                removeProductDiv.style.width = '100px';
+                                removeProductDiv.innerHTML = 'Remove product';
+                                removeProductDiv.value = viewProduct;
+                                removeProductDiv.onclick = function () {
+                                    sendToRemoveProduct(this.value);
+                                };
+                                viewSingleProduct.appendChild(removeProductDiv);
+
                                 //----- hide add preview button
                                 document.getElementById('showAddReviewBtn').style.display = 'none';
                             } else {

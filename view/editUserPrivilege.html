@@ -1,14 +1,15 @@
 <script src="js/editUserPrivilege.js"></script>
 
 <fieldset>
-    <legend>Edit user privilege</legend>
+    <legend><h3>Edit user privilege</h3></legend>
     <div id="findUserWarn">
+
     </div>
 
     <div id="findUser">
         <label for="inputUserEmail">Find user by e-mail:</label>
         <input type="email" id="inputUserEmail" required autofocus onkeydown = "clickFindUser()">
-        <button onclick="findUser(document.getElementById('inputUserEmail').value)" id="findUserButton">Find user</button>
+        <button onclick="findUser()" id="findUserButton">Find user</button>
     </div>
 
     <div id="userToEdit">

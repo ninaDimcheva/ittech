@@ -25,7 +25,7 @@ input:focus, select:focus {
     float: left;
 }
 
-.button {
+.button, .link{
     background:none;
     border: 1px solid #e60000;
     box-shadow: 2px 2px 3px #e60000;
@@ -36,16 +36,17 @@ input:focus, select:focus {
     cursor: pointer;
     margin: 5px;
 }
-.button:focus {
+
+.button:focus, .link:focus {
     border: 1px solid #e60000;
     box-shadow: 2px 2px 2px #cc0000;
     outline: none;
 }
-.button:hover{
+.button:hover, .link:hover{
     border: 1px solid #b30000;
     box-shadow: 3px 3px 4px #cc0000;
 }
-.button:active {
+.button:active, .link:active {
     border: 1px solid #e60000;
     box-shadow: 1px 1px 4px #b30000;
 }

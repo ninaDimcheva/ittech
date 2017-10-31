@@ -2,7 +2,6 @@ window.onload = function () {
 
     if (sessionStorage.removePromoObj) {
         var removePromoProduct = JSON.parse(sessionStorage.removePromoObj);
-        sessionStorage.clear();
         var viewRemovePromoProduct = document.getElementById('viewRemovePromoProduct');
         var imageDiv = document.createElement('div');
 
@@ -59,13 +58,14 @@ window.onload = function () {
         removePromoSubmit.innerHTML = '';
         var a = document.createElement('a');
         a.className = 'link';
-        a.href = './';
-        a.innerText = 'Select product to remove';
+        a.href = './?page=productsOnPromotions';
+        a.innerText = 'Select another product';
         removePromoSubmit.appendChild(a);
     }
 };
 
 function removePromoProduct(productId) {
+    sessionStorage.clear();
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4){

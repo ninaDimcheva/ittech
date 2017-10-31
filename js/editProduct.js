@@ -1,78 +1,80 @@
-window.onload = function () {
-    if (sessionStorage.editProductObj) {
-        var productToEditObj = JSON.parse(sessionStorage.editProductObj);
-        sessionStorage.clear();
+function viewEditProduct() {
+    if (self.location == 'http://localhost/ittech/?page=editProduct') {
+        if (sessionStorage.editProductObj) {
+            var productToEditObj = JSON.parse(sessionStorage.editProductObj);
 
-        var viewProductToEdit = document.getElementById('viewProductToEdit');
+            var viewProductToEdit = document.getElementById('viewProductToEdit');
 
-        var imageDiv = document.createElement('div');
-        imageDiv.id = 'mainImage';
-        imageDiv.style.width = '250px';
-        imageDiv.style.border = '1px solid black';
-        imageDiv.style.textAlign = 'center';
+            var imageDiv = document.createElement('div');
+            imageDiv.id = 'mainImage';
+            imageDiv.style.width = '250px';
+            imageDiv.style.border = '1px solid black';
+            imageDiv.style.textAlign = 'center';
 
-        var image = document.createElement('img');
-        image.src = "http://localhost/ittech/" + productToEditObj.imgs[0].img_url;
-        image.style.width = '150px';
-        image.style.height = 'auto';
-        imageDiv.appendChild(image);
-        viewProductToEdit.appendChild(imageDiv);
+            var image = document.createElement('img');
+            image.src = "http://localhost/ittech/" + productToEditObj.imgs[0].img_url;
+            image.style.width = '150px';
+            image.style.height = 'auto';
+            imageDiv.appendChild(image);
+            viewProductToEdit.appendChild(imageDiv);
 
-        var productAtributesDiv = document.createElement('div');
-        productAtributesDiv.id = 'productAtributes';
-        productAtributesDiv.style.border = '1px solid black';
-        productAtributesDiv.style.width = '350px';
+            var productAtributesDiv = document.createElement('div');
+            productAtributesDiv.id = 'productAtributes';
+            productAtributesDiv.style.border = '1px solid black';
+            productAtributesDiv.style.width = '350px';
 
-        var productAtributes = document.createElement('h4');
-        productAtributes.innerText = productToEditObj.type + ' ' + productToEditObj.brand + ' ' + productToEditObj.model;
-        productAtributesDiv.appendChild(productAtributes);
+            var productAtributes = document.createElement('h4');
+            productAtributes.innerText = productToEditObj.type + ' ' + productToEditObj.brand + ' ' + productToEditObj.model;
+            productAtributesDiv.appendChild(productAtributes);
 
-        var productId = document.createElement('h5');
-        productId.id = 'productId';
-        productId.value = productToEditObj.product_id;
-        productId.innerText = 'Art.№' + productToEditObj.product_id;
-        productAtributesDiv.appendChild(productId);
-        viewProductToEdit.appendChild(productAtributesDiv);
+            var productId = document.createElement('h5');
+            productId.id = 'productId';
+            productId.value = productToEditObj.product_id;
+            productId.innerText = 'Art.№' + productToEditObj.product_id;
+            productAtributesDiv.appendChild(productId);
+            viewProductToEdit.appendChild(productAtributesDiv);
 
-        var priceDiv = document.createElement('div');
-        priceDiv.id = 'price';
-        // priceDiv.style.border = '1px solid green';
-        priceDiv.style.width = '100px';
-        priceDiv.style.height = '50px';
-        priceDiv.style.color = 'red';
+            var priceDiv = document.createElement('div');
+            priceDiv.id = 'price';
+            // priceDiv.style.border = '1px solid green';
+            priceDiv.style.width = '100px';
+            priceDiv.style.height = '50px';
+            priceDiv.style.color = 'red';
 
-        if (productToEditObj.inPromo) {
-            var imgPromo = document.createElement('img');
-            imgPromo.style.width = '80px';
-            imgPromo.style.height = 'auto';
-            imgPromo.style.float = 'left';
-            imgPromo.src = "./assets/displayImages/promo.png";
-            imageDiv.appendChild(imgPromo);
+            if (productToEditObj.inPromo) {
+                var imgPromo = document.createElement('img');
+                imgPromo.style.width = '80px';
+                imgPromo.style.height = 'auto';
+                imgPromo.style.float = 'left';
+                imgPromo.src = "./assets/displayImages/promo.png";
+                imageDiv.appendChild(imgPromo);
 
-            priceDiv.innerText = 'Promo prise: $' + productToEditObj.price;
+                priceDiv.innerText = 'Promo prise: $' + productToEditObj.price;
+
+            } else {
+                priceDiv.innerText = '$' + productToEditObj.price;
+            }
+            viewProductToEdit.appendChild(priceDiv);
+
+            document.getElementById('currentQuontity').innerText = productToEditObj.quontity;
+
+            var editProductButton = document.getElementById('editProductButton');
+            editProductButton.value = productToEditObj.product_id;
 
         } else {
-            priceDiv.innerText = '$' + productToEditObj.price;
+            var editProductDiv = document.getElementById('editProductDiv');
+            editProductDiv.innerHTML = '';
+            var a = document.createElement('a');
+            a.className = 'link';
+            a.href = './';
+            a.innerText = 'Select product to change';
+            editProductDiv.appendChild(a);
         }
-        viewProductToEdit.appendChild(priceDiv);
-
-        document.getElementById('currentQuontity').innerText = productToEditObj.quontity;
-
-        var editProductButton = document.getElementById('editProductButton');
-        editProductButton.value = productToEditObj.product_id;
-
-    } else {
-        var editProductDiv = document.getElementById('editProductDiv');
-        editProductDiv.innerHTML = '';
-        var a = document.createElement('a');
-        a.className = 'link';
-        a.href = './';
-        a.innerText = 'Select product to change';
-        editProductDiv.appendChild(a);
     }
-};
+}
 
 function editProduct(productId) {
+    sessionStorage.clear();
     var inputQuontity = document.getElementById('newQuontity').value;
     var currentQuontity = document.getElementById('currentQuontity').innerText;
 

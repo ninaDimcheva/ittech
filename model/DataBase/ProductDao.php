@@ -445,4 +445,9 @@ class ProductDao
             $product->setCustomerReviewsNum($result['customerReviewsNum']);
         }
     }
+    public function removeProduct($productId){
+        $stm = $this->pdo->prepare("UPDATE `products` SET `archive` = 1 WHERE `product_id` = ?");
+        $stm->execute(array($productId));
+        return $stm->rowCount() > 0;
+    }
 }

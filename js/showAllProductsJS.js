@@ -82,6 +82,11 @@ function sendToEditProduct(product) {
     window.location.replace("http://localhost/ittech/?page=editProduct");
 }
 
+function sendToRemoveProduct(product) {
+    sessionStorage.removeProductObj = JSON.stringify(product);
+    window.location.replace("http://localhost/ittech/?page=removeProduct");
+}
+
 function showProducts(productsObject, id) {
     var productNumber;
     var currentProduct = 0;
@@ -219,6 +224,16 @@ function showProducts(productsObject, id) {
                     sendToEditProduct(this.value);
                 };
                 panel.appendChild(editProduct);
+
+                var removeProduct = document.createElement('div');
+                removeProduct.className = 'button';
+                removeProduct.innerHTML = 'Remove product';
+                removeProduct.value = productsObject[currentProduct];
+                removeProduct.onclick = function () {
+                    sendToRemoveProduct(this.value);
+                };
+                panel.appendChild(removeProduct);
+
             } else {
                 var buyButton = document.createElement('div');
                 buyButton.className = 'button prevBuyButton';

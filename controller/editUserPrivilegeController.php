@@ -23,9 +23,10 @@ if (isset($_GET['findUser'])){
 
 }
 
-if (isset($_POST['changeUserPrivilege'])){
-    $email = trim(htmlentities($_POST['hiddenEmail']));
-    $is_admin = trim(htmlentities($_POST['hiddenIsAdmin']));
+if (isset($_GET['editPrivileges'])){
+    $toEdit = json_decode($_GET['editPrivileges'],true);
+    $email = trim(htmlentities($toEdit['email']));
+    $is_admin = trim(htmlentities($toEdit['isAdmin']));
     if ($is_admin){
         $changePrivilege = null;
     }else{
@@ -33,11 +34,7 @@ if (isset($_POST['changeUserPrivilege'])){
     }
     try{
         if ($email != 'dimov@mail.bg'){
-            if(UserDao::getInstance()->editUserPrivilege($changePrivilege, $email)){
-            header("Location:../?page=editUserPrivilege");
-            } else{
-//              TODO header("Location:../?page=error");
-            }
+            echo UserDao::getInstance()->editUserPrivilege($changePrivilege, $email);
         }else{
 //          TODO header("Location:../?page=error");
         }
