@@ -231,6 +231,8 @@ function viewSingleProduct() {
                                     sendToEditProduct(this.value);
                                 };
                                 viewSingleProduct.appendChild(editProduct);
+                                //----- hide add preview button
+                                document.getElementById('showAddReviewBtn').style.display = 'none';
                             } else {
                                 var favourites = document.createElement('div');
                                 favourites.id = 'favourites';
@@ -267,6 +269,11 @@ function viewSingleProduct() {
                                     favourites.appendChild(favoritesSpan);
                                     viewSingleProduct.appendChild(favourites);
                                 } else {
+                                    //---- show add reviw redirect to login-----
+                                    document.getElementById('showAddReviewBtn').onclick = function () {
+                                        window.location.replace("http://localhost/ittech/?page=login");
+                                    };
+                                    //-- favorites redirect to login --
                                     favoritesSpan.innerText = 'Favorites';
                                     favourites.style.color = 'black';
                                     imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
