@@ -120,7 +120,7 @@ class ProductDao
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
                                               WHERE P.`archive` is null
-                                              ORDER BY $orderBy LIMIT 4 OFFSET " . ((2 * 4) - 4));
+                                              ORDER BY $orderBy ");
         $stm->execute();
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -132,6 +132,29 @@ class ProductDao
 
         return $products;
     }
+	
+	/**
+	 * @return array with product objects
+	 */
+	public function getAllProductsForType($typeForOrder)
+	{
+		$stm = $this->pdo->prepare("SELECT  P.`product_id`, T.`type`, B.`brand`, P.`model`, P.`price`, P.`quontity`
+                                              FROM `products` as P
+                                              JOIN `types` as T ON P.`type_id` = T.`type_id`
+                                              JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
+                                              WHERE P.`archive` is null AND T.`type` = '$typeForOrder'");
+                                             
+		$stm->execute();
+		$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+		
+		$products = $this->createProductsObjs($result);
+		
+		$this->addSpecObj($products);
+		
+		$this->addImgObjs($products);
+		
+		return $products;
+	}
 
     /**
      * @return array with main_types

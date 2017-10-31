@@ -1,29 +1,37 @@
-function showAllProducts(orderBy) {
-
+function showAllProducts(orderBy, type) {
     if (self.location == 'http://localhost/ittech/' || self.location == 'http://localhost/ittech/?page=main') {
-
         orderBy = orderBy || null;
+        type = type || null;
 
         if (sessionStorage.search) {
             search(sessionStorage.search);
             sessionStorage.clear();
-        } else {
+        } else if (type == null) {
             var request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     var productsObject = JSON.parse(this.responseText);
                     showProducts(productsObject, 'article');
-
                 }
             };
             request.open("POST", "http://localhost/ittech/controller/mainController.php");
             request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             request.send("getAllProducts=" + orderBy);
         }
+        else {
+            var productsForType = new XMLHttpRequest();
+            productsForType.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var productsObject = JSON.parse(this.responseText);
+                    showProducts(productsObject, 'article');
+                }
+            };
+            productsForType.open("POST", "http://localhost/ittech/controller/mainController.php");
+            productsForType.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            productsForType.send("getAllProductsForType=" + type);
+        }
     }
 }
-
-
 /**
  *
  * @param product = Object product
@@ -188,15 +196,19 @@ function showProducts(productsObject, id) {
             } else {
                 var buyButton = document.createElement('div');
                 buyButton.className = 'button prevBuyButton';
-                buyButton.innerHTML = 'BUY';
-                buyButton.value = productsObject[currentProduct];
-                buyButton.onclick = function () {
-                    sendToCart(this.value);
-                };
+                if (productsObject[currentProduct].quontity == 0) {
+                    buyButton.innerHTML = 'OUT OF STOCK';
+                    buyButton.disabled = true;
+                }
+                else {
+                    buyButton.innerHTML = 'BUY';
+                    buyButton.value = productsObject[currentProduct];
+                    buyButton.onclick = function () {
+                        sendToCart(this.value);
+                    };
+                }
                 panel.appendChild(buyButton);
             }
-
-
             currentProduct++;
         }
 

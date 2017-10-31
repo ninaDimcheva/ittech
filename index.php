@@ -111,5 +111,4 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
     }
 
 }
-
 include_once 'view/footer.html';

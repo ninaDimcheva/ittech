@@ -208,14 +208,20 @@ function viewSingleProduct() {
 
                                 var buyNow = document.createElement('div');
                                 buyNow.className = 'button';
-                                buyNow.onclick = function () {
-                                    sendToCart(viewProduct);
-                                };
+                                if (viewProduct.quontity == 0) {
+                                    buyNow.innerHTML = 'OUT OF STOCK';
+                                    buyNow.disabled = true;
+                                }
+                                else {
+                                    buyNow.innerHTML = 'BUY NOW';
+                                    buyNow.onclick = function () {
+                                        sendToCart(viewProduct);
+                                    };
+                                }
                                 // buyNow.style.border = '1px solid green';
                                 buyNow.style.width = '100px';
                                 buyNow.style.height = '50px';
                                 buyNow.style.float = 'right';
-                                buyNow.innerHTML = 'BUY NOW';
                                 viewSingleProduct.appendChild(buyNow);
                             }
                         }

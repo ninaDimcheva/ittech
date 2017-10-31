@@ -1,7 +1,7 @@
 // TODO information user style and think avout the redirection of the user!!!!!!!!!!!!!!!!!
 
 // the function will check if the user is already logged in after the order had been checked from php and will visualize details about the order!
-window.onload = function () {
+function confirmOrder () {
     var isLoggedUser = new XMLHttpRequest();
     isLoggedUser.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -136,7 +136,7 @@ window.onload = function () {
     isLoggedUser.open("GET", "http://localhost/ittech/controller/isLoggedController.php?isSetUser");
     isLoggedUser.send();
 
-};
+}
 
 // -------------   validate the entered address:   --------------------//
 
@@ -183,6 +183,11 @@ function finalizationOrder(addressOrder) {
                 mainDiv.appendChild(addressDelivery);
 
             }
+
+            var backToMain = document.createElement('a');
+            backToMain.href = './?page=main';
+            backToMain.innerHTML = 'Home page';
+            mainDiv.appendChild(backToMain);
 
         }
     };
