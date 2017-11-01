@@ -130,7 +130,7 @@ function confirmOrder () {
                 addressAndConfirmOrder.appendChild(confirmButton);
             }
             else {
-                window.location.replace("http://localhost/ittech/?page=login");
+                // window.location.replace("http://localhost/ittech/?page=login");
             }
         }
     };

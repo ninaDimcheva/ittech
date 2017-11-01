@@ -42,7 +42,15 @@ class PromotionDao{
 	public function insertPromotion(Promotion $promotion){
 		$stm = $this->pdo->prepare("INSERT INTO promotions (`product_id`, `start_date`, `end_date`, `discount`) VALUES (?, ?, ?, ?)");
 		$stm->execute(array($promotion->getProductId(), $promotion->getStartDate(), $promotion->getEndDate(),$promotion->getDiscount()));
-		return $stm->rowCount() > 0;
+
+		$stm = $this->pdo->prepare("SELECT `email` FROM `users`
+                                                WHERE notifications = 1
+                                                UNION
+                                                SELECT `email` FROM `users`
+                                                JOIN `favorites` using (user_id)
+                                                WHERE product_id = ?");
+		$stm->execute(array($promotion->getProductId()));
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
     /**

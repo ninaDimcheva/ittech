@@ -25,14 +25,25 @@ if (isset($_POST['addPromoProduct'])) {
     $promoProduct = new Promotion($productId, $startDate, $endDate, $discount);
 
     try {
-        if(PromotionDao::getInstance()->insertPromotion($promoProduct)){
-            //TODO return status code 200
-        }else{
-            //TODO propper status code
+        $emails = PromotionDao::getInstance()->insertPromotion($promoProduct);
+        http_response_code(200);
+        foreach ($emails as $email) {
+            $to      = $email['email'];
+            $subject = 'New promotion';
+            $message = "<h1>New product in promotion!!!</h1>
+            <img src='http://abcwindowstoledo.com/wp-content/uploads/2016/01/AbcWindowsSpecialOffer.jpg' alt='Promotion'>
+            <h1>Big discount!</h1>
+            <a href=''><h3>More information on ItTech.bg</h3></a>";
+
+            $headers = 'From: ittech.eshop@egmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion() . "\r\n" .
+                "MIME-Version: 1.0 ". "\r\n" .
+                "Content-Type: text/html; charset=ISO-8859-1" . "\r\n";
+            mail($to, $subject, $message, $headers);
         }
+
     } catch (\PDOException $e) {
-        // TODO error
-        echo $e->getMessage();
+        http_response_code(500);
     }
 }
 

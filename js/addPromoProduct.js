@@ -110,6 +110,8 @@ function promoValidate() {
 }
 
 function sendPromoProduct(productId, startDate, endDate, discount) {
+    document.getElementById('viewPromoProduct').innerText = "Adding product in promotion and sending e-mails to subscribed users!";
+    document.getElementById('inputPromoFields').innerText = "Just wait a few moments...";
     sessionStorage.clear();
     var promoProduct = {
         startDate: startDate,
