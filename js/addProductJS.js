@@ -4,7 +4,6 @@ function showMainTypes() {
         getMainTypes.onreadystatechange = function () {
             if (this.readyState === 4) {
                 if (this.status === 200) {
-                    if (this.responseText.length > 2) {
                         document.getElementById('mainTypeDiv').innerHTML = '';
                         var mainTypes = JSON.parse(this.responseText);
                         var select = document.createElement('select');
@@ -25,11 +24,8 @@ function showMainTypes() {
                             option.innerText = mainTypes[i];
                             document.getElementById('mainType').appendChild(option);
                         }
-                    } else {
-                        // TODO window.location.replace('http://localhost/ittech?page=error');
-                    }
                 } else {
-                    // TODO window.location.replace('http://localhost/ittech?page=error');
+                    window.location.replace('http://localhost/ittech?page=error500');
                 }
             }
         };
@@ -43,7 +39,6 @@ function showTypes(mainType) {
     getTypes.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if (this.responseText.length > 2) {
                     document.getElementById('typeDiv').innerHTML = '';
                     document.getElementById('brandDiv').innerHTML = '';
                     document.getElementById('inputModel').innerHTML = '';
@@ -74,12 +69,8 @@ function showTypes(mainType) {
                         option.innerText = types[i];
                         document.getElementById('type').appendChild(option);
                     }
-
-                } else {
-                    // TODO window.location.replace('http://localhost/ittech?page=error');
-                }
             } else {
-                // TODO window.location.replace('http://localhost/ittech?page=error');
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };
@@ -93,7 +84,6 @@ function showBrands(type) {
     getBrands.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if (this.responseText.length > 2) {
                     document.getElementById('brandDiv').innerHTML = '';
                     document.getElementById('inputModel').innerHTML = '';
                     document.getElementById('inputPrice').innerHTML = '';
@@ -124,11 +114,8 @@ function showBrands(type) {
                         option.innerText = brands[i];
                         document.getElementById('brand').appendChild(option);
                     }
-                } else {
-                    // TODO window.location.replace('http://localhost/ittech?page=error');
-                }
             } else {
-                // TODO window.location.replace('http://localhost/ittech?page=error');
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };
@@ -141,7 +128,6 @@ function showAttributes(type) {
     getSpecifications.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                if (this.responseText.length > 2) {
                     document.getElementById('inputModel').innerHTML = '';
                     document.getElementById('inputPrice').innerHTML = '';
                     document.getElementById('inputQuontity').innerHTML = '';
@@ -251,11 +237,8 @@ function showAttributes(type) {
                     submit.name = 'addProduct';
                     submit.value = 'Add product';
                     document.getElementById('submit').appendChild(submit);
-                } else {
-                    // TODO window.location.replace('http://localhost/ittech?page=error');
-                }
             } else {
-                // TODO window.location.replace('http://localhost/ittech?page=error');
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };

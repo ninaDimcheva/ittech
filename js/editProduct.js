@@ -104,6 +104,8 @@ function editProduct(productId) {
                     allProductsLink.innerText = 'Select another product';
                     allProductsLink.href = './';
                     editProductDiv.appendChild(allProductsLink);
+                }else {
+                    window.location.replace('http://localhost/ittech?page=error500');
                 }
             }
         };

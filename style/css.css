@@ -6,6 +6,9 @@ body {
     width: 1170px;
     margin: auto;
 }
+.errors {
+    max-width: 1170px;
+}
 /*for all inputs and selects*/
 input, select {
     border: 1px solid #e60000;

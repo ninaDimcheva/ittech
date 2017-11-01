@@ -74,6 +74,8 @@ function removeProduct(productId) {
                 main.innerText = 'View all products';
                 main.href = './';
                 removeProductSubmit.appendChild(main);
+            }else {
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };

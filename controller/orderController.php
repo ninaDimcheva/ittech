@@ -18,8 +18,6 @@ function __autoload($class_name)
 
 session_start();
 
-// TODO rethink about this script very carefully !!!!!!!!!!!!!!!!!!!!!!!
-
 if (isset($_POST['confirmedOrder']) && isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
 	$arrayCartObjects = array();
 	$userId = $_SESSION['user'] -> getUserId();

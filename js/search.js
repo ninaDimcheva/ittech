@@ -15,7 +15,7 @@ function search(searched) {
                     article.appendChild(noResult);
                 }
             } else {
-                //TODO error
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };
@@ -50,6 +50,8 @@ function clickSearch(event) {
                         option.value = matchedWords[i];
                         datalist.appendChild(option);
                     }
+                }else {
+                    window.location.replace('http://localhost/ittech?page=error500');
                 }
             }
         };

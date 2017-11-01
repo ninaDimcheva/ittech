@@ -26,7 +26,6 @@ if (isset($_POST['addPromoProduct'])) {
 
     try {
         $emails = PromotionDao::getInstance()->insertPromotion($promoProduct);
-        http_response_code(200);
         foreach ($emails as $email) {
             $to      = $email['email'];
             $subject = 'New promotion';
@@ -51,12 +50,12 @@ if (isset($_GET['removePromoProduct'])){
     $productId =  $_GET['removePromoProduct'];
     try{
         if (PromotionDao::getInstance()->deletePromotion($productId)){
-            //TODO return status code 200
+            http_response_code(200);
         }else{
-            //TODO propper status code
+            http_response_code(500);
         }
     }catch (\PDOException $e){
-        //TODO error
+        http_response_code(500);
     }
 
 }
@@ -75,7 +74,7 @@ if (isset($_POST['getPromoProducts'])){
             echo json_encode($promoProducts);
         }
     }catch (\PDOException $e){
-        //TODO error
+        http_response_code(500);
     }
 
 }

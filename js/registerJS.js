@@ -49,6 +49,8 @@ function registerValidate(){
                         emailWarn.innerText = '✔';
                         emailWarn.style.color = 'green';
                     }
+                }else {
+                    window.location.replace('http://localhost/ittech?page=error500');
                 }
             }
         };

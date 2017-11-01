@@ -19,9 +19,13 @@ function showAllProducts(orderBy, type) {
         } else if (type == null && !sessionStorage.showTypeProduct) {
             var request = new XMLHttpRequest();
             request.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    var productsObject = JSON.parse(this.responseText);
-                    showProducts(productsObject, 'article');
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        var productsObject = JSON.parse(this.responseText);
+                        showProducts(productsObject, 'article');
+                    }else {
+                        window.location.replace('http://localhost/ittech?page=error500');
+                    }
                 }
             };
             request.open("POST", "http://localhost/ittech/controller/mainController.php");
@@ -36,6 +40,8 @@ function showAllProducts(orderBy, type) {
                         sessionStorage.clear();
                         var productsObject = JSON.parse(this.responseText);
                         showProducts(productsObject, 'article');
+                    }else {
+                        window.location.replace('http://localhost/ittech?page=error500');
                     }
                 }
             };
@@ -47,9 +53,13 @@ function showAllProducts(orderBy, type) {
         else {
             var productsForType = new XMLHttpRequest();
             productsForType.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    var productsObject = JSON.parse(this.responseText);
-                    showProducts(productsObject, 'article');
+                if (this.readyState === 4){
+                    if(this.status === 200) {
+                        var productsObject = JSON.parse(this.responseText);
+                        showProducts(productsObject, 'article');
+                    }else {
+                        window.location.replace('http://localhost/ittech?page=error500');
+                    }
                 }
             };
             productsForType.open("POST", "http://localhost/ittech/controller/mainController.php");
@@ -58,6 +68,7 @@ function showAllProducts(orderBy, type) {
         }
     }
 }
+
 /**
  *
  * @param product = Object product
@@ -65,9 +76,12 @@ function showAllProducts(orderBy, type) {
 function sendProductObject(product) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ittech/?page=viewSingleProduct");
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                window.location.replace("http://localhost/ittech/?page=viewSingleProduct");
+            } else {
+                window.location.replace('http://localhost/ittech?page=error500');
+            }
         }
     };
     request.open("POST", "http://localhost/ittech/controller/mainController.php");
@@ -83,9 +97,12 @@ function sendProductObject(product) {
 function sendToCart(product) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            // TODO check if it is ok with can manage only with status code, you don't return echo from the main controller -> make sure it is ok!!!!!!;
-            window.location.replace("http://localhost/ittech/?page=userCart");
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                window.location.replace("http://localhost/ittech/?page=userCart");
+            } else {
+                window.location.replace('http://localhost/ittech?page=error500');
+            }
         }
     };
     request.open("POST", "http://localhost/ittech/controller/sendToCartController.php");
@@ -220,7 +237,7 @@ function showProducts(productsObject, id) {
 
             price.style.color = 'red';
             infoProduct.appendChild(price);
-            // TODO test the buy button
+
             if (isAdmin) {
                 if (productsObject[currentProduct].inPromo) {
                     var removePromoButton = document.createElement('div');
@@ -282,17 +299,3 @@ function showProducts(productsObject, id) {
 
     }
 }
-
-// function mainOrderBy(orderBy) {
-//     var orderBy = new XMLHttpRequest();
-//     orderBy.onreadystatechange = function () {
-//         if (this.readyState === 4 && this.status === 200) {
-//             var productsObject = JSON.parse(this.responseText);
-//             showProducts(productsObject, 'article');
-//
-//         }
-//     };
-//     orderBy.open("POST", "http://localhost/ittech/controller/mainController.php");
-//     orderBy.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-//     orderBy.send("orderBy");
-// }

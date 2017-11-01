@@ -28,7 +28,7 @@ if (isset($_GET['infavorites'])) {
             $response['inFavorites'] = FavouriteDao::getInstance()->inFavorites($favouriteObject);
             echo json_encode($response);
         } catch (\PDOException $e) {
-            //TODO error
+            http_response_code(500);
         }
     } else {
         $response['isLogged'] = false;
@@ -45,10 +45,10 @@ if (isset($_GET['addFavourite'])) {
         try {
             FavouriteDao::getInstance()->addFavourite($favouriteObject);
         }catch (\PDOException $e) {
-            //TODO error
+            http_response_code(500);
         }
     } else {
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -61,10 +61,10 @@ if (isset($_GET['removeFavourite'])) {
         try {
             FavouriteDao::getInstance()->removeFavorite($favouriteObject);
         }catch (\PDOException $e) {
-            //TODO error
+            http_response_code(500);
         }
     } else {
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -81,9 +81,9 @@ if (isset($_POST['getFavorites'])){
                 echo false;
             }
         }catch (\PDOException $e){
-            //TODO error
+            http_response_code(500);
         }
     }else{
-        //TODO error
+        http_response_code(401);
     }
 }

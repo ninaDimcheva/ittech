@@ -13,12 +13,11 @@ if (isset($_GET['editProduct'])){
    $editProduct = json_decode($_GET['editProduct'],true);
    try {
        if (ProductDao::getInstance()->editProductQuantity($editProduct['quontity'],$editProduct['productId'])){
-           //TODO return status code 200
        }else{
-           //TODO return propper status code
+           http_response_code(500);
        }
    }catch (\PDOException $e){
-       //TODO error
+       http_response_code(500);
    }
 
 }

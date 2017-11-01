@@ -20,10 +20,8 @@ if (isset($_GET['getMatchedWords'])){
             }
         }
         echo json_encode(array_unique($matched));
-
-//        echo json_encode(ProductDao::getInstance()->getSearchedMatches($_GET['getMatchedWords']));
     }catch (\PDOException $e){
-        //TODO error
+        http_response_code(500);
     }
 
 }
@@ -44,7 +42,7 @@ if (isset($_POST['getSearchedProducts'])){
             return false;
         }
     }catch (\PDOException $e){
-        //TODO error
+        http_response_code(500);
     }
 
 }

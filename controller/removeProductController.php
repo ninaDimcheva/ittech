@@ -21,12 +21,12 @@ if (isset($_GET['removeProduct'])) {
     $productId = $_GET['removeProduct'];
     try {
         if (ProductDao::getInstance()->removeProduct($productId)) {
-            //TODO return status code 200
+            http_response_code(200);
         } else {
-            //TODO propper status code
+            http_response_code(500);
         }
     } catch (\PDOException $e) {
-        //TODO error
+        http_response_code(500);
     }
 
 }

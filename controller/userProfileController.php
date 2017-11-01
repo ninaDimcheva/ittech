@@ -17,7 +17,7 @@ if (isset($_GET['getUserProfile'])) {
     if (isset($_SESSION['user'])) {
         echo(json_encode($_SESSION['user'], JSON_UNESCAPED_SLASHES));
     } else {
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -35,13 +35,13 @@ if (isset($_GET['editNotifications'])) {
                 $_SESSION['user']->setNotifications($notification);
                 echo $notification;
             } else {
-                //TODO error
+                http_response_code(500);
             }
         } catch (\PDOException $e) {
-            //TODO error
+            http_response_code(500);
         }
     } else {
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -56,16 +56,16 @@ if (isset($_GET['editFamilyName'])) {
                     $_SESSION['user']->setFamilyName($userFamilyName);
                     echo $userFamilyName;
                 } else {
-                    //TODO error
+                    http_response_code(500);
                 }
             } catch (\PDOException $e) {
-                //TODO error
+                http_response_code(500);
             }
         } else {
-            //TODO error
+            http_response_code(400);
         }
     } else {
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -79,7 +79,7 @@ if (isset($_POST['checkPassword'])){
             echo false;
         }
     }else{
-        //TODO error
+        http_response_code(401);
     }
 }
 
@@ -95,15 +95,15 @@ if (isset($_POST['editPassword'])){
                     $_SESSION['user']->setPassword($newPassword);
                     echo true;
                 }else{
-                    //TODO error
+                    http_response_code(500);
                 }
             }catch (\PDOException $e){
-                //TODO error
+                http_response_code(500);
             }
         }else {
-            //TODO error
+            http_response_code(400);
         }
     }else{
-        //TODO error
+        http_response_code(401);
     }
 }

@@ -16,8 +16,6 @@ function __autoload($class_name)
 
 session_start();
 
-// this query comes from viewSingleProductJS.js and showAllProductsJS.js
-
 if (isset($_POST['singleProductToBuy'])) {
 	$isNewProduct = true;
 	$newProductId = json_decode($_POST['singleProductToBuy']) -> product_id;

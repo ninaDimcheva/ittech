@@ -1,12 +1,13 @@
-function showMyOrders () {
-  // if(self.location == 'http://localhost/ittech/?page=myOrders'){
-        var myOrders = document.getElementById('myOrders');
-        var userOrders = new XMLHttpRequest();
-        userOrders.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
+function showMyOrders() {
+    // if(self.location == 'http://localhost/ittech/?page=myOrders'){
+    var myOrders = document.getElementById('myOrders');
+    var userOrders = new XMLHttpRequest();
+    userOrders.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
                 var userOrders = JSON.parse(this.responseText);
                 var tableUserOrders = document.getElementById('tableUserOrders');
-                for(var i in userOrders){
+                for (var i in userOrders) {
                     var row = document.createElement('tr');
                     var numberOrder = document.createElement('td');
                     numberOrder.innerHTML = i;
@@ -30,11 +31,14 @@ function showMyOrders () {
 
                     tableUserOrders.appendChild(row);
                 }
-            }
-        };
-        userOrders.open("POST","http://localhost/ittech/controller/showMyOrdersController.php");
-        userOrders.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        userOrders.send('getOrdersUser');
-   // }
+            }else {
+                window.location.replace('http://localhost/ittech?page=error500');
+        }
+    }
+};
+userOrders.open("POST", "http://localhost/ittech/controller/showMyOrdersController.php");
+userOrders.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+userOrders.send('getOrdersUser');
+// }
 }
 

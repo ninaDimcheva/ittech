@@ -86,6 +86,8 @@ function removePromoProduct(productId) {
                 allProductsLink.innerText = 'View all products';
                 allProductsLink.href = './';
                 removePromoSubmit.appendChild(allProductsLink);
+            }else {
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };

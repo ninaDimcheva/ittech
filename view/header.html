@@ -1,5 +1,3 @@
-<!--TODO check very carefully for the names of the alt attributes-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,38 +13,43 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduc
 <header>
     <ul>
         <li><a href="./"><img id="homePage" src="assets/displayImages/homePage.png" alt="Home page">Home page</a></li>
-        <li><a href="?page=contactittech"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">0000 00 000</a></li>
-        <li><a href="?page=productsOnPromotions"><img id="promotion" src="assets/displayImages/promotions.png" alt="Promotions">Promotions</a></li>
+        <li><a href="?page=contactittech"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">0000 00
+            000</a></li>
+        <li><a href="?page=productsOnPromotions"><img id="promotion" src="assets/displayImages/promotions.png"
+                                                      alt="Promotions">Promotions</a></li>
     </ul>
     <hr>
-    <a  id="ittechLogo" href="./"><img src="assets/displayImages/logo.png"/></a>
+    <a id="ittechLogo" href="./"><img src="assets/displayImages/logo.png"/></a>
     <div class="box">
         <div class="container">
             <input type="search" id="search" list='autocomplete' placeholder="Search..." onkeyup="clickSearch(event)"/>
             <datalist id='autocomplete'></datalist>
-            <button class="icon" ><i class="fa fa-search"></i></button>
+            <button class="icon"><i class="fa fa-search"></i></button>
         </div>
-        <!--<div id="searchAutocomplete"></div>-->
     </div>
 
-    <!--TODO make the drop down menu(user/administrator)-->
-
     <div id="navigation">
-        <button id="loginButton" class="button" onclick="loginNavigation()"><img id="login" src="assets/displayImages/person.png" alt="Person">Login</button>
+        <button id="loginButton" class="button" onclick="loginNavigation()"><img id="login"
+                                                                                 src="assets/displayImages/person.png"
+                                                                                 alt="Person">Login
+        </button>
         <div id="mainNavigation">
             <a href="?page=login">Login</a><br/>
             <a href="?page=register">Register</a>
         </div>
         <div id="mainCart">
-            <button class="button" onclick="location.href = '?page=userCart'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart">Cart</button>
+            <button class="button" onclick="location.href = '?page=userCart'"><img id="cart"
+                                                                                   src="assets/displayImages/cart.png"
+                                                                                   alt="Cart">Cart
+            </button>
         </div>
     </div>
 </header>
-<nav >
+<nav>
     <ul>
         <li id="tv" onmouseover="showTypeTV()" onmouseout="hideTypeTV()">TV sets and audio</li>
         <li id="pc" onmouseover="showTypePC()" onmouseout="hideTypePC()">Computer and periphery</li>
-        <li id="phones" onmouseover="showTypePhone()" onmouseout="hideTypePhone()" >Phones and tablets</li>
+        <li id="phones" onmouseover="showTypePhone()" onmouseout="hideTypePhone()">Phones and tablets</li>
         <li id="electric" onmouseover="showTypeApp()" onmouseout="hideTypeApp()">Electrical appliances</li>
         <li id="smallApp" onmouseover="showTypeSmallApp()" onmouseout="hideTypeSmallApp()">Small appliances</li>
         <li id="photo" onmouseover="showTypePhoto()" onmouseout="hideTypePhoto()">Photo and video</li>

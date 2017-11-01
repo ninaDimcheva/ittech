@@ -33,8 +33,6 @@ class PromotionDao{
 		}
 		return self::$instance;
 	}
-	
-	//TODO we must think about the product_id, how to find which exactly product_id it is?
 
     /**
      * @param Promotion $promotion

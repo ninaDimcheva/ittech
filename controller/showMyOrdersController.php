@@ -19,7 +19,12 @@ session_start();
 
 if(isset($_POST['getOrdersUser'])){
 	$user = $_SESSION['user'];
-	$orders = OrderDao::getInstance()->getOrders($user);
-	echo json_encode($orders, JSON_UNESCAPED_SLASHES);
+	try{
+        $orders = OrderDao::getInstance()->getOrders($user);
+        echo json_encode($orders, JSON_UNESCAPED_SLASHES);
+    }catch (\PDOException $e){
+        http_response_code(500);
+    }
+
 }
 

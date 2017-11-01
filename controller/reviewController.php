@@ -9,6 +9,7 @@
 use \model\users\User;
 use \model\products\Review;
 use \model\DataBase\ReviewDao;
+
 function __autoload($class_name)
 {
     $class_name = '..\\' . $class_name;
@@ -18,28 +19,28 @@ function __autoload($class_name)
 
 session_start();
 
-if (isset($_GET['addReview'])){
-    if (isset($_SESSION['user'])){
+if (isset($_GET['addReview'])) {
+    if (isset($_SESSION['user'])) {
         $reviewObj = json_decode($_GET['addReview'], true);
-        $userId = $_SESSION['user'] -> getUserId();
+        $userId = $_SESSION['user']->getUserId();
         $productId = trim(htmlentities($reviewObj['productId']));
         $review = trim(htmlentities($reviewObj['reviewMessage']));
         $rating = trim(htmlentities($reviewObj['rating']));
-        if (strlen($review) < 500 && strlen($rating) > 0 && strlen($rating) < 10 && $rating > 0 && $rating < 6 && is_numeric($rating)){
-            $reviewObj = new Review($productId,$userId,$rating,$review);
-            try{
+        if (strlen($review) < 500 && strlen($rating) > 0 && strlen($rating) < 10 && $rating > 0 && $rating < 6 && is_numeric($rating)) {
+            $reviewObj = new Review($productId, $userId, $rating, $review);
+            try {
                 $newRating = ReviewDao::getInstance()->insertReview($reviewObj);
-                $fullName =ucfirst($_SESSION['user']->getName()) . " " . ucfirst($_SESSION['user']->getFamilyName());
+                $fullName = ucfirst($_SESSION['user']->getName()) . " " . ucfirst($_SESSION['user']->getFamilyName());
                 $newRating['userName'] = $fullName;
                 echo json_encode($newRating);
-            }catch (\PDOException $e){
-                echo "stoy";
+            } catch (\PDOException $e) {
+                http_response_code(500);
             }
-        }else{
-            //TODO wrong user insertation error
+        } else {
+            http_response_code(401);
         }
 
-    }else{
-        //TODO unauthorized error
+    } else {
+        http_response_code(400);
     }
 }

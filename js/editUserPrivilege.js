@@ -19,7 +19,7 @@ function findUser() {
             findUser.onreadystatechange = function () {
                 if (this.readyState === 4) {
                     if (this.status === 200) {
-                        if (this.responseText != false) {
+                        if (this.responseText) {
                             var user = JSON.parse(this.responseText);
                             var name = user.name;
                             var family_name = user.family_name;
@@ -68,6 +68,8 @@ function findUser() {
                         } else {
                             findUserWarn.innerHTML = 'There is no registered user with e-mail: ' + email;
                         }
+                    }else {
+                        window.location.replace('http://localhost/ittech?page=error500');
                     }
                 }
             };
@@ -108,6 +110,12 @@ function editPrivileges(email, isAdmin) {
                     success.appendChild(editUserLink);
                 }
 
+            }else {
+                if (this.status === 401) {
+                    window.location.replace('http://localhost/ittech?page=error401');
+                }else{
+                    window.location.replace('http://localhost/ittech?page=error500');
+                }
             }
         }
     };

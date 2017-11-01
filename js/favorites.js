@@ -2,13 +2,24 @@ function showFavorites() {
     if (self.location == 'http://localhost/ittech/?page=myFavorites') {
         var getFavorites = new XMLHttpRequest();
         getFavorites.onreadystatechange = function () {
-            if (this.responseText) {
-                var favoriteProduucts = JSON.parse(this.responseText);
+            if (this.readyState === 4){
+                if (this.status === 200){
+                    if (this.responseText) {
+                        var favoriteProduucts = JSON.parse(this.responseText);
 
-                showProducts(favoriteProduucts, 'favoritesArticle');
-            } else {
-                document.getElementById('favoritesArticle').innerHTML = 'You have no products in favorites';
+                        showProducts(favoriteProduucts, 'favoritesArticle');
+                    } else {
+                        document.getElementById('favoritesArticle').innerHTML = 'You have no products in favorites';
+                    }
+                }else {
+                    if (this.status === 401){
+                        window.location.replace('http://localhost/ittech?page=error401');
+                    }else {
+                        window.location.replace('http://localhost/ittech?page=error500');
+                    }
+                }
             }
+
         };
         getFavorites.open("Post", "http://localhost/ittech/controller/favouriteProductController.php");
         getFavorites.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -33,7 +44,11 @@ function addFavourite(productId) {
                     removeFavourite(productId);
                 };
             } else {
-                //TODO error
+                if (this.status === 401){
+                    window.location.replace('http://localhost/ittech?page=error401');
+                }else {
+                    window.location.replace('http://localhost/ittech?page=error500');
+                }
             }
         }
     };
@@ -59,7 +74,11 @@ function removeFavourite(productId) {
                     addFavourite(productId);
                 };
             } else {
-                //TODO error
+                if (this.status === 401){
+                    window.location.replace('http://localhost/ittech?page=error401');
+                }else {
+                    window.location.replace('http://localhost/ittech?page=error500');
+                }
             }
         }
     };

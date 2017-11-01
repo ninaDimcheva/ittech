@@ -40,7 +40,13 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'removeProduct' : require_once 'view/removeProduct.html';
                 break;
-            default : require_once 'view/error.html';
+            case 'error400' : require_once 'view/error400.html';
+                break;
+            case 'error401' : require_once 'view/error401.html';
+                break;
+            case 'error500' : require_once 'view/error500.html';
+                break;
+            default : require_once 'view/error404.html';
         }
     }else{
         require_once 'view/main.html';
@@ -75,7 +81,13 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
                 case 'productsByType' : require_once 'view/productsByType.html';
                     break;
-                default : require_once 'view/error.html';
+                case 'error400' : require_once 'view/error400.html';
+                    break;
+                case 'error401' : require_once 'view/error401.html';
+                    break;
+                case 'error500' : require_once 'view/error500.html';
+                    break;
+                default : require_once 'view/error404.html';
             }
         }else{
             require_once 'view/main.html';
@@ -105,7 +117,13 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
                 case 'productsByType' : require_once 'view/productsByType.html';
                     break;
-                default : require_once 'view/error.html';
+                case 'error400' : require_once 'view/error400.html';
+                    break;
+                case 'error401' : require_once 'view/error401.html';
+                    break;
+                case 'error500' : require_once 'view/error500.html';
+                    break;
+                default : require_once 'view/error404.html';
             }
         }else{
             require_once 'view/main.html';

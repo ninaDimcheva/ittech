@@ -140,6 +140,8 @@ function sendPromoProduct(productId, startDate, endDate, discount) {
                 allProductsLink.innerText = 'Select another product';
                 allProductsLink.href = './';
                 inputPromoFields.appendChild(allProductsLink);
+            }else {
+                window.location.replace('http://localhost/ittech?page=error500');
             }
         }
     };

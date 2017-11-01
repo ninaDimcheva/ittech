@@ -18,7 +18,7 @@ if (isset($_GET['findUser'])){
             echo false;
         }
     }catch (\PDOException $e){
-        //TODO header("Location:../?page=error");
+        http_response_code(500);
     }
 
 }
@@ -36,10 +36,10 @@ if (isset($_GET['editPrivileges'])){
         if ($email != 'dimov@mail.bg'){
             echo UserDao::getInstance()->editUserPrivilege($changePrivilege, $email);
         }else{
-//          TODO header("Location:../?page=error");
+            http_response_code(401);
         }
 
     }catch (\PDOException $e){
-//         TODO     header("Location:../?page=error");
+        http_response_code(500);
     }
 }
