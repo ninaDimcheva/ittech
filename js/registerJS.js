@@ -1,5 +1,3 @@
-
-
 function registerValidate(){
     var name = document.getElementById('name').value;
     var nameWarn = document.getElementById('nameWarn');

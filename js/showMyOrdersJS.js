@@ -1,5 +1,5 @@
 function showMyOrders () {
-   // if(self.location == 'http://localhost/ittech/?page=myOrders'){
+  // if(self.location == 'http://localhost/ittech/?page=myOrders'){
         var myOrders = document.getElementById('myOrders');
         var userOrders = new XMLHttpRequest();
         userOrders.onreadystatechange = function () {

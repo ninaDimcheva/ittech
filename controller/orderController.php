@@ -27,12 +27,12 @@ if (isset($_POST['confirmedOrder']) && isset($_SESSION['isLogged']) && $_SESSION
 	$status = trim(htmlentities('Confirmed'));
 	$totalOrder = 0;
 	for ($i = 0; $i < count($_SESSION['cart']); $i ++) {
-		
+
 		$productId = $_SESSION['cart'][$i] -> product_id;
 		$productQuantityDB = $_SESSION['cart'][$i] -> quontity;
 		$priceSingleProduct = $_SESSION['cart'][$i] -> price;
 		$quantityProductOrdered = $_SESSION['cart'][$i] -> orderedQuantity;
-		
+
 		$objectProductCart = new OrderProducts($productId, $quantityProductOrdered);
 		$arrayCartObjects[] = $objectProductCart;
 		$totalOrder += $quantityProductOrdered * $priceSingleProduct;

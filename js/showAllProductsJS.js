@@ -1,3 +1,13 @@
+function checkLocation(orderBy, type) {
+    if (self.location == 'http://localhost/ittech/' || self.location == 'http://localhost/ittech/?page=main') {
+        showAllProducts(orderBy, type);
+    }
+    else {
+        sessionStorage.showTypeProduct = type;
+        window.location.replace("http://localhost/ittech/");
+    }
+}
+
 function showAllProducts(orderBy, type) {
     if (self.location == 'http://localhost/ittech/' || self.location == 'http://localhost/ittech/?page=main') {
         orderBy = orderBy || null;
@@ -6,7 +16,7 @@ function showAllProducts(orderBy, type) {
         if (sessionStorage.search) {
             search(sessionStorage.search);
             sessionStorage.clear();
-        } else if (type == null) {
+        } else if (type == null && !sessionStorage.showTypeProduct) {
             var request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -17,6 +27,22 @@ function showAllProducts(orderBy, type) {
             request.open("POST", "http://localhost/ittech/controller/mainController.php");
             request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             request.send("getAllProducts=" + orderBy);
+        }
+        else if (sessionStorage.showTypeProduct) {
+            var typeProducts = new XMLHttpRequest();
+            typeProducts.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        sessionStorage.clear();
+                        var productsObject = JSON.parse(this.responseText);
+                        showProducts(productsObject, 'article');
+                    }
+                }
+            };
+
+            typeProducts.open("POST", "http://localhost/ittech/controller/mainController.php");
+            typeProducts.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            typeProducts.send("getAllProductsForType=" + sessionStorage.showTypeProduct);
         }
         else {
             var productsForType = new XMLHttpRequest();
@@ -153,7 +179,7 @@ function showProducts(productsObject, id) {
             var rating = productsObject[currentProduct].rating;
             var ratingDiv = document.createElement('div');
 
-            if (rating){
+            if (rating) {
                 for (var k = 1; k < 6; k++) {
                     if (k <= rating) {
                         var redStar = document.createElement('i');
@@ -166,10 +192,10 @@ function showProducts(productsObject, id) {
                     }
                 }
                 panel.appendChild(ratingDiv);
-            }else {
+            } else {
                 for (var k = 1; k < 6; k++) {
-                        var emptyStar = document.createElement('i');
-                        emptyStar.className = 'fa fa-star-o fa-lg';
+                    var emptyStar = document.createElement('i');
+                    emptyStar.className = 'fa fa-star-o fa-lg';
                     ratingDiv.appendChild(emptyStar);
                 }
                 panel.appendChild(ratingDiv);

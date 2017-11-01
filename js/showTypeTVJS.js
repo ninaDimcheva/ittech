@@ -1,8 +1,8 @@
 function showTypeTV() {
-    var mainType = document.getElementById('tv');
-    var typeDiv = document.getElementById('tvTypes');
-    typeDiv.style.display = 'block';
-    mainType.appendChild(typeDiv);
+        var mainType = document.getElementById('tv');
+        var typeDiv = document.getElementById('tvTypes');
+        typeDiv.style.display = 'block';
+        mainType.appendChild(typeDiv);
 }
 
 function hideTypeTV() {

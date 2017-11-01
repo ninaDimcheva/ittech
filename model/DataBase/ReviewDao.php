@@ -35,13 +35,19 @@ class ReviewDao{
     }
 
     public function insertReview(Review $review){
-        $stm = $this->pdo->prepare("INSERT INTO `reviews` (`product_id`, `user_id`, `rating`, `review`, `review_date`) VALUES (?, ?, ?, ?, CURRENT_DATE)");
-        $stm-> execute(array($review->getProductId(), $review->getUserId(), $review->getRating(), $review->getReview()));
-
-        $stm = $this->pdo->prepare("SELECT  round(avg(`rating`)) as newRating, count(*) as customerReviewsNum, curdate() as reviewDate  FROM `reviews` WHERE `product_id` = ?");
-        $stm-> execute(array($review->getProductId()));
-        return $stm->fetch(\PDO::FETCH_ASSOC);
+    	try{
+    	     $this->pdo->beginTransaction();
+		    $stm = $this->pdo->prepare("INSERT INTO `reviews` (`product_id`, `user_id`, `rating`, `review`, `review_date`) VALUES (?, ?, ?, ?, CURRENT_DATE)");
+		    $stm-> execute(array($review->getProductId(), $review->getUserId(), $review->getRating(), $review->getReview()));
+		
+		    $stm = $this->pdo->prepare("SELECT  round(avg(`rating`)) as newRating, count(*) as customerReviewsNum, curdate() as reviewDate  FROM `reviews` WHERE `product_id` = ?");
+		    $stm-> execute(array($review->getProductId()));
+		    $this->pdo->commit();
+		    return $stm->fetch(\PDO::FETCH_ASSOC);
+	    }
+	    catch (\PDOException $e){
+    		$this->pdo->rollBack();
+    		throw new \PDOException($e->getMessage(), $e->getCode());
+	    }
     }
-
-
 }

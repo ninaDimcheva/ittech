@@ -3,6 +3,7 @@
 // the function will check if the user is already logged in after the order had been checked from php and will visualize details about the order!
 
 function confirmOrder () {
+    if (self.location == 'http://localhost/ittech/?page=confirmOrder') {
     var isLoggedUser = new XMLHttpRequest();
     isLoggedUser.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -136,7 +137,7 @@ function confirmOrder () {
     };
     isLoggedUser.open("GET", "http://localhost/ittech/controller/isLoggedController.php?isSetUser");
     isLoggedUser.send();
-
+}
 }
 
 // -------------   validate the entered address:   --------------------//

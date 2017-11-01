@@ -17,7 +17,6 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduc
         <li><a href="./"><img id="homePage" src="assets/displayImages/homePage.png" alt="Home page">Home page</a></li>
         <li><a href="?page=contactittech"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">0000 00 000</a></li>
         <li><a href="?page=productsOnPromotions"><img id="promotion" src="assets/displayImages/promotions.png" alt="Promotions">Promotions</a></li>
-        <li><a href="?page=userCart"><img id="cart" src="assets/displayImages/cart.png" alt="Cart">Cart</a></li>
     </ul>
     <hr>
     <a  id="ittechLogo" href="./"><img src="assets/displayImages/logo.png"/></a>
@@ -38,6 +37,9 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduc
             <a href="?page=login">Login</a><br/>
             <a href="?page=register">Register</a>
         </div>
+        <div id="mainCart">
+            <button class="button" onclick="location.href = '?page=userCart'"><img id="cart" src="assets/displayImages/cart.png" alt="Cart">Cart</button>
+        </div>
     </div>
 </header>
 <nav >
@@ -53,57 +55,57 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduc
 
     <div id="tvTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Television')">Television</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Home theater')">Home theater</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Audio systems')">Audio systems</li>
+            <li class="types" onclick="checkLocation('type asc', 'Television')">Television</li>
+            <li class="types" onclick="checkLocation('type asc', 'Home theater')">Home theater</li>
+            <li class="types" onclick="checkLocation('type asc', 'Audio systems')">Audio systems</li>
         </ul>
     </div>
 
     <div id="pcTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Laptops')">Laptops</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Personal computers')">Personal computers</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Monitors')">Monitors</li>
+            <li class="types" onclick="checkLocation('type asc', 'Laptops')">Laptops</li>
+            <li class="types" onclick="checkLocation('type asc', 'Personal computers')">Personal computers</li>
+            <li class="types" onclick="checkLocation('type asc', 'Monitors')">Monitors</li>
         </ul>
     </div>
 
     <div id="phoneTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Mobile phones')">Mobile phones</li>
-            <li class="types" onclick="showAllProducts('type asc', 'E-books')">E-books</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Tabletes')">Tabletes</li>
+            <li class="types" onclick="checkLocation('type asc', 'Mobile phones')">Mobile phones</li>
+            <li class="types" onclick="checkLocation('type asc', 'E-books')">E-books</li>
+            <li class="types" onclick="checkLocation('type asc', 'Tabletes')">Tabletes</li>
         </ul>
     </div>
 
     <div id="appTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Air conditioner')">Air conditioner</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Washing machines')">Washing machines</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Microwaves')">Microwaves</li>
+            <li class="types" onclick="checkLocation('type asc', 'Air conditioner')">Air conditioner</li>
+            <li class="types" onclick="checkLocation('type asc', 'Washing machines')">Washing machines</li>
+            <li class="types" onclick="checkLocation('type asc', 'Microwaves')">Microwaves</li>
         </ul>
     </div>
 
     <div id="smallAppTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Hair press')">Hair press</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Iron')">Iron</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Kitchen scales')">Kitchen scales</li>
+            <li class="types" onclick="checkLocation('type asc', 'Hair press')">Hair press</li>
+            <li class="types" onclick="checkLocation('type asc', 'Iron')">Iron</li>
+            <li class="types" onclick="checkLocation('type asc', 'Kitchen scales')">Kitchen scales</li>
         </ul>
     </div>
 
     <div id="photoTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Photo cameras')">Photo cameras</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Video cameras')">Video cameras</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Digital photo album')">Digital photo album</li>
+            <li class="types" onclick="checkLocation('type asc', 'Photo cameras')">Photo cameras</li>
+            <li class="types" onclick="checkLocation('type asc', 'Video cameras')">Video cameras</li>
+            <li class="types" onclick="checkLocation('type asc', 'Digital photo album')">Digital photo album</li>
         </ul>
     </div>
 
     <div id="gamingTypes">
         <ul>
-            <li class="types" onclick="showAllProducts('type asc', 'Sony playstation')">Sony playstation</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Nintendo')">Nintendo</li>
-            <li class="types" onclick="showAllProducts('type asc', 'Drons')">Drons</li>
+            <li class="types" onclick="checkLocation('type asc', 'Sony playstation')">Sony playstation</li>
+            <li class="types" onclick="checkLocation('type asc', 'Nintendo')">Nintendo</li>
+            <li class="types" onclick="checkLocation('type asc', 'Drons')">Drons</li>
         </ul>
     </div>
 </nav>

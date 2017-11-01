@@ -23,7 +23,7 @@ if (isset($_POST['contactUs'])) {
     if (strlen($message) == 0 || strlen($message) > 500) {
         $error = true;
     }
-
+	
     if (!$error) {
         $to = 'ittech.eshop@egmail.com';
         $subject = 'Form submission';
@@ -38,10 +38,4 @@ if (isset($_POST['contactUs'])) {
         }
     }
 }
-
-
-
-
-
-
 

@@ -32,7 +32,7 @@ if (isset($_POST['getAllProducts'])) {
 			$products[] = $isAdmin;
 			//return the searched products or all if there is no search
 			echo json_encode($products, JSON_UNESCAPED_SLASHES);
-			
+
 		}
 		else {
 //            TODO    header('Location:../?page=error');
@@ -52,14 +52,6 @@ if (isset($_POST['getAllProductsForType'])) {
 		$isAdmin = false;
 	}
 	try {
-
-$_SESSION['test'] = $_POST['getAllProductsForType'];
-
-//var_dump($_SESSION['test']);
-//	$typeForOrder = trim(htmlentities($_SESSION['test']));
-//	$products = ProductDao ::getInstance() -> getAllProductsForType();
-//	var_dump($products);
-		
 		$typeForOrder = trim(htmlentities($_POST['getAllProductsForType']));
 		$products = ProductDao ::getInstance() -> getAllProductsForType($typeForOrder);
 		if ($products) {
@@ -76,7 +68,6 @@ $_SESSION['test'] = $_POST['getAllProductsForType'];
 //            TODO    header('Location:../?page=error');
 	}
 }
-
 
 
 // sets in session the product which must be visualized;

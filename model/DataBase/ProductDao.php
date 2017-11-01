@@ -147,9 +147,9 @@ class ProductDao
                                               FROM `products` as P
                                               JOIN `types` as T ON P.`type_id` = T.`type_id`
                                               JOIN `brands` as B ON P.`brand_id` = B.`brand_id`
-                                              WHERE P.`archive` is null AND T.`type` = '$typeForOrder'");
+                                              WHERE P.`archive` is null AND T.`type` = ?");
                                              
-		$stm->execute();
+		$stm->execute(array($typeForOrder));
 		$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 		
 		$products = $this->createProductsObjs($result);
@@ -157,6 +157,10 @@ class ProductDao
 		$this->addSpecObj($products);
 		
 		$this->addImgObjs($products);
+		
+		$this->addReviewObjs($products);
+		
+		$this->addRating($products);
 		
 		return $products;
 	}

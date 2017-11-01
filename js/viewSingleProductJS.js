@@ -10,14 +10,16 @@ function viewSingleProduct() {
                 // ---------------------------------
                 // creates link back to main.html;
 //TODO rename link to `HOME` or show products of the  selected type
+
                 var linkMainPage = document.createElement('div');
                 linkMainPage.id = 'linkMainPage';
                 var a = document.createElement('a');
                 a.href = '?page=main';
-                a.innerHTML = viewProduct.type;
+                a.innerHTML = '<- ' + viewProduct.type;
                 var br = document.createElement('br');
                 linkMainPage.appendChild(a);
                 viewSingleProduct.appendChild(linkMainPage);
+                viewSingleProduct.appendChild(br);
                 // ---------------------------------
 
                 // ---------------------------------
@@ -25,9 +27,6 @@ function viewSingleProduct() {
 
                 var productHeading = document.createElement('div');
                 productHeading.id = 'productHeading';
-                productHeading.style.border = '1px solid black';
-                productHeading.style.width = '400px';
-                productHeading.style.float = 'left';
                 var type = document.createElement('h4');
                 type.innerText = viewProduct.type + ' ' + viewProduct.brand + ' ' + viewProduct.model;
                 productHeading.appendChild(type);
@@ -44,13 +43,9 @@ function viewSingleProduct() {
 
                 var mainImage = document.createElement('div');
                 mainImage.id = 'mainImage';
-                mainImage.style.width = '400px';
-                mainImage.style.border = '1px solid black';
-                mainImage.style.textAlign = 'center';
-                mainImage.float = 'left';
                 var image = document.createElement('img');
                 image.src = "http://localhost/ittech/" + viewProduct.imgs[0].img_url;
-                image.style.width = '300px';
+                image.style.width = '200px';
                 image.style.height = 'auto';
                 mainImage.appendChild(image);
                 viewSingleProduct.appendChild(mainImage);
@@ -59,12 +54,8 @@ function viewSingleProduct() {
 
                 var specifications = document.createElement('div');
                 specifications.id = 'specifications';
-                // specifications.style.float = 'left';
-                specifications.style.width = '250px';
-                specifications.margin = '250px';
                 var list = document.createElement('ul');
                 for (var i = 0; i < viewProduct.specifications.length; i++) {
-                    // alert(viewProduct.specifications[i].name + ' - ' + viewProduct.specifications[i].value);
                     var li = document.createElement('li');
                     li.innerHTML = viewProduct.specifications[i].name + ': ' + viewProduct.specifications[i].value;
                     list.appendChild(li);
@@ -79,10 +70,6 @@ function viewSingleProduct() {
                 for (var i = 1; i <= 2; i++) {
                     var smallImage = document.createElement('div');
                     smallImage.className = 'smallImages';
-                    smallImage.style.width = '100px';
-                    smallImage.style.height = 'auto';
-                    // smallImage.style.float = 'left';
-                    smallImage.style.border = '1px solid red';
                     var images = document.createElement('img');
                     images.src = "http://localhost/ittech/" + viewProduct.imgs[i].img_url;
                     images.style.width = '50px';
@@ -168,20 +155,12 @@ function viewSingleProduct() {
 
                 var price = document.createElement('div');
                 price.id = 'price';
-                // price.style.border = '1px solid green';
-                price.style.width = '100px';
-                price.style.height = '50px';
-                // price.style.float = 'right';
-                price.style.color = 'red';
 
                 if (viewProduct.inPromo) {
                     var imgPromo = document.createElement('img');
-                    imgPromo.style.width = '80px';
-                    imgPromo.style.height = 'auto';
-                    imgPromo.style.float = 'left';
+                    imgPromo.id = 'imgPromo';
                     imgPromo.src = "./assets/displayImages/promo.png";
                     mainImage.appendChild(imgPromo);
-
                     price.innerText = 'Promo prise: $' + viewProduct.price;
 
                 } else {
@@ -375,7 +354,9 @@ function addReview(rateAndProductId) {
                 var addReviewDiv = document.getElementById('addReviewDiv');
                 addReviewDiv.style.display = 'none';
 
+                alert(this.responseText);
                 var reviewObj = JSON.parse(this.responseText);
+                alert(reviewObj);
                 var newRating = reviewObj.newRating;
                 var ratingStarsDiv = document.getElementById('ratingStarsDiv');
                 ratingStarsDiv.innerHTML = '';

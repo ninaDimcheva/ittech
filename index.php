@@ -24,7 +24,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'main' : require_once 'view/main.html';
                 break;
-            case  'contactittech' : require_once 'view/contactittech.html';
+            case  'contactittech' : require_once 'view/contactITTech.html';
                 break;
             case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                 break;
@@ -59,7 +59,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
                 case 'main' : require_once 'view/main.html';
                     break;
-                case  'contactittech' : require_once 'view/contactittech.html';
+                case  'contactittech' : require_once 'view/contactITTech.html';
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;
@@ -89,7 +89,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'main' : require_once 'view/main.html';
                     break;
-                case  'contactittech' : require_once 'view/contactittech.html';
+                case  'contactittech' : require_once 'view/contactITTech.html';
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;

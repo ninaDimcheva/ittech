@@ -31,10 +31,9 @@ if (isset($_GET['addReview'])){
                 $newRating = ReviewDao::getInstance()->insertReview($reviewObj);
                 $fullName =ucfirst($_SESSION['user']->getName()) . " " . ucfirst($_SESSION['user']->getFamilyName());
                 $newRating['userName'] = $fullName;
-
                 echo json_encode($newRating);
             }catch (\PDOException $e){
-                //TODO db error
+                echo "stoy";
             }
         }else{
             //TODO wrong user insertation error
