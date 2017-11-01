@@ -1,38 +1,47 @@
-
-<!--TODO discuss with Georgi this code-->
-
 <?php
-if(isset($_POST['send'])){
-	$to = "ittech.eshop@egmail.com"; // this is the receiver's Email address
-    $from = $_POST['email']; // this is the sender's Email address
-	$firstName = $_POST['name'];
-	$phoneNumber = $_POST['phoneNumber'];
-	$subject = "Form submission";
-	$subject2 = "Copy of your form submission";
-	$message = $firstName . " wrote the following:" . "\n\n" . $_POST['message'];
-	$message2 = "Here is a copy of your message " . $firstName . "\n\n" . $_POST['message'];
-	
-	$headers = "From:" . $from;
-	$headers2 = "From:" . $to;
-	mail($to,$subject,$message,$headers);
-	mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-	
-	echo "Mail Sent. Thank you " . $firstName . ", we will contact you shortly.";
-	// You can also use header('Location: thank_you.php'); to redirect to another page.
+if (isset($_POST['contactUs'])) {
+    $name = trim(htmlentities($_POST['name']));
+    $familyName = trim(htmlentities($_POST['familyName']));
+    $email = trim(htmlentities($_POST['email']));
+    $atSignPos = strpos($email, '@');
+    $phoneNumber = trim(htmlentities($_POST['phoneNumber']));
+    $message = trim(htmlentities($_POST['message']));
+    $error = false;
+
+    if (strlen($name) == 0 || strlen($name) > 45 || is_numeric($name)) {
+        $error = true;
+    }
+    if (strlen($familyName) == 0 || strlen($familyName) > 45 || is_numeric($familyName)) {
+        $error = true;
+    }
+    if (strlen($email) == 0 || strlen($email) > 45 || $atSignPos < 1) {
+        $error = true;
+    }
+    if (strlen($phoneNumber) < 9 || strlen($phoneNumber) > 45) {
+        $error = true;
+    }
+    if (strlen($message) == 0 || strlen($message) > 500) {
+        $error = true;
+    }
+
+    if (!$error) {
+        $to = 'ittech.eshop@egmail.com';
+        $subject = 'Form submission';
+        $message = $name . " " . $familyName . " with email:" . $email . " and PhoneNumber:" . $phoneNumber . " wrote the following:" . "\n\n" . $message;
+        $headers = 'From: ittech.eshop@egmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        if (mail($to, $subject, $message, $headers)) {
+            echo  "Mail Sent successfully. Thank you " . $name . " " . $familyName . ", we will contact you shortly.";
+            header("Location:../");
+        } else {
+            die('Failure: Email was not sent!');
+        }
+    }
 }
-?>
 
-<?php
-//$to      = 'georgi.dimov@onlinedirect.bg';
-//$subject = 'Fake sendmail test';
-//$message = 'If we can read this, it means that our fake Sendmail setup works!';
-//$headers = 'From: ittech.eshop@egmail.com' . "\r\n" .
-//    'BCC: shogydimov@gmail.com,ittech.eshop@gmail.com' . "\r\n" .
-//    'X-Mailer: PHP/' . phpversion();
-//
-//if(mail($to, $subject, $message, $headers)) {
-//    echo 'Email sent successfully!';
-//} else {
-//    die('Failure: Email was not sent!');
-//}
-//?>
+
+
+
+
+
+

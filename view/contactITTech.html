@@ -1,45 +1,69 @@
+<script src="js/emailittechJS.js"></script>
+
+<fieldset>
+    <legend><h3>Contact us</h3></legend>
+
+    <form action="controller/emailittechController.php" method="post">
+        <div class="contactUs displayInlineBlock">
+            <div class="labels">
+                <label for="name">Name:<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs">
+                <input type="text" name="name" id="name" required autofocus onkeyup="inputValidation()"
+                       onfocus="inputValidation()" onblur="inputValidation()" maxlength="45">
+            </div>
+            <div class="warnings">
+                <p id="nameWarn"></p>
+            </div>
+
+            <div class="labels">
+                <label for="familyName">Family name:<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs">
+                <input type="text" name="familyName" id="familyName" required onkeyup="inputValidation()"
+                       onblur="inputValidation()" maxlength="45">
+            </div>
+            <div class="warnings">
+                <p id="familyNameWarn"></p>
+            </div>
+
+            <div class="labels">
+                <label for="email">E-mail:<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs">
+                <input type="email" name="email" id="email" required onkeyup="inputValidation()"
+                       onblur="inputValidation()" maxlength="45">
+            </div>
+            <div class="warnings">
+                <p id="emailWarn"></p>
+            </div>
+
+            <div class="labels">
+                <label for="phoneNumber">Phone number:<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs">
+                <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+XXX XXX XXXXXX" required onkeyup="inputValidation()"
+                       onblur="inputValidation()" maxlength="45">
+            </div>
+            <div class="warnings">
+                <p id="phoneNumberWarn"></p>
+            </div>
+
+            <div class="labels">
+                <label for="message">Your message:<span class="requiredField">*</span></label>
+            </div>
+            <div class="inputs" id="contactMessageDiv">
+                <textarea name="message" id="message" cols="22" rows="5" onkeyup="inputValidation()"
+                          onblur="inputValidation()" maxlength="500" placeholder="...up to 500 charackters"></textarea>
+            </div>
+            <div class="warnings">
+                <p id="messageWarn"></p>
+            </div>
+        </div>
 
 
-<!--TODO check for the working state of this form and search for array with security codes-->
-
-<script src="js/emailITTech.js"></script>
-<div id="emailITTEch">
-    <fieldset>
-        <legend><h3>Contact us:</h3></legend>
-        <form action="controller/emailITTechController.php" method="post">
-            <table id="emailTable">
-                <tr>
-                    <td><label for="name">Name:<span class="requiredField">*</span></label></td>
-                    <td><input type="text" name="name" id="name" required  autofocus onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
-                    <td id="nameWarn"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">E-mail:<span class="requiredField">*</span></label></td>
-                    <td><input type="email" name="email" id="email" required onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
-                    <td id="emailWorn"></td>
-                </tr>
-                <tr>
-                    <td><label for="phoneNumber">Phone number:<span class="requiredField">*</span></label></td>
-                    <td><input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+XXX-XXX-XXXXXX" required onkeyup="inputValidation()" onblur="inputValidation()" maxlength="45"></td>
-                    <td id="phoneNumberWorn"></td>
-                </tr>
-                <tr>
-                    <td><label for="message">Message:<span class="requiredField">*</span></label></td>
-                    <td><textarea name="message" id="message" required onkeyup="inputValidation()" onblur="inputValidation()" cols="15" rows="6"></textarea></td>
-                    <td id="messageWorn"></td>
-                </tr>
-                <tr>
-                    <td><label for="securityCode">Security code:<span class="requiredField">*</span></label></td>
-                    <td><h2 id="systemSecurityCode">Green</h2></td>
-                    <td><input type="text" name="securityCode" id="securityCode" required onkeyup="inputValidation()" onblur="inputValidation()"></td>
-                    <td id="securityCodeWorn"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="send" value="Send"  id="sendEmail"></td>
-                    <td></td>
-                </tr>
-            </table>
-        </form>
-    </fieldset>
-</div>
+        <div id="contactUsSubmit">
+            <input type="submit" name="contactUs" value="Contact us" disabled id="contactUsButton" class="button">
+        </div>
+    </form>
+</fieldset>
