@@ -89,6 +89,5 @@ class UserDao{
     public function editPassword($password, $userId){
         $stm = $this->pdo->prepare("UPDATE `users` SET `password` = ? WHERE `user_id` = ?");
         $stm->execute(array($password,$userId));
-        return $stm->rowCount() > 0;
     }
 }

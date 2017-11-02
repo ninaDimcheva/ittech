@@ -69,41 +69,36 @@ if (isset($_GET['editFamilyName'])) {
     }
 }
 
-if (isset($_POST['checkPassword'])){
-    if (isset($_SESSION['user'])){
+if (isset($_POST['checkPassword'])) {
+    if (isset($_SESSION['user'])) {
         $currentPass = $_SESSION['user']->getPassword();
         $password = trim(htmlentities($_POST['checkPassword']));
-        if (strlen($password) > 0 && sha1($password) == $currentPass){
+        if (strlen($password) > 0 && sha1($password) == $currentPass) {
             echo true;
-        }else {
+        } else {
             echo false;
         }
-    }else{
+    } else {
         http_response_code(401);
     }
 }
 
-if (isset($_POST['editPassword'])){
-    if (isset($_SESSION['user'])){
+if (isset($_POST['editPassword'])) {
+    if (isset($_SESSION['user'])) {
         $userId = $_SESSION['user']->getUserId();
         $newPassword = trim(htmlentities($_POST['editPassword']));
-        if (strlen($newPassword) > 5){
+        if (strlen($newPassword) > 5) {
             $newPassword = sha1($newPassword);
-            try{
-                $editedPassword = UserDao::getInstance()->editPassword($newPassword, $userId);
-                if ($editedPassword){
-                    $_SESSION['user']->setPassword($newPassword);
-                    echo true;
-                }else{
-                    http_response_code(500);
-                }
-            }catch (\PDOException $e){
+            try {
+                UserDao::getInstance()->editPassword($newPassword, $userId);
+                $_SESSION['user']->setPassword($newPassword);
+            } catch (\PDOException $e) {
                 http_response_code(500);
             }
-        }else {
+        } else {
             http_response_code(400);
         }
-    }else{
+    } else {
         http_response_code(401);
     }
 }

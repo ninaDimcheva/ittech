@@ -155,9 +155,13 @@ function editPassword() {
                             inputNewPass.onkeydown = function () {
                                 clickEditPassword();
                             };
+                            inputNewPass.onkeyup = function () {
+                                checkPasswordLenght(inputNewPass.value);
+                            };
                             passwordDiv.innerHTML = '';
                             passwordDiv.appendChild(inputNewPass);
                             button.innerText = 'Save';
+                            button.disabled = true;
                         } else {
                             passwordDiv.innerText = 'Wrong password';
                             passwordDiv.style.color = 'red';
@@ -230,5 +234,13 @@ function clickEditFamily() {
 function clickEditPassword() {
     if (event.keyCode === 13 || event.which === 13) {
         document.getElementById('editPassword').click();
+    }
+}
+
+function checkPasswordLenght(newPassword) {
+    if (newPassword.length > 5){
+        document.getElementById('editPassword').disabled = false;
+    }else {
+        document.getElementById('editPassword').disabled = true;
     }
 }
