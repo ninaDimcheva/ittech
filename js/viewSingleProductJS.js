@@ -10,13 +10,12 @@ function viewSingleProduct() {
 
                     // ---------------------------------
                     // creates link back to main.html;
-//TODO rename link to `HOME` or show products of the  selected type
 
                     var linkMainPage = document.createElement('div');
                     linkMainPage.id = 'linkMainPage';
                     var a = document.createElement('a');
                     a.href = '?page=main';
-                    a.innerHTML = '<- ' + viewProduct.type;
+                    a.innerHTML = '<- ' + 'Home page';
                     var br = document.createElement('br');
                     linkMainPage.appendChild(a);
                     viewSingleProduct.appendChild(linkMainPage);
@@ -226,9 +225,6 @@ function viewSingleProduct() {
                                     var favourites = document.createElement('div');
                                     favourites.id = 'favourites';
                                     favourites.className = 'button';
-                                    favourites.style.float = 'left';
-                                    favourites.style.width = 'auto';
-                                    favourites.style.marginRight = '20px';
                                     favourites.style.cursor = 'pointer';
 
                                     var favoritesSpan = document.createElement('span');
@@ -276,6 +272,7 @@ function viewSingleProduct() {
 
                                     var buyNow = document.createElement('div');
                                     buyNow.className = 'button';
+                                    buyNow.id = 'buySingleProduct';
                                     if (viewProduct.quontity == 0) {
                                         buyNow.innerHTML = 'OUT OF STOCK';
                                         buyNow.disabled = true;
@@ -286,10 +283,6 @@ function viewSingleProduct() {
                                             sendToCart(viewProduct);
                                         };
                                     }
-                                    // buyNow.style.border = '1px solid green';
-                                    buyNow.style.width = '100px';
-                                    buyNow.style.height = '50px';
-                                    buyNow.style.float = 'right';
                                     viewSingleProduct.appendChild(buyNow);
 
                                 }

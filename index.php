@@ -28,15 +28,11 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                 break;
             case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                 break;
-            case 'shops' : require_once 'view/shops.html';
-                break;
             case 'terms' : require_once 'view/termsForOnlineShopping.html';
                 break;
             case 'viewSingleProduct' : require_once 'view/viewSingleProduct.html';
                 break;
             case 'removePromoProduct' : require_once 'view/removePromoProduct.html';
-                break;
-            case 'productsByType' : require_once 'view/productsByType.html';
                 break;
             case 'removeProduct' : require_once 'view/removeProduct.html';
                 break;
@@ -69,8 +65,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;
-                case 'shops' : require_once 'view/shops.html';
-                    break;
                 case 'terms' : require_once 'view/termsForOnlineShopping.html';
                     break;
                 case 'userCart' : require_once 'view/userCart.html';
@@ -79,8 +73,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
 	            case 'confirmOrder' : require_once 'view/confirmationOrder.html';
 		            break;
-                case 'productsByType' : require_once 'view/productsByType.html';
-                    break;
                 case 'error400' : require_once 'view/error400.html';
                     break;
                 case 'error401' : require_once 'view/error401.html';
@@ -105,8 +97,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
                     break;
                 case 'productsOnPromotions' : require_once 'view/productsOnPromotions.html';
                     break;
-                case 'shops' : require_once 'view/shops.html';
-                    break;
                 case 'terms' : require_once 'view/termsForOnlineShopping.html';
                     break;
                 case 'userCart' : require_once 'view/userCart.html';
@@ -115,8 +105,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] -> getIsAdmin()){
 		            break;
 	            case 'confirmOrder' : require_once 'view/confirmationOrder.html';
 		            break;
-                case 'productsByType' : require_once 'view/productsByType.html';
-                    break;
                 case 'error400' : require_once 'view/error400.html';
                     break;
                 case 'error401' : require_once 'view/error401.html';

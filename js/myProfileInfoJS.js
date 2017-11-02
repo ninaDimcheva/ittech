@@ -5,6 +5,21 @@ function showMyProfile() {
             if (this.readyState === 4) {
                 if (this.status === 200) {
                     var userProfile = JSON.parse(this.responseText);
+                    if(userProfile.is_admin){
+                        var liToDelete = document.getElementById('myOrders');
+                        liToDelete.innerHTML = '';
+                        var addNewProduct = document.createElement('a');
+                        addNewProduct.href = '?page=addProduct';
+                        addNewProduct.innerHTML = 'Add new product';
+                        liToDelete.appendChild(addNewProduct);
+
+                        var secondLiToDelete = document.getElementById('myFavourites');
+                        secondLiToDelete.innerHTML = '';
+                        var privileges = document.createElement('a');
+                        privileges.href = '?page=editUserPrivilege';
+                        privileges.innerHTML = 'Edit user privileges';
+                        secondLiToDelete.appendChild(privileges);
+                    }
                     var name = document.getElementById('myProfileName');
                     name.innerText = capitalizeFirstLetter(userProfile.name);
 

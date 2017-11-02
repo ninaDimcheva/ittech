@@ -104,7 +104,7 @@ function showUserCart() {
                     columnSpan.colSpan = '4';
                     lastRow.appendChild(columnSpan);
                     var totalAmountText = document.createElement('td');
-                    totalAmountText.innerHTML = 'Total amount';
+                    totalAmountText.innerHTML = 'Total amount $';
                     lastRow.appendChild(totalAmountText);
                     var totalAmountNumber = document.createElement('td');
                     totalAmountNumber.innerHTML = Number(totalAmountOrder).toFixed(2);
