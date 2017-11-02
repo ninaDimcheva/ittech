@@ -331,12 +331,14 @@ function rate(reviewStarId) {
             document.getElementById('reviewStar' + i).className = 'fa fa-star-o fa-2x';
         }
     }
-
+    if (JSON.parse(addReview.value).productId){
+        addReview.value = JSON.parse(addReview.value).productId;
+    }
     var reviewToSend = {
         productId: addReview.value,
         rating: reviewStar
     };
-    addReview.value = JSON.stringify({productId: addReview.value, rating: reviewStar});
+    addReview.value = JSON.stringify(reviewToSend);
 
 }
 
@@ -358,9 +360,7 @@ function addReview(rateAndProductId) {
                 var addReviewDiv = document.getElementById('addReviewDiv');
                 addReviewDiv.style.display = 'none';
 
-                alert(this.responseText);
                 var reviewObj = JSON.parse(this.responseText);
-                alert(reviewObj);
                 var newRating = reviewObj.newRating;
                 var ratingStarsDiv = document.getElementById('ratingStarsDiv');
                 ratingStarsDiv.innerHTML = '';

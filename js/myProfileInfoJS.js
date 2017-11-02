@@ -23,9 +23,10 @@ function showMyProfile() {
                     var notifications = document.getElementById('myProfileNotifications');
                     if (userProfile.notifications) {
                         notifications.innerText = 'You are subscribed to receive information about promotions and new products!';
+                        document.getElementById('subscribeButton').innerHTML = 'Unsubscribe';
                     } else {
                         notifications.innerText = 'You are not subscribed to receive information about promotions and new products!';
-
+                        document.getElementById('subscribeButton').innerHTML = 'Subscribe';
                     }
                 } else {
                     if (this.status === 401){
@@ -49,8 +50,10 @@ function editNotifications() {
             if (this.status === 200) {
                 if (this.responseText) {
                     notifications.innerText = 'You are subscribed to receive information about promotions and new products!';
+                    document.getElementById('subscribeButton').innerHTML = 'Unsubscribe';
                 } else {
                     notifications.innerText = 'You are not subscribed to receive information about promotions and new products!';
+                    document.getElementById('subscribeButton').innerHTML = 'Subscribe';
                 }
             } else {
                 if (this.status === 401){
