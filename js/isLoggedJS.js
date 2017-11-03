@@ -43,7 +43,7 @@ function isLogged() {
                     inputFiled.type = 'submit';
                     inputFiled.name = 'logout';
                     inputFiled.value = 'Logout';
-                    inputFiled.class = 'button';
+                    inputFiled.className = 'button';
                     logout.appendChild(inputFiled);
                     mainDiv.appendChild(logout);
                 } else {
@@ -70,7 +70,7 @@ function isLogged() {
                     input.type = 'submit';
                     input.name = 'logout';
                     input.value = 'Logout';
-                    input.class = 'button';
+                    input.className = 'button';
                     form.appendChild(input);
                     mainDiv.appendChild(form);
                 }

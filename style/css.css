@@ -67,6 +67,12 @@ input:focus, select:focus {
 .displayInlineBlock{
     display: inline-block;
 }
+
+/*====just one id from contactUs form=====*/
+#contactMessageDiv {
+    height: auto;
+}
+
 /*================== Register ==========================*/
 .register, .contactUs {
     width: 650px;
@@ -87,10 +93,7 @@ fieldset {
     float: left;
     margin-bottom: 20px;
 }
-/*just one id from contactUs form*/
-#contactMessageDiv {
-    height: auto;
-}
+
 .labels {
     text-align: right;
 }

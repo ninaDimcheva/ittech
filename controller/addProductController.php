@@ -88,7 +88,7 @@ if (isset($_POST['addProduct'])) {
     $specifications = array();
 
     foreach ($_POST as $key => $value) {
-        if ($key != 'mainType' && $key != 'type' && $key != 'brand' && $key != 'model' && $key != 'price' && $key != 'quontity' && $key != 'addProduct') {
+        if ($key != 'mainType' && $key != 'type' && $key != 'brand' && $key != 'model' && $key != 'addPrice' && $key != 'quontity' && $key != 'addProduct') {
             $spec = new ProductSpec($key, trim(htmlentities($value)));
             $specifications[] = $spec;
         }
