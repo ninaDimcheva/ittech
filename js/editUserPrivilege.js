@@ -37,7 +37,7 @@ function findUser() {
                                 hiddenIsAdmin.value = is_admin;
                                 var editPrivilege = document.createElement('div');
                                 editPrivilege.id = 'editPrivilege';
-                                editPrivilege.innerText = 'Take away the privileges of user ' + capitalizeFirstLetter(name) + ' ' + capitalizeFirstLetter(family_name);
+                                editPrivilege.innerText = 'Take away the admin privileges of user ' + capitalizeFirstLetter(name) + ' ' + capitalizeFirstLetter(family_name);
                                 editPrivilege.className = 'button';
                                 editPrivilege.onclick = function () {
                                     editPrivileges(email, is_admin);
@@ -50,14 +50,14 @@ function findUser() {
                                 userToEdit.appendChild(note);
 
                                 var showNames = document.createElement('p');
-                                showNames.innerText = name + ' ' + family_name + ' with e-mail: ' + email;
+                                showNames.innerText = capitalizeFirstLetter(name) + ' ' + capitalizeFirstLetter(family_name) + ' with e-mail: ' + email;
                                 userToEdit.appendChild(showNames);
                                 hiddenEmail.value = email;
                                 hiddenIsAdmin.value = is_admin;
 
                                 var editPrivilege = document.createElement('div');
                                 editPrivilege.id = 'submitUserPrivilege';
-                                editPrivilege.innerText = 'Make ' + name + ' ' + family_name + ' administrator';
+                                editPrivilege.innerText = 'Make ' + capitalizeFirstLetter(name) + ' ' + capitalizeFirstLetter(family_name) + ' administrator';
                                 editPrivilege.className = 'button';
                                 editPrivilege.onclick = function () {
                                     editPrivileges(email, is_admin);
@@ -68,7 +68,7 @@ function findUser() {
                         } else {
                             findUserWarn.innerHTML = 'There is no registered user with e-mail: ' + email;
                         }
-                    }else {
+                    } else {
                         window.location.replace('http://localhost/ittech?page=error500');
                     }
                 }
@@ -91,8 +91,8 @@ function clickFindUser() {
 
 function editPrivileges(email, isAdmin) {
     var sendToEdit = {
-        email : email,
-        isAdmin : isAdmin
+        email: email,
+        isAdmin: isAdmin
     };
     var editPrivileges = new XMLHttpRequest();
     editPrivileges.onreadystatechange = function () {
@@ -101,6 +101,7 @@ function editPrivileges(email, isAdmin) {
                 if (this.responseText) {
                     document.getElementById('findUser').innerHTML = '';
                     document.getElementById('userToEdit').innerHTML = 'Privileges successfully changed!';
+                    document.getElementById('userToEdit').style.color = 'green';
                     var success = document.getElementById('editUserPrivilegeForm');
                     success.innerHTML = '';
                     var editUserLink = document.createElement('a');
@@ -110,12 +111,8 @@ function editPrivileges(email, isAdmin) {
                     success.appendChild(editUserLink);
                 }
 
-            }else {
-                if (this.status === 401) {
-                    window.location.replace('http://localhost/ittech?page=error401');
-                }else{
-                    window.location.replace('http://localhost/ittech?page=error500');
-                }
+            } else {
+                window.location.replace('http://localhost/ittech?page=error'+this.status);
             }
         }
     };

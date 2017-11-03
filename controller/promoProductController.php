@@ -72,6 +72,8 @@ if (isset($_POST['getPromoProducts'])){
         if ($promoProducts){
             $promoProducts[] = $isAdmin;
             echo json_encode($promoProducts);
+        }else {
+            echo false;
         }
     }catch (\PDOException $e){
         http_response_code(500);

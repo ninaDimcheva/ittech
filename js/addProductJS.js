@@ -8,6 +8,7 @@ function showMainTypes() {
                         var mainTypes = JSON.parse(this.responseText);
                         var select = document.createElement('select');
                         select.id = 'mainType';
+                        select.className = 'addProductInputs';
                         select.name = 'mainType';
                         select.onchange = function () {
                             showTypes(this.value);
@@ -53,6 +54,7 @@ function showTypes(mainType) {
                     var types = JSON.parse(this.responseText);
                     var select = document.createElement('select');
                     select.id = 'type';
+                    select.className = 'addProductInputs';
                     select.name = 'type';
                     select.onchange = function () {
                         showBrands(this.value);
@@ -98,6 +100,7 @@ function showBrands(type) {
 
                     var select = document.createElement('select');
                     select.id = 'brand';
+                    select.className = 'addProductInputs';
                     select.name = 'brand';
                     select.onchange = function () {
                         showAttributes(type);
@@ -156,7 +159,7 @@ function showAttributes(type) {
                     var price = document.createElement('input');
                     price.type = 'number';
                     price.name = 'price';
-                    price.id = 'price';
+                    price.id = 'addPrice';
                     price.required = true;
                     document.getElementById('inputPrice').appendChild(price);
 

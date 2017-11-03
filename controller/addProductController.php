@@ -82,7 +82,7 @@ if (isset($_POST['addProduct'])) {
     $type = trim(htmlentities($_POST['type']));
     $brand = trim(htmlentities($_POST['brand']));
     $model = trim(htmlentities($_POST['model']));
-    $price = trim(htmlentities($_POST['price']));
+    $price = trim(htmlentities($_POST['addPrice']));
     $quontity = trim(htmlentities($_POST['quontity']));
     $imgs = array();
     $specifications = array();
@@ -137,7 +137,6 @@ if (isset($_POST['addProduct'])) {
             header("Location:../?page=main");
         } catch (\PDOException $e) {
             header("Location:../?page=error500");
-            http_response_code(500);
         }
     } else {
         header("Location:../?page=error400");

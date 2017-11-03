@@ -105,7 +105,7 @@ function editProduct(productId) {
                     allProductsLink.href = './';
                     editProductDiv.appendChild(allProductsLink);
                 }else {
-                    window.location.replace('http://localhost/ittech?page=error500');
+                    window.location.replace('http://localhost/ittech?page=error' + this.status);
                 }
             }
         };

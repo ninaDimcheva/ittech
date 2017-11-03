@@ -44,11 +44,7 @@ function showMyProfile() {
                         document.getElementById('subscribeButton').innerHTML = 'Subscribe';
                     }
                 } else {
-                    if (this.status === 401){
-                        window.location.replace('http://localhost/ittech?page=error401');
-                    }else {
-                        window.location.replace('http://localhost/ittech?page=error500');
-                    }
+                    window.location.replace('http://localhost/ittech?page=error'+this.status);
                 }
             }
         };
@@ -71,11 +67,7 @@ function editNotifications() {
                     document.getElementById('subscribeButton').innerHTML = 'Subscribe';
                 }
             } else {
-                if (this.status === 401){
-                    window.location.replace('http://localhost/ittech?page=error401');
-                }else {
-                    window.location.replace('http://localhost/ittech?page=error500');
-                }
+                window.location.replace('http://localhost/ittech?page=error'+this.status);
             }
         }
     };
@@ -98,13 +90,7 @@ function editFamilyName() {
                         familyNameDiv.innerText = capitalizeFirstLetter(this.responseText);
                         button.innerText = 'Edit';
                     } else {
-                        if (this.status === 401){
-                            window.location.replace('http://localhost/ittech?page=error401');
-                        }else if(this.status === 400){
-                            window.location.replace('http://localhost/ittech?page=error400');
-                        } else {
-                            window.location.replace('http://localhost/ittech?page=error500');
-                        }
+                        window.location.replace('http://localhost/ittech?page=error'+this.status);
                     }
                 }
             };
@@ -169,11 +155,7 @@ function editPassword() {
 
                         }
                     }else {
-                        if (this.status === 401){
-                            window.location.replace('http://localhost/ittech?page=error401');
-                        }else {
-                            window.location.replace('http://localhost/ittech?page=error500');
-                        }
+                        window.location.replace('http://localhost/ittech?page=error'+this.status);
                     }
                 }
             }
@@ -194,13 +176,7 @@ function editPassword() {
                             passwordDiv.style.color = 'green';
                             button.innerText = 'Edit';
                         }else {
-                            if (this.status === 401){
-                                window.location.replace('http://localhost/ittech?page=error401');
-                            }else if(this.status === 400){
-                                window.location.replace('http://localhost/ittech?page=error400');
-                            } else {
-                                window.location.replace('http://localhost/ittech?page=error500');
-                            }
+                            window.location.replace('http://localhost/ittech?page=error'+this.status);
                         }
                     }
                 };

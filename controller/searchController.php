@@ -9,7 +9,7 @@ function __autoload($class_name){
 }
 
 if (isset($_GET['getMatchedWords'])){
-    $searched = $_GET['getMatchedWords'];
+    $searched = trim(htmlentities($_GET['getMatchedWords']));
     try{
         $matchedProducts = ProductDao::getInstance()->getSearchedMatches($searched);
         foreach ($matchedProducts as $matchedProduct) {
@@ -27,7 +27,7 @@ if (isset($_GET['getMatchedWords'])){
 }
 
 if (isset($_POST['getSearchedProducts'])){
-    $searched = $_POST['getSearchedProducts'];
+    $searched = trim(htmlentities($_POST['getSearchedProducts']));
     if (isset($_SESSION['user'])) {
         $isAdmin = $_SESSION['user']->getIsAdmin();
     } else {

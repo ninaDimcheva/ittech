@@ -34,8 +34,10 @@ if (isset($_POST['contactUs'])) {
             echo  "Mail Sent successfully. Thank you " . $name . " " . $familyName . ", we will contact you shortly.";
             header("Location:../");
         } else {
-            die('Failure: Email was not sent!');
+            header("Location:../?page=error500");
         }
+    }else {
+        header("Location:../?page=error400");
     }
 }
 

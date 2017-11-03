@@ -8,6 +8,7 @@ body {
 }
 .errors {
     max-width: 1170px;
+    text-align: center;
 }
 /*for all inputs and selects*/
 input, select {
