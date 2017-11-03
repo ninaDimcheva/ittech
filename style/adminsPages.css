@@ -19,6 +19,7 @@
 
 /*============end edit user privileges==========*/
 
+/*============ add product ==========*/
 .addProductInputs {
     width: 170px;
 
@@ -40,4 +41,31 @@
     width: 485px;
     float: left;
     text-align: left
+}
+
+/*============ end add product ==========*/
+
+/*============ add product in promo ==========*/
+
+#mainImageDiv {
+    width: 400px;
+    text-align: center;
+    margin: auto;
+}
+
+#addPromoImg {
+    max-width: 400px;
+    max-height: 300px;
+}
+#addPromoAtributes {
+    /*border: 1px solid gray;*/
+    width: 400px;
+    margin: auto;
+}
+
+#addPromoPrice {
+    width: 400px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }

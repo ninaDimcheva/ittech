@@ -6,22 +6,16 @@ function addPromoProduct() {
         if (sessionStorage.promoObj) {
             var promoProduct = JSON.parse(sessionStorage.promoObj);
             var imageDiv = document.createElement('div');
-            imageDiv.id = 'mainImage';
-            imageDiv.style.width = '250px';
-            imageDiv.style.border = '1px solid black';
-            imageDiv.style.textAlign = 'center';
+            imageDiv.id = 'mainImageDiv';
 
             var image = document.createElement('img');
             image.src = "http://localhost/ittech/" + promoProduct.imgs[0].img_url;
-            image.style.width = '150px';
-            image.style.height = 'auto';
+            image.id = 'addPromoImg';
             imageDiv.appendChild(image);
             viewPromoProduct.appendChild(imageDiv);
 
             var productAtributesDiv = document.createElement('div');
-            productAtributesDiv.id = 'productAtributes';
-            productAtributesDiv.style.border = '1px solid black';
-            productAtributesDiv.style.width = '350px';
+            productAtributesDiv.id = 'addPromoAtributes';
 
             var productAtributes = document.createElement('h4');
             productAtributes.innerText = promoProduct.type + ' ' + promoProduct.brand + ' ' + promoProduct.model;
@@ -35,11 +29,8 @@ function addPromoProduct() {
             viewPromoProduct.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = 'price';
-            priceDiv.style.border = '1px solid green';
-            priceDiv.style.width = '100px';
-            priceDiv.style.height = '50px';
-            priceDiv.innerHTML = promoProduct.price + ' $';
+            priceDiv.id = 'addPromoPrice';
+            priceDiv.innerHTML = 'Price $' + promoProduct.price;
             viewPromoProduct.appendChild(priceDiv);
         } else {
             viewPromoProduct.innerHTML = "There is no selected product";
