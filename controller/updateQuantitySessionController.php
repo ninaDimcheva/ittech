@@ -31,6 +31,9 @@ if (isset($_POST['userCart'])) {
             }
             echo json_encode($_SESSION['cart'], JSON_UNESCAPED_SLASHES);
         }
+        else{
+        	echo json_encode(false);         // returns false if there is not enough quantity in database;
+        }
     } catch (\PDOException $e) {
         http_response_code(500);
     }

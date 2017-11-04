@@ -78,6 +78,13 @@ function showUserCart() {
                             var indexToBeDeleted = this.value;        // remember index, because the button is about to be removed
                             deleteProductFromCart(indexToBeDeleted);  // delete selected row from table
                             cartProducts.splice(indexToBeDeleted, 1); // clear from cart products, the deleted row from the table
+
+                            if(cartProducts.length == 0){
+                                orderButton.disabled = true;
+                            }
+                            else{
+                                orderButton.disabled = false;
+                            }
                         };
 
                         removeProduct.appendChild(removeButton);
@@ -115,6 +122,14 @@ function showUserCart() {
 
                     var orderButtonDiv = document.getElementById('order');
                     var orderButton = document.createElement('button');
+
+                    if(cartProducts.length == 0){
+                        orderButton.disabled = true;
+                    }
+                    else{
+                        orderButton.disabled = false;
+                    }
+
                     orderButton.className = 'button';
                     orderButton.onclick = function () {
                         updateSessionCart(cartProducts);
@@ -238,15 +253,15 @@ function updateSessionCart(cartProducts) {
                 }
                 else {
                     var notenoughQuanityDB = document.getElementById('quantityWarning');
-                    notenoughQuanityDB.innerHTML = 'Sorry, for the inconvenience, not enough quantity on stock!'
+                    notenoughQuanityDB.innerHTML = 'Sorry, for the inconvenience, not enough quantity on stock!';
                 }
             }else {
                 window.location.replace('http://localhost/ittech?page=error500');
+            }
         }
-    }
-};
-updateQunatityCart.open("POST", "http://localhost/ittech/controller/updateQuantitySessionController.php");
-updateQunatityCart.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-updateQunatityCart.send('userCart=' + JSON.stringify(cartProducts));
+    };
+    updateQunatityCart.open("POST", "http://localhost/ittech/controller/updateQuantitySessionController.php");
+    updateQunatityCart.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    updateQunatityCart.send('userCart=' + JSON.stringify(cartProducts));
 }
 
