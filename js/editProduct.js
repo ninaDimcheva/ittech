@@ -21,7 +21,7 @@ function viewEditProduct() {
             var productAtributesDiv = document.createElement('div');
             productAtributesDiv.id = 'productAtributes';
             productAtributesDiv.style.border = '1px solid black';
-            productAtributesDiv.style.width = '350px';
+            productAtributesDiv.style.width = '300px';
 
             var productAtributes = document.createElement('h4');
             productAtributes.innerText = productToEditObj.type + ' ' + productToEditObj.brand + ' ' + productToEditObj.model;
@@ -35,7 +35,7 @@ function viewEditProduct() {
             viewProductToEdit.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = 'price';
+            priceDiv.id = 'priceEditProduct';
             // priceDiv.style.border = '1px solid green';
             priceDiv.style.width = '100px';
             priceDiv.style.height = '50px';
@@ -43,7 +43,7 @@ function viewEditProduct() {
 
             if (productToEditObj.inPromo) {
                 var imgPromo = document.createElement('img');
-                imgPromo.style.width = '80px';
+                imgPromo.style.width = '60px';
                 imgPromo.style.height = 'auto';
                 imgPromo.style.float = 'left';
                 imgPromo.src = "./assets/displayImages/promo.png";

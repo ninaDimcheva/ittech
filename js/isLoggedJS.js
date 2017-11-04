@@ -75,6 +75,7 @@ function isLogged() {
                     mainDiv.appendChild(form);
                 }
             }else {
+
                 window.location.replace('http://localhost/ittech?page=error500');
             }
         }

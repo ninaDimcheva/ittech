@@ -8,7 +8,7 @@ window.onload = function () {
 
         imageDiv.id = 'mainImage';
         imageDiv.style.width = '250px';
-        imageDiv.style.border = '1px solid black';
+       // imageDiv.style.border = '1px solid black';
         imageDiv.style.textAlign = 'center';
 
         var image = document.createElement('img');
@@ -19,7 +19,7 @@ window.onload = function () {
         viewRemovePromoProduct.appendChild(imageDiv);
 
         var imgPromo = document.createElement('img');
-        imgPromo.style.width = '80px';
+        imgPromo.style.width = '60px';
         imgPromo.style.height = 'auto';
         imgPromo.style.float = 'left';
         imgPromo.src = "./assets/displayImages/promo.png";
@@ -27,8 +27,8 @@ window.onload = function () {
 
         var productAtributesDiv = document.createElement('div');
         productAtributesDiv.id = 'productAtributes';
-        productAtributesDiv.style.border = '1px solid black';
-        productAtributesDiv.style.width = '350px';
+       // productAtributesDiv.style.border = '1px solid black';
+        productAtributesDiv.style.width = '300px';
 
         var productAtributes = document.createElement('h4');
         productAtributes.innerText = removePromoProduct.type + ' ' + removePromoProduct.brand + ' ' + removePromoProduct.model;
@@ -42,7 +42,7 @@ window.onload = function () {
         viewRemovePromoProduct.appendChild(productAtributesDiv);
 
         var priceDiv = document.createElement('div');
-        priceDiv.id = 'price';
+        priceDiv.id = 'priceRemove';
         // priceDiv.style.border = '1px solid green';
         priceDiv.style.width = '100px';
         priceDiv.style.height = '50px';

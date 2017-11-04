@@ -14,8 +14,9 @@ function confirmOrder() {
                         orderStepOne.style.float = 'left';
                         statusInformation.appendChild(orderStepOne);
                         var orderStepOneInfo = document.createElement('div');
-                        orderStepOneInfo.innerHTML = 'Your order is nor yet confirmed';
+                        orderStepOneInfo.innerHTML = 'Your order is not yet confirmed';
                         orderStepOneInfo.style.float = 'left';
+                        orderStepOneInfo.style.backgroundColor = '#e60000';
                         statusInformation.appendChild(orderStepOneInfo);
 
                         var dateTimeOrder = document.createElement('h4');
@@ -47,6 +48,7 @@ function confirmOrder() {
                         var orderStepTwoInfo = document.createElement('div');
                         orderStepTwoInfo.innerHTML = 'Detailed information about your order';
                         orderStepTwoInfo.style.float = 'left';
+                        orderStepTwoInfo.style.backgroundColor = 'red';
                         userCartToOrder.appendChild(orderStepTwoInfo);
                         var totalAmount = 0;
                         var cartProducts = JSON.parse(sessionStorage.cartArrayObjectProducts);
@@ -72,7 +74,7 @@ function confirmOrder() {
 
                         }
                         var totalAmountForOrder = document.createElement('h4');
-                        totalAmountForOrder.innerHTML = 'Total: ' + totalAmount;
+                        totalAmountForOrder.innerHTML = 'Total: ' + Number(totalAmount).toFixed(2);
                         totalAmountForOrder.style.clear = 'both';
                         userCartToOrder.appendChild(totalAmountForOrder);
 
@@ -133,13 +135,12 @@ function confirmOrder() {
                     }
                 }else {
                     window.location.replace('http://localhost/ittech?page=error500');
+                }
             }
-        }
+        };
+        isLoggedUser.open("GET", "http://localhost/ittech/controller/isLoggedController.php?isSetUser");
+        isLoggedUser.send();
     }
-    ;
-    isLoggedUser.open("GET", "http://localhost/ittech/controller/isLoggedController.php?isSetUser");
-    isLoggedUser.send();
-}
 }
 
 // -------------   validate the entered address:   --------------------//
@@ -167,6 +168,8 @@ function validateAddress(addressOrder) {
 }
 
 function finalizationOrder(addressOrder) {
+    var pleaseConfirm = document.getElementById('pleaseConfirm');
+    pleaseConfirm.innerHTML = 'Your order is:';
     var mainDiv = document.getElementById('confirmOrder');
     mainDiv.innerHTML = '';
     var finalStepNewOrder = new XMLHttpRequest();

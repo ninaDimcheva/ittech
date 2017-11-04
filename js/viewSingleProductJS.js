@@ -50,6 +50,122 @@ function viewSingleProduct() {
 
                     // ---------------------------------
 
+                    var favoriteRequest = new XMLHttpRequest();
+                    favoriteRequest.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                var response = JSON.parse(this.responseText);
+
+                                if (response.isAdmin) {
+                                    if (viewProduct.inPromo) {
+                                        //show remove promo
+                                        var removePromoButton = document.createElement('div');
+                                        removePromoButton.className = 'button';
+                                        removePromoButton.innerHTML = 'Remove promo';
+                                        removePromoButton.style.width = '100px';
+                                        removePromoButton.style.height = '25px';
+                                        removePromoButton.style.clear = 'both';
+                                        removePromoButton.value = viewProduct;
+                                        removePromoButton.onclick = function () {
+                                            removePromo(this.value);
+                                        };
+                                        viewSingleProduct.appendChild(removePromoButton);
+                                    } else {
+                                        //show add to promo
+                                        var addPromoButton = document.createElement('div');
+                                        addPromoButton.className = 'button';
+                                        addPromoButton.innerHTML = 'Add to promo';
+                                        addPromoButton.style.width = '100px';
+                                        addPromoButton.style.height = '25px';
+                                        addPromoButton.style.clear = 'both';
+                                        addPromoButton.value = viewProduct;
+                                        addPromoButton.onclick = function () {
+                                            sendToPromo(this.value);
+                                        };
+                                        viewSingleProduct.appendChild(addPromoButton);
+                                    }
+                                    var editProduct = document.createElement('div');
+                                    editProduct.className = 'button';
+                                    editProduct.innerHTML = 'Edit product';
+                                    editProduct.style.width = '100px';
+                                    editProduct.value = viewProduct;
+                                    editProduct.onclick = function () {
+                                        sendToEditProduct(this.value);
+                                    };
+                                    viewSingleProduct.appendChild(editProduct);
+
+                                    var removeProductDiv = document.createElement('div');
+                                    removeProductDiv.className = 'button';
+                                    removeProductDiv.style.width = '100px';
+                                    removeProductDiv.innerHTML = 'Remove product';
+                                    removeProductDiv.value = viewProduct;
+                                    removeProductDiv.onclick = function () {
+                                        sendToRemoveProduct(this.value);
+                                    };
+                                    viewSingleProduct.appendChild(removeProductDiv);
+
+                                    //----- hide add preview button
+                                    document.getElementById('showAddReviewBtn').style.display = 'none';
+                                } else {
+                                    var favourites = document.createElement('div');
+                                    favourites.id = 'favourites';
+                                    favourites.className = 'button';
+                                    favourites.style.cursor = 'pointer';
+
+                                    var favoritesSpan = document.createElement('span');
+                                    favoritesSpan.id = 'favoritesSpan';
+
+                                    var imageFavourites = document.createElement('img');
+                                    imageFavourites.id = 'imageFavourites';
+                                    imageFavourites.style.width = '16px';
+                                    imageFavourites.style.height = 'auto';
+
+                                    if (response.isLogged) {
+                                        if (response.inFavorites) {
+                                            favoritesSpan.innerText = 'Remove from favorites';
+                                            imageFavourites.src = "http://localhost/ittech/assets/displayImages/heart.png";
+                                            favourites.onclick = function () {
+                                                removeFavourite(viewProduct.product_id);
+                                            };
+                                        } else {
+                                            favoritesSpan.innerText = 'Add in favorites';
+                                            favourites.style.color = 'black';
+                                            imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
+                                            favourites.onclick = function () {
+                                                addFavourite(viewProduct.product_id);
+                                            };
+                                        }
+                                        favourites.appendChild(imageFavourites);
+                                        favourites.appendChild(favoritesSpan);
+                                        viewSingleProduct.appendChild(favourites);
+                                    } else {
+                                        //---- show add reviw redirect to login-----
+                                        document.getElementById('showAddReviewBtn').onclick = function () {
+                                            window.location.replace("http://localhost/ittech/?page=login");
+                                        };
+                                        //-- favorites redirect to login --
+                                        favoritesSpan.innerText = 'Favorites';
+                                        favourites.style.color = 'black';
+                                        imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
+                                        favourites.onclick = function () {
+                                            window.location.replace("http://localhost/ittech/?page=login");
+                                        };
+                                        favourites.appendChild(imageFavourites);
+                                        favourites.appendChild(favoritesSpan);
+                                        viewSingleProduct.appendChild(favourites);
+                                    }
+                                }
+                            } else {
+                                window.location.replace('http://localhost/ittech?page=error500');
+                            }
+                        }
+                    };
+                    favoriteRequest.open("GET", "http://localhost/ittech/controller/favouriteProductController.php?infavorites=" + viewProduct.product_id);
+                    favoriteRequest.send();
+
+                    // ---------------------------------
+
+
                     var specifications = document.createElement('div');
                     specifications.id = 'specifications';
                     var list = document.createElement('ul');
@@ -166,137 +282,27 @@ function viewSingleProduct() {
                     }
                     viewSingleProduct.appendChild(price);
 
-                    // ---------------------------------
 
 
-                    var favoriteRequest = new XMLHttpRequest();
-                    favoriteRequest.onreadystatechange = function () {
-                        if (this.readyState === 4) {
-                            if (this.status === 200) {
-                                var response = JSON.parse(this.responseText);
+                    var buyNow = document.createElement('div');
+                    buyNow.className = 'button';
+                    buyNow.id = 'buySingleProduct';
+                    if (viewProduct.quontity == 0) {
+                        buyNow.innerHTML = 'OUT OF STOCK';
+                        buyNow.disabled = true;
+                    }
+                    else {
+                        buyNow.innerHTML = 'BUY NOW';
+                        buyNow.onclick = function () {
+                            sendToCart(viewProduct);
+                        };
+                    }
+                    viewSingleProduct.appendChild(buyNow);
 
-                                if (response.isAdmin) {
-                                    if (viewProduct.inPromo) {
-                                        //show remove promo
-                                        var removePromoButton = document.createElement('div');
-                                        removePromoButton.className = 'button';
-                                        removePromoButton.innerHTML = 'Remove promo';
-                                        removePromoButton.style.width = '100px';
-                                        removePromoButton.value = viewProduct;
-                                        removePromoButton.onclick = function () {
-                                            removePromo(this.value);
-                                        };
-                                        viewSingleProduct.appendChild(removePromoButton);
-                                    } else {
-                                        //show add to promo
-                                        var addPromoButton = document.createElement('div');
-                                        addPromoButton.className = 'button';
-                                        addPromoButton.innerHTML = 'Add to promo';
-                                        addPromoButton.style.width = '100px';
-                                        addPromoButton.value = viewProduct;
-                                        addPromoButton.onclick = function () {
-                                            sendToPromo(this.value);
-                                        };
-                                        viewSingleProduct.appendChild(addPromoButton);
-                                    }
-                                    var editProduct = document.createElement('div');
-                                    editProduct.className = 'button';
-                                    editProduct.innerHTML = 'Edit product';
-                                    editProduct.style.width = '100px';
-                                    editProduct.value = viewProduct;
-                                    editProduct.onclick = function () {
-                                        sendToEditProduct(this.value);
-                                    };
-                                    viewSingleProduct.appendChild(editProduct);
-
-                                    var removeProductDiv = document.createElement('div');
-                                    removeProductDiv.className = 'button';
-                                    removeProductDiv.style.width = '100px';
-                                    removeProductDiv.innerHTML = 'Remove product';
-                                    removeProductDiv.value = viewProduct;
-                                    removeProductDiv.onclick = function () {
-                                        sendToRemoveProduct(this.value);
-                                    };
-                                    viewSingleProduct.appendChild(removeProductDiv);
-
-                                    //----- hide add preview button
-                                    document.getElementById('showAddReviewBtn').style.display = 'none';
-                                } else {
-                                    var favourites = document.createElement('div');
-                                    favourites.id = 'favourites';
-                                    favourites.className = 'button';
-                                    favourites.style.cursor = 'pointer';
-
-                                    var favoritesSpan = document.createElement('span');
-                                    favoritesSpan.id = 'favoritesSpan';
-
-                                    var imageFavourites = document.createElement('img');
-                                    imageFavourites.id = 'imageFavourites';
-                                    imageFavourites.style.width = '16px';
-                                    imageFavourites.style.height = 'auto';
-
-                                    if (response.isLogged) {
-                                        if (response.inFavorites) {
-                                            favoritesSpan.innerText = 'Remove from favorites';
-                                            imageFavourites.src = "http://localhost/ittech/assets/displayImages/heart.png";
-                                            favourites.onclick = function () {
-                                                removeFavourite(viewProduct.product_id);
-                                            };
-                                        } else {
-                                            favoritesSpan.innerText = 'Add in favorites';
-                                            favourites.style.color = 'black';
-                                            imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
-                                            favourites.onclick = function () {
-                                                addFavourite(viewProduct.product_id);
-                                            };
-                                        }
-                                        favourites.appendChild(imageFavourites);
-                                        favourites.appendChild(favoritesSpan);
-                                        viewSingleProduct.appendChild(favourites);
-                                    } else {
-                                        //---- show add reviw redirect to login-----
-                                        document.getElementById('showAddReviewBtn').onclick = function () {
-                                            window.location.replace("http://localhost/ittech/?page=login");
-                                        };
-                                        //-- favorites redirect to login --
-                                        favoritesSpan.innerText = 'Favorites';
-                                        favourites.style.color = 'black';
-                                        imageFavourites.src = "http://localhost/ittech/assets/displayImages/emptyHeart.png";
-                                        favourites.onclick = function () {
-                                            window.location.replace("http://localhost/ittech/?page=login");
-                                        };
-                                        favourites.appendChild(imageFavourites);
-                                        favourites.appendChild(favoritesSpan);
-                                        viewSingleProduct.appendChild(favourites);
-                                    }
-
-                                    var buyNow = document.createElement('div');
-                                    buyNow.className = 'button';
-                                    buyNow.id = 'buySingleProduct';
-                                    if (viewProduct.quontity == 0) {
-                                        buyNow.innerHTML = 'OUT OF STOCK';
-                                        buyNow.disabled = true;
-                                    }
-                                    else {
-                                        buyNow.innerHTML = 'BUY NOW';
-                                        buyNow.onclick = function () {
-                                            sendToCart(viewProduct);
-                                        };
-                                    }
-                                    viewSingleProduct.appendChild(buyNow);
-
-                                }
-                            }else {
-                                window.location.replace('http://localhost/ittech?page=error500');
-                            }
-                        }
-                    };
-                    favoriteRequest.open("GET", "http://localhost/ittech/controller/favouriteProductController.php?infavorites=" + viewProduct.product_id);
-                    favoriteRequest.send();
-                }else {
+                } else {
                     window.location.replace('http://localhost/ittech?page=error500');
                 }
-            }
+             }
         };
         request.open("POST", "http://localhost/ittech/controller/viewSingleProductController.php");
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -415,6 +421,7 @@ function addReview(rateAndProductId) {
     sendReview.open("GET", "http://localhost/ittech/controller/reviewController.php?addReview=" + reviewJson);
     sendReview.send();
 }
+
 
 function emptyStars() {
 
