@@ -29,6 +29,7 @@ function addPromoProduct() {
             viewPromoProduct.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
+            priceDiv.id = 'addPromoPrice';
             priceDiv.className = 'adminPriceDiv';
             priceDiv.innerHTML = 'Price $' + promoProduct.price;
             viewPromoProduct.appendChild(priceDiv);
@@ -45,6 +46,7 @@ function addPromoProduct() {
 }
 
 function promoValidate() {
+
     var startDay = document.getElementById('startDay').value;
     var startMonth = document.getElementById('startMonth').value;
     var startYear = document.getElementById('startYear').value;
@@ -53,41 +55,48 @@ function promoValidate() {
     var endYear = document.getElementById('endYear').value;
     var discount = document.getElementById('discount').value;
     var productId = document.getElementById('productId').value;
-    var productPrice = document.getElementById('price').innerHTML.replace(' $', '');
+    var productPrice = document.getElementById('addPromoPrice').innerHTML.replace('Price $', '');
     var discountWarning = document.getElementById('discountWarning');
     var startDateWarning = document.getElementById('startDateWarning');
     var endDateWarning = document.getElementById('endDateWarning');
     var promoButton = document.getElementById('promoButton');
     var error = false;
-
     if (startDay !== 'Day' && startMonth !== 'Month' && startYear !== 'Year') {
         var startDate = startYear + '-' + startMonth + '-' + startDay;
         startDateWarning.innerText = '✔';
+        startDateWarning.style.color = 'green';
     } else {
         error = true;
         startDateWarning.innerText = '✘';
+        startDateWarning.style.color = 'red';
     }
 
     if (endDay !== 'Day' && endMonth !== 'Month' && endYear !== 'Year') {
         var endDate = endYear + '-' + endMonth + '-' + endDay;
         endDateWarning.innerText = '✔';
+        endDateWarning.style.color = 'green';
     } else {
         error = true;
         endDateWarning.innerText = '✘';
+        endDateWarning.style.color = 'red';
     }
     if (!error) {
         if (endDate > startDate) {
             endDateWarning.innerText = '✔';
+            endDateWarning.style.color = 'green';
         } else {
             error = true;
             endDateWarning.innerText = 'The End date must be bigger than Start date!';
+            endDateWarning.style.color = 'red';
         }
     }
     if (discount > 0 && discount < 100 && discount.length > 0 && discount.length < 45 && /\d/.test(discount)) {
         discountWarning.innerText = '✔';
+        discountWarning.style.color = 'green';
     } else {
         error = true;
         discountWarning.innerText = '✘';
+        discountWarning.style.color = 'red';
     }
     if (!error) {
         discount = (productPrice * discount) / 100;
