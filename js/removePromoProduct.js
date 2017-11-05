@@ -4,30 +4,22 @@ function removePromotion() {
             var removePromoProduct = JSON.parse(sessionStorage.removePromoObj);
             var viewRemovePromoProduct = document.getElementById('viewRemovePromoProduct');
             var imageDiv = document.createElement('div');
-
-
-            imageDiv.id = 'mainImage';
-            imageDiv.style.width = '250px';
-            imageDiv.style.textAlign = 'center';
+            imageDiv.className = 'mainImageDiv displayInlineBlock';
 
             var image = document.createElement('img');
             image.src = "http://localhost/ittech/" + removePromoProduct.imgs[0].img_url;
-            image.style.width = '150px';
-            image.style.height = 'auto';
+            image.className = 'adminMainImg';
+
             imageDiv.appendChild(image);
             viewRemovePromoProduct.appendChild(imageDiv);
 
             var imgPromo = document.createElement('img');
-            imgPromo.style.width = '60px';
-            imgPromo.style.height = 'auto';
-            imgPromo.style.float = 'left';
+            imgPromo.className = 'adminPromoImg';
             imgPromo.src = "./assets/displayImages/promo.png";
             imageDiv.appendChild(imgPromo);
 
             var productAtributesDiv = document.createElement('div');
-            productAtributesDiv.id = 'productAtributes';
-            // productAtributesDiv.style.border = '1px solid black';
-            productAtributesDiv.style.width = '300px';
+            productAtributesDiv.className = 'adminAtributes';
 
             var productAtributes = document.createElement('h4');
             productAtributes.innerText = removePromoProduct.type + ' ' + removePromoProduct.brand + ' ' + removePromoProduct.model;
@@ -41,10 +33,7 @@ function removePromotion() {
             viewRemovePromoProduct.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = 'priceRemove';
-            // priceDiv.style.border = '1px solid green';
-            priceDiv.style.width = '100px';
-            priceDiv.style.height = '50px';
+            priceDiv.className = 'adminPriceDiv';
             priceDiv.style.color = 'red';
             priceDiv.innerText = 'Promo prise: $' + removePromoProduct.price;
             viewRemovePromoProduct.appendChild(priceDiv);

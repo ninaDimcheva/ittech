@@ -4,22 +4,16 @@ function viewRemoveProduct() {
         if (sessionStorage.removeProductObj) {
             var removeProduct = JSON.parse(sessionStorage.removeProductObj);
             var imageDiv = document.createElement('div');
-            imageDiv.id = 'mainImage';
-            imageDiv.style.width = '250px';
-           // imageDiv.style.border = '1px solid black';
-            imageDiv.style.textAlign = 'center';
+            imageDiv.className = 'mainImageDiv displayInlineBlock';
 
             var image = document.createElement('img');
             image.src = "http://localhost/ittech/" + removeProduct.imgs[0].img_url;
-            image.style.width = '150px';
-            image.style.height = 'auto';
+            image.className = 'adminMainImg';
             imageDiv.appendChild(image);
             viewRemoveProduct.appendChild(imageDiv);
 
             var productAtributesDiv = document.createElement('div');
-            productAtributesDiv.id = 'productAtributes';
-            //productAtributesDiv.style.border = '1px solid black';
-            productAtributesDiv.style.width = '350px';
+            productAtributesDiv.className = 'adminAtributes';
 
             var productAtributes = document.createElement('h4');
             productAtributes.innerText = removeProduct.type + ' ' + removeProduct.brand + ' ' + removeProduct.model;
@@ -33,11 +27,19 @@ function viewRemoveProduct() {
             viewRemoveProduct.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = 'priceDelete';
-           //priceDiv.style.border = '1px solid green';
-            priceDiv.style.width = '100px';
-            priceDiv.style.height = '50px';
-            priceDiv.innerHTML = removeProduct.price + ' $';
+            priceDiv.className = 'adminPriceDiv';
+
+            if (removeProduct.inPromo) {
+                var imgPromo = document.createElement('img');
+                imgPromo.className = 'adminPromoImg';
+                imgPromo.src = "./assets/displayImages/promo.png";
+                imageDiv.appendChild(imgPromo);
+                priceDiv.style.color = 'red';
+                priceDiv.innerText = 'Promo prise: $' + removeProduct.price;
+
+            } else {
+                priceDiv.innerText = 'Price $' + removeProduct.price;
+            }
             viewRemoveProduct.appendChild(priceDiv);
 
             var removeProductButton = document.getElementById('removeProductButton');

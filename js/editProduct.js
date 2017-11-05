@@ -6,22 +6,16 @@ function viewEditProduct() {
             var viewProductToEdit = document.getElementById('viewProductToEdit');
 
             var imageDiv = document.createElement('div');
-            imageDiv.id = 'mainImage';
-            imageDiv.style.width = '250px';
-            imageDiv.style.border = '1px solid black';
-            imageDiv.style.textAlign = 'center';
+            imageDiv.className = 'mainImageDiv displayInlineBlock';
 
             var image = document.createElement('img');
             image.src = "http://localhost/ittech/" + productToEditObj.imgs[0].img_url;
-            image.style.width = '150px';
-            image.style.height = 'auto';
+            image.className = 'adminMainImg';
             imageDiv.appendChild(image);
             viewProductToEdit.appendChild(imageDiv);
 
             var productAtributesDiv = document.createElement('div');
-            productAtributesDiv.id = 'productAtributes';
-            productAtributesDiv.style.border = '1px solid black';
-            productAtributesDiv.style.width = '300px';
+            productAtributesDiv.className = 'adminAtributes';
 
             var productAtributes = document.createElement('h4');
             productAtributes.innerText = productToEditObj.type + ' ' + productToEditObj.brand + ' ' + productToEditObj.model;
@@ -35,24 +29,18 @@ function viewEditProduct() {
             viewProductToEdit.appendChild(productAtributesDiv);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = 'priceEditProduct';
-            // priceDiv.style.border = '1px solid green';
-            priceDiv.style.width = '100px';
-            priceDiv.style.height = '50px';
-            priceDiv.style.color = 'red';
+            priceDiv.className = 'adminPriceDiv';
 
             if (productToEditObj.inPromo) {
                 var imgPromo = document.createElement('img');
-                imgPromo.style.width = '60px';
-                imgPromo.style.height = 'auto';
-                imgPromo.style.float = 'left';
+                imgPromo.className = 'adminPromoImg';
                 imgPromo.src = "./assets/displayImages/promo.png";
                 imageDiv.appendChild(imgPromo);
-
+                priceDiv.style.color = 'red';
                 priceDiv.innerText = 'Promo prise: $' + productToEditObj.price;
 
             } else {
-                priceDiv.innerText = '$' + productToEditObj.price;
+                priceDiv.innerText = 'Price $' + productToEditObj.price;
             }
             viewProductToEdit.appendChild(priceDiv);
 

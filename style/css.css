@@ -36,9 +36,11 @@ input:focus, select:focus {
     border-radius: 7px;
     padding: 0 15px 0 15px;
     text-align: center;
+    vertical-align: middle;
     color: #e60000;
     cursor: pointer;
     margin: 5px;
+    min-height: 25px;
 }
 
 .button:focus, .link:focus {
@@ -132,15 +134,15 @@ fieldset {
 /*================== Header ==========================*/
 #phone{
     width: 20px;
-    height:auto;
+    max-height: 100%;
 }
 #promotion{
     width: 20px;
-    height:auto;
+    max-height: 100%;
 }
 #homePage{
     width: 20px;
-    height:auto;
+    max-height: 100%;
 }
 #ittechLogo{
     width: 250px;
@@ -148,16 +150,26 @@ fieldset {
     float: left;
     margin-right: 100px;
 }
+header ul{
+    background-color: black;
+    height: 20px;
+}
 header ul li {
     display: inline-block;
     width:10%;
     text-align: center;
+    max-height: 100%;
 }
 
 header ul li a {
     display: block;
     width: 100%;
     text-decoration: none;
+    color: white;
+    max-height: 100%;
+}
+header ul li a:visited {
+    color: white;
 }
 
 header ul li:hover {
@@ -179,15 +191,17 @@ header ul li:hover {
     height: 40px;
     background: #e60000;
     border: none;
-    /*font-size: 10pt;*/
     float: left;
-    color: #fff;
+    color: #ffffff;
     padding-left: 15px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
+.container input#search:focus {
+    border: 1px solid silver;
+    outline: none;
+}
 .container input#search::-webkit-input-placeholder {
     color: white;
 }
@@ -256,6 +270,7 @@ nav ul li {
     padding-top: 6px;
     padding-right: 7px;
     box-sizing: border-box;
+    border-top: 1px solid black;
 }
 
 nav ul li:hover {
@@ -282,9 +297,11 @@ nav ul li:hover {
 
 .types{
     display: block;
-    padding: 0;
+    padding-top: 10px;
     text-decoration: none;
-
+}
+.types:hover {
+    background-color: black;
 }
 
 #pc{
