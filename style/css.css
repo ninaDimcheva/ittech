@@ -31,8 +31,8 @@ input:focus, select:focus {
 
 .button, .link{
     background:none;
-    border: 1px solid #e60000;
-    box-shadow: 2px 2px 3px #e60000;
+    border: 1px solid #b30000;
+    box-shadow: 1px 1px 1px #b30000, 1px 1px 2px #cc0000;
     border-radius: 7px;
     padding: 0 15px 0 15px;
     text-align: center;
@@ -40,7 +40,8 @@ input:focus, select:focus {
     color: #e60000;
     cursor: pointer;
     margin: 5px;
-    min-height: 25px;
+    min-height: 30px;
+    min-width: 100px;
 }
 
 .button:focus, .link:focus {
@@ -50,7 +51,7 @@ input:focus, select:focus {
 }
 .button:hover, .link:hover{
     border: 1px solid #b30000;
-    box-shadow: 3px 3px 4px #cc0000;
+    box-shadow: 2px 2px 2px #cc0000, 3px 3px 4px #b30000;
 }
 .button:active, .link:active {
     border: 1px solid #e60000;
@@ -62,7 +63,12 @@ input:focus, select:focus {
     border: 1px solid gray;
     box-shadow: 3px 3px 4px gray;
 }
-
+.button a{
+    text-decoration: none;
+}
+.button a:visited{
+    color: #e60000;
+}
 .clearBoth{
     clear: both;
 }
@@ -132,17 +138,8 @@ fieldset {
 /*================== Login ==========================*/
 
 /*================== Header ==========================*/
-#phone{
-    width: 20px;
-    max-height: 100%;
-}
-#promotion{
-    width: 20px;
-    max-height: 100%;
-}
-#homePage{
-    width: 20px;
-    max-height: 100%;
+.top {
+    color: silver;
 }
 #ittechLogo{
     width: 250px;
@@ -150,6 +147,7 @@ fieldset {
     float: left;
     margin-right: 100px;
 }
+
 header ul{
     background-color: black;
     height: 20px;
@@ -165,11 +163,13 @@ header ul li a {
     display: block;
     width: 100%;
     text-decoration: none;
-    color: white;
+    color: silver;
+    height: 20px;
     max-height: 100%;
+    text-shadow: 1px 1px 2px black;
 }
 header ul li a:visited {
-    color: white;
+    color: silver;
 }
 
 header ul li:hover {
@@ -177,10 +177,10 @@ header ul li:hover {
 }
 
 .container{
-    overflow: hidden;
-    width: 300px;
+    /*overflow: hidden;*/
+    width: 200px;
     vertical-align: middle;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     float: left;
     margin-top: 40px;
     margin-left: 70px;
@@ -203,39 +203,51 @@ header ul li:hover {
     outline: none;
 }
 .container input#search::-webkit-input-placeholder {
-    color: white;
+    color: silver;
 }
 
 .container input#search:-moz-placeholder { /* Firefox 18- */
-    color: white;
+    color: silver;
 }
 
 .container input#search::-moz-placeholder {  /* Firefox 19+ */
-    color: white;
+    color: silver;
 }
 
 .container input#search:-ms-input-placeholder {
-    color: white;
+    color: silver;
 }
 
-.container:hover button.icon:hover{
-    background: white;
-}
 #navigation{
     margin-top: 40px;
     float: left;
-    margin-left: 250px;
+    margin-left: 330px;
 }
-#login{
-    width: 20px;
-    height: auto;
+#loginButton, #cartButton {
+    font-size: 1em;
+    padding: 10px;
+}
+.fa-user-circle, .fa-shopping-cart{
     float: left;
+    margin-right: 5px;
+}
+.loginMenuLinks, .loginMenuLinks:visited{
+    text-decoration: none;
+
+}
+.menuLinks, .menuLinks:visited {
+    text-decoration: none;
+    color: #cc0000;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.menuLinks:hover {
+    text-decoration:underline;
 }
 #mainNavigation{
-    margin-left: 20px;
-    width:150px;
-    height:100px;
-    border:1px solid black;
+    width:135px;
+    border:1px solid #b30000;
+    border-radius: 5px;
     display:none;
     z-index: 1;
     position: absolute;
@@ -256,7 +268,8 @@ nav{
     width: 1170px;
     height: 40px;
     background-color: black;
-    color: white;
+    color: silver;
+    text-shadow: 1px 1px 2px black;
     margin-top: 100px;
 }
 
@@ -271,10 +284,12 @@ nav ul li {
     padding-right: 7px;
     box-sizing: border-box;
     border-top: 1px solid black;
+    color: silver;
+    text-shadow: 1px 1px 2px black;
 }
 
 nav ul li:hover {
-    background-color: #e60000;
+    background-color: #cc0000;
 }
 
 #tv{
@@ -290,8 +305,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -317,8 +331,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -335,8 +348,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -353,8 +365,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -371,8 +382,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -389,8 +399,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -407,8 +416,7 @@ nav ul li:hover {
     width: 167px;
     text-align: left;
     z-index: 1;
-    background-color: #e60000;
-    color: white;
+    background-color: #cc0000;
     margin-top: 10px;
 }
 
@@ -478,10 +486,18 @@ aside{
     margin-right: 10px;
     width: 14%;
     height: 150px;
-    border: 1px solid gray;
     float: left;
     box-sizing: border-box;
 }
+#orderBy{
+    background-color: white;
+    color: #cc0000;
+    height: 30px;
+}
+#orderBy option{
+    color: #cc0000;
+}
+
 article{
     margin-top: 25px;
     width: 85%;
@@ -502,10 +518,12 @@ article{
     margin-right: 18px;
     margin-bottom: 25px;
     border: 1px solid gray;
+    box-shadow: 1px 1px 1px gray, 2px 2px 2px silver, 3px 3px 0 #f2f2f2;
+    border-radius: 5px;
     box-sizing: border-box;
     float: left;
     width: 230px;
-    height: 450px;
+    height: 420px;
     -moz-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
@@ -560,29 +578,34 @@ article{
 
 /*================== My profil ==========================*/
 .profileInfo{
-    width: 600px;
-}
-
-#userProfilImage{
-    width: 20px;
-    height: auto;
-    float: left;
+    width: 700px;
 }
 
 #userNavigation{
     float: left;
     width: 150px;
-    padding-left: 20px;
 
 }
 #userNavigation ul{
-    list-style-type: disc;
+    list-style:none;
+    color: #b30000;
+    font-size: 20px;
 }
-#userInformation,  #userProfile {
+#userNavigation li{
+    font-size: 16px;
+    padding-top: 5px;
+}
+#userNavigation ul .fa-user-circle{
+    float: none;
+}
+
+#userInformation{
     text-align: center;
-    margin: 10px;
 }
-#myFavorites{
+#editFamilyName, #editPassword, #subscribeButton {
+    margin-top:-7px;
+}
+#myFavorites, #userProfile, #myOrders{
     text-align: center;
 }
 
@@ -632,7 +655,7 @@ table, th, td{
     margin-left: 20px;
 }
 #promoArticle{
-    margin-left: 80px;
+    margin-left: 190px;
 }
 
 

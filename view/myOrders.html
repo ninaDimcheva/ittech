@@ -1,15 +1,10 @@
-<h1>MyOrders</h1>
-
-<!--<aside id="userInfo">-->
-
-<!--</aside>-->
 <div id="myOrders">
     <aside id="userNavigation">
-        <ul><img id="userProfilImage" src="assets/displayImages/person.png" alt="Person">My profile
+        <ul><i class="fa fa-user-circle" aria-hidden="true"></i> My profile
             <hr>
-            <li><a href="?page=myProfile">My profile</a></li>
-            <li><a href="?page=myOrders">My orders</a></li>
-            <li><a href="?page=myFavorites">Favourites</a></li>
+            <li><a class="menuLinks" href="?page=myProfile">My profile</a></li>
+            <li><a class="menuLinks" href="?page=myOrders">My orders</a></li>
+            <li><a class="menuLinks" href="?page=myFavorites">Favourites</a></li>
             <div>
                 <form action="controller/logoutController.php" method="post">
                     <input type="submit" name="logout" value="Logout" class="button">
@@ -17,6 +12,10 @@
             </div>
         </ul>
     </aside>
+    <div class="title">
+        <h1>MyOrders</h1>
+    </div>
+    <hr>
     <table id="tableUserOrders">
         <th>N:</th>
         <th>Date</th>

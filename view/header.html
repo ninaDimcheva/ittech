@@ -12,11 +12,9 @@
 showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduct(); viewEditProduct(); viewRemoveProduct(); removePromotion(); ">
 <header>
     <ul>
-        <li><a href="./"><img id="homePage" src="assets/displayImages/homePage.png" alt="Home page">Home page</a></li>
-        <li><a href="?page=contactittech"><img id="phone" src="assets/displayImages/phone.png" alt="Phone">Contact
-            us</a></li>
-        <li><a href="?page=productsOnPromotions"><img id="promotion" src="assets/displayImages/promotions.png"
-                                                      alt="Promotions">Promotions</a></li>
+        <li><a href="./"><i class="fa fa-home top" aria-hidden="true"></i> Home page</a></li>
+        <li><a href="?page=contactittech"><i class="fa fa-at top" aria-hidden="true"></i> Contact us</a></li>
+        <li><a href="?page=productsOnPromotions"><i class="fa fa-gift top" aria-hidden="true"></i> Promotions</a></li>
     </ul>
     <hr>
     <a id="ittechLogo" href="./"><img src="assets/displayImages/logo.png"/></a>
@@ -24,23 +22,20 @@ showMainTypes(); showMyProfile(); showMyOrders(); confirmOrder(); addPromoProduc
         <div class="container">
             <input type="search" id="search" list='autocomplete' placeholder="Search..." onkeyup="clickSearch(event)"/>
             <datalist id='autocomplete'></datalist>
-            <button class="icon"><i class="fa fa-search"></i></button>
         </div>
     </div>
 
     <div id="navigation">
-        <button id="loginButton" class="button" onclick="loginNavigation()"><img id="login"
-                                                                                 src="assets/displayImages/person.png"
-                                                                                 alt="Person">Login
+        <button id="loginButton" class="button" onclick="loginNavigation()"><i class="fa fa-user-circle"
+                                                                               aria-hidden="true"></i> Login
         </button>
         <div id="mainNavigation">
-            <a href="?page=login">Login</a><br/>
-            <a href="?page=register">Register</a>
+            <a class="menuLinks" href="?page=login">Login</a><br/>
+            <a class="menuLinks" href="?page=register">Register</a>
         </div>
         <div id="mainCart">
-            <button class="button" onclick="location.href = '?page=userCart'"><img id="cart"
-                                                                                   src="assets/displayImages/cart.png"
-                                                                                   alt="Cart">Cart
+            <button id="cartButton" class="button" onclick="location.href = '?page=userCart'"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
             </button>
         </div>
     </div>

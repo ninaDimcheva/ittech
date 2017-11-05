@@ -12,27 +12,28 @@ function isLogged() {
                 var isAdmin = userObject.is_admin;
                 var navigationButton = document.getElementById('loginButton');
                 navigationButton.innerHTML = capitalizeFirstLetter(name);
-                var image = document.createElement('img');
-                image.src = "http://localhost/ittech/assets/displayImages/person.png";
-                image.alt = 'Person';
-                image.id = 'login';
+                var image = document.createElement('i');
+                image.className = "fa fa-user-circle";
                 navigationButton.appendChild(image);
                 var mainDiv = document.getElementById('mainNavigation'); // the inner div
                 mainDiv.innerHTML = '';
                 if (isAdmin) {
                     var adminProfil = document.createElement('a');
+                    adminProfil.className = 'menuLinks';
                     adminProfil.innerHTML = 'Admin Profile';
                     adminProfil.href = '?page=myProfile';
                     mainDiv.appendChild(adminProfil);
                     br = document.createElement('br');
                     mainDiv.appendChild(br);
                     var addNewProduct = document.createElement('a');
+                    addNewProduct.className = 'menuLinks';
                     addNewProduct.innerHTML = 'Add new product';
                     addNewProduct.href = '?page=addProduct';
                     mainDiv.appendChild(addNewProduct);
                     var newLine = document.createElement('br');
                     mainDiv.appendChild(newLine);
                     var editUserPrivileges = document.createElement('a');
+                    editUserPrivileges.className = 'menuLinks';
                     editUserPrivileges.innerHTML = 'Edit user privileges';
                     editUserPrivileges.href = '?page=editUserPrivilege';
                     mainDiv.appendChild(editUserPrivileges);
@@ -48,18 +49,21 @@ function isLogged() {
                     mainDiv.appendChild(logout);
                 } else {
                     var profile = document.createElement('a');
+                    profile.className = 'menuLinks';
                     profile.innerHTML = 'My profile';
                     profile.href = '?page=myProfile';
                     var lineNew = document.createElement('br');
                     mainDiv.appendChild(profile);
                     mainDiv.appendChild(lineNew);
                     var orders = document.createElement('a');
+                    orders.className = 'menuLinks';
                     orders.innerHTML = 'My orders';
                     orders.href = '?page=myOrders';
                     mainDiv.appendChild(orders);
                     var newRow = document.createElement('br');
                     mainDiv.appendChild(newRow);
                     var favourites = document.createElement('a');
+                    favourites.className = 'menuLinks';
                     favourites.innerHTML = 'Favourites';
                     favourites.href = '?page=myFavorites';
                     mainDiv.appendChild(favourites);
