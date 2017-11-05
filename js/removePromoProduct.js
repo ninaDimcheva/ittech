@@ -1,76 +1,76 @@
-window.onload = function () {
+function removePromotion() {
+    if (self.location == 'http://localhost/ittech/?page=removePromoProduct') {
+        if (sessionStorage.removePromoObj) {
+            var removePromoProduct = JSON.parse(sessionStorage.removePromoObj);
+            var viewRemovePromoProduct = document.getElementById('viewRemovePromoProduct');
+            var imageDiv = document.createElement('div');
 
-    if (sessionStorage.removePromoObj) {
-        var removePromoProduct = JSON.parse(sessionStorage.removePromoObj);
-        var viewRemovePromoProduct = document.getElementById('viewRemovePromoProduct');
-        var imageDiv = document.createElement('div');
 
+            imageDiv.id = 'mainImage';
+            imageDiv.style.width = '250px';
+            imageDiv.style.textAlign = 'center';
 
-        imageDiv.id = 'mainImage';
-        imageDiv.style.width = '250px';
-       // imageDiv.style.border = '1px solid black';
-        imageDiv.style.textAlign = 'center';
+            var image = document.createElement('img');
+            image.src = "http://localhost/ittech/" + removePromoProduct.imgs[0].img_url;
+            image.style.width = '150px';
+            image.style.height = 'auto';
+            imageDiv.appendChild(image);
+            viewRemovePromoProduct.appendChild(imageDiv);
 
-        var image = document.createElement('img');
-        image.src = "http://localhost/ittech/" + removePromoProduct.imgs[0].img_url;
-        image.style.width = '150px';
-        image.style.height = 'auto';
-        imageDiv.appendChild(image);
-        viewRemovePromoProduct.appendChild(imageDiv);
+            var imgPromo = document.createElement('img');
+            imgPromo.style.width = '60px';
+            imgPromo.style.height = 'auto';
+            imgPromo.style.float = 'left';
+            imgPromo.src = "./assets/displayImages/promo.png";
+            imageDiv.appendChild(imgPromo);
 
-        var imgPromo = document.createElement('img');
-        imgPromo.style.width = '60px';
-        imgPromo.style.height = 'auto';
-        imgPromo.style.float = 'left';
-        imgPromo.src = "./assets/displayImages/promo.png";
-        imageDiv.appendChild(imgPromo);
+            var productAtributesDiv = document.createElement('div');
+            productAtributesDiv.id = 'productAtributes';
+            // productAtributesDiv.style.border = '1px solid black';
+            productAtributesDiv.style.width = '300px';
 
-        var productAtributesDiv = document.createElement('div');
-        productAtributesDiv.id = 'productAtributes';
-       // productAtributesDiv.style.border = '1px solid black';
-        productAtributesDiv.style.width = '300px';
+            var productAtributes = document.createElement('h4');
+            productAtributes.innerText = removePromoProduct.type + ' ' + removePromoProduct.brand + ' ' + removePromoProduct.model;
+            productAtributesDiv.appendChild(productAtributes);
 
-        var productAtributes = document.createElement('h4');
-        productAtributes.innerText = removePromoProduct.type + ' ' + removePromoProduct.brand + ' ' + removePromoProduct.model;
-        productAtributesDiv.appendChild(productAtributes);
+            var productId = document.createElement('h5');
+            productId.id = 'productId';
+            productId.value = removePromoProduct.product_id;
+            productId.innerText = 'Art.№' + removePromoProduct.product_id;
+            productAtributesDiv.appendChild(productId);
+            viewRemovePromoProduct.appendChild(productAtributesDiv);
 
-        var productId = document.createElement('h5');
-        productId.id = 'productId';
-        productId.value = removePromoProduct.product_id;
-        productId.innerText = 'Art.№' + removePromoProduct.product_id;
-        productAtributesDiv.appendChild(productId);
-        viewRemovePromoProduct.appendChild(productAtributesDiv);
+            var priceDiv = document.createElement('div');
+            priceDiv.id = 'priceRemove';
+            // priceDiv.style.border = '1px solid green';
+            priceDiv.style.width = '100px';
+            priceDiv.style.height = '50px';
+            priceDiv.style.color = 'red';
+            priceDiv.innerText = 'Promo prise: $' + removePromoProduct.price;
+            viewRemovePromoProduct.appendChild(priceDiv);
 
-        var priceDiv = document.createElement('div');
-        priceDiv.id = 'priceRemove';
-        // priceDiv.style.border = '1px solid green';
-        priceDiv.style.width = '100px';
-        priceDiv.style.height = '50px';
-        priceDiv.style.color = 'red';
-        priceDiv.innerText = 'Promo prise: $' + removePromoProduct.price;
-        viewRemovePromoProduct.appendChild(priceDiv);
+            var removePromoButton = document.getElementById('removePromoButton');
+            removePromoButton.value = removePromoProduct.product_id;
 
-        var removePromoButton = document.getElementById('removePromoButton');
-        removePromoButton.value = removePromoProduct.product_id;
-
-    } else {
-        var removePromoSubmit = document.getElementById('removePromoSubmit');
-        removePromoSubmit.innerHTML = '';
-        var a = document.createElement('a');
-        a.className = 'link';
-        a.href = './?page=productsOnPromotions';
-        a.innerText = 'Select another product';
-        removePromoSubmit.appendChild(a);
+        } else {
+            var removePromoSubmit = document.getElementById('removePromoSubmit');
+            removePromoSubmit.innerHTML = '';
+            var a = document.createElement('a');
+            a.className = 'link';
+            a.href = './?page=productsOnPromotions';
+            a.innerText = 'Select another product';
+            removePromoSubmit.appendChild(a);
+        }
     }
-};
+}
 
 function removePromoProduct(productId) {
     sessionStorage.clear();
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (this.readyState === 4){
-            if (this.status === 200){
-                var viewRemovePromoProduct =  document.getElementById('viewRemovePromoProduct');
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                var viewRemovePromoProduct = document.getElementById('viewRemovePromoProduct');
                 viewRemovePromoProduct.innerHTML = 'Successfully remove the promotion';
                 var br = document.createElement('br');
                 viewRemovePromoProduct.appendChild(br);
@@ -86,7 +86,7 @@ function removePromoProduct(productId) {
                 allProductsLink.innerText = 'View all products';
                 allProductsLink.href = './';
                 removePromoSubmit.appendChild(allProductsLink);
-            }else {
+            } else {
                 window.location.replace('http://localhost/ittech?page=error500');
             }
         }
