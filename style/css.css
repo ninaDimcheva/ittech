@@ -40,7 +40,7 @@ input:focus, select:focus {
     color: #e60000;
     cursor: pointer;
     margin: 5px;
-    min-height: 30px;
+    min-height: 25px;
     min-width: 100px;
 }
 

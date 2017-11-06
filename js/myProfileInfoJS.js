@@ -6,16 +6,18 @@ function showMyProfile() {
                 if (this.status === 200) {
                     var userProfile = JSON.parse(this.responseText);
                     if(userProfile.is_admin){
-                        var liToDelete = document.getElementById('myOrders');
+                        var liToDelete = document.getElementById('myOrdersLink');
                         liToDelete.innerHTML = '';
                         var addNewProduct = document.createElement('a');
+                        addNewProduct.className = 'menuLinks';
                         addNewProduct.href = '?page=addProduct';
                         addNewProduct.innerHTML = 'Add new product';
                         liToDelete.appendChild(addNewProduct);
 
-                        var secondLiToDelete = document.getElementById('myFavourites');
+                        var secondLiToDelete = document.getElementById('myFavouritesLink');
                         secondLiToDelete.innerHTML = '';
                         var privileges = document.createElement('a');
+                        privileges.className = 'menuLinks';
                         privileges.href = '?page=editUserPrivilege';
                         privileges.innerHTML = 'Edit user privileges';
                         secondLiToDelete.appendChild(privileges);
